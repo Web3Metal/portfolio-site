@@ -18,28 +18,38 @@
 /.vinext/
 /out/
 
-# misc
+# operating systems and editors
 .DS_Store
+Thumbs.db
+Desktop.ini
+.vscode/
 *.pem
 
-# debug
+# debug and temporary files
+*.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+pnpm-debug.log*
 .pnpm-debug.log*
+*.tmp
+*.bak
 
 # env files (can opt-in for committing if needed)
 .env*
+
+# generated output
+/build/
+/dist/
+/.wrangler/
+/outputs/
+/work/
 
 # vercel
 .vercel
 
 # typescript
 next-env.d.ts
-/dist/
-/.wrangler/
-/outputs/
-/work/
 
 # local project references and preparation artifacts
 /sources/
