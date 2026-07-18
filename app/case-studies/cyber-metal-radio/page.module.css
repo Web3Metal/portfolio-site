@@ -1,0 +1,237 @@
+.loopFigure {
+  margin: 0;
+}
+
+.loopHeading {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid #605f59;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+.loopHeading p,
+.loopHeading span {
+  margin: 0;
+}
+
+.loopHeading span {
+  color: #aaa79e;
+}
+
+.loopTrack {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  border-bottom: 1px solid #605f59;
+}
+
+.loopStage {
+  position: relative;
+  min-height: 320px;
+  padding: 28px 26px;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid #605f59;
+}
+
+.loopStage:last-child {
+  border-right: 0;
+  background: var(--case-accent);
+  color: #fff;
+}
+
+.loopStage:not(:last-child)::after {
+  content: "→";
+  position: absolute;
+  top: 50%;
+  right: -15px;
+  z-index: 1;
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  background: var(--case-ink);
+  color: var(--case-accent);
+  font-size: 25px;
+  transform: translateY(-50%);
+}
+
+.loopStage small {
+  color: var(--case-accent);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.loopStage:last-child small {
+  color: #fff;
+}
+
+.loopStage strong {
+  max-width: 210px;
+  margin-top: auto;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(29px, 3vw, 46px);
+  font-weight: 400;
+  letter-spacing: -.035em;
+  line-height: 1;
+}
+
+.returnRail {
+  position: relative;
+  height: 86px;
+  margin: 0 8%;
+  border-right: 1px solid var(--case-accent);
+  border-bottom: 1px solid var(--case-accent);
+  border-left: 1px solid var(--case-accent);
+}
+
+.returnRail::before {
+  content: "←";
+  position: absolute;
+  bottom: -15px;
+  left: -1px;
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  background: var(--case-ink);
+  color: var(--case-accent);
+  font-size: 25px;
+  transform: translateX(-50%);
+}
+
+.returnRail span {
+  position: absolute;
+  bottom: -7px;
+  left: 50%;
+  padding: 0 14px;
+  background: var(--case-ink);
+  color: #aaa79e;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  transform: translateX(-50%);
+}
+
+.loopFigure figcaption {
+  max-width: 790px;
+  margin: 56px 0 0 auto;
+  color: #aaa79e;
+  font-size: 12px;
+  line-height: 1.55;
+}
+
+.metricPanel {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-top: 1px solid var(--case-ink);
+  border-bottom: 1px solid var(--case-ink);
+}
+
+.metricPanel article {
+  min-height: 270px;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-right: 1px solid var(--case-line);
+}
+
+.metricPanel article:first-child {
+  padding-left: 0;
+}
+
+.metricPanel article:last-child {
+  border-right: 0;
+}
+
+.metricPanel strong {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(58px, 7vw, 106px);
+  font-weight: 400;
+  letter-spacing: -.06em;
+  line-height: .85;
+}
+
+.metricPanel span {
+  max-width: 300px;
+  font-size: 13px;
+  letter-spacing: .08em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+.supportingResults {
+  margin-top: clamp(80px, 10vw, 140px);
+}
+
+@media (max-width: 920px) {
+  .loopTrack {
+    grid-template-columns: 1fr;
+  }
+
+  .loopStage {
+    min-height: 190px;
+    border-right: 0;
+    border-bottom: 1px solid #605f59;
+  }
+
+  .loopStage:not(:last-child)::after {
+    top: auto;
+    right: 50%;
+    bottom: -15px;
+    transform: translateX(50%) rotate(90deg);
+  }
+
+  .loopStage strong {
+    max-width: 100%;
+  }
+
+  .returnRail {
+    display: none;
+  }
+
+  .loopFigure figcaption {
+    margin-top: 30px;
+  }
+
+  .metricPanel {
+    grid-template-columns: 1fr;
+  }
+
+  .metricPanel article,
+  .metricPanel article:first-child {
+    min-height: 200px;
+    padding: 26px 0;
+    border-right: 0;
+    border-bottom: 1px solid var(--case-line);
+  }
+
+  .metricPanel article:last-child {
+    border-bottom: 0;
+  }
+}
+
+@media (max-width: 560px) {
+  .loopHeading {
+    align-items: flex-start;
+  }
+
+  .loopHeading span {
+    max-width: 130px;
+    text-align: right;
+  }
+
+  .loopStage strong {
+    font-size: 35px;
+  }
+
+  .metricPanel strong {
+    font-size: 61px;
+  }
+}
