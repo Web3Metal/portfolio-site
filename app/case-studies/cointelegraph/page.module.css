@@ -22,7 +22,7 @@
 }
 
 .workflowStage small {
-  color: var(--case-accent);
+  color: var(--case-accent-on-dark);
   font-size: 10px;
   font-weight: 700;
 }

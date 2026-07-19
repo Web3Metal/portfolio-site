@@ -86,7 +86,7 @@
 
 .sectionNumber {
   margin: 9px 0 0;
-  color: var(--accent);
+  color: var(--accent-readable);
   font-size: 12px;
   font-weight: 700;
   letter-spacing: .14em;
@@ -117,7 +117,7 @@
 }
 
 .sectionLink span,
-.caseLink span { color: var(--accent); }
+.caseLink span { color: var(--accent-readable); }
 
 .featuredCase {
   display: grid;
@@ -170,7 +170,7 @@
 
 .caseNumber {
   margin: 0;
-  color: var(--accent);
+  color: var(--accent-readable);
   font-size: 12px;
   font-weight: 700;
   letter-spacing: .14em;
@@ -230,7 +230,7 @@
 .proofPoint span {
   display: block;
   margin-bottom: 9px;
-  color: var(--accent);
+  color: var(--accent-readable);
 }
 
 .proofPoint strong {
@@ -367,7 +367,7 @@
   text-transform: uppercase;
 }
 
-.experimentKicker span { color: var(--accent); }
+.experimentKicker span { color: var(--accent-readable); }
 
 .experimentFeature h3 {
   margin: auto 0 28px;
@@ -434,7 +434,7 @@
   text-transform: uppercase;
 }
 
-.writingSubjects li + li::before { content: "/"; margin-right: 24px; color: var(--accent); }
+.writingSubjects li + li::before { content: "/"; margin-right: 24px; color: var(--accent-readable); }
 .writingPanel .caseLink { margin-top: 38px; }
 
 @media (max-width: 920px) {

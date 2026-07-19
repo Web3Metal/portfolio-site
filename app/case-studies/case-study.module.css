@@ -1,5 +1,6 @@
 .page {
-  --case-accent: #e84142;
+  --case-accent: #c43f2b;
+  --case-accent-on-dark: #f06d59;
   --case-ink: #171714;
   --case-paper: #f4f1ea;
   --case-line: #c9c4b9;
@@ -138,7 +139,7 @@
   color: var(--case-paper);
 }
 
-.systemSection .sectionLabel span { color: var(--case-accent); }
+.systemSection .sectionLabel span { color: var(--case-accent-on-dark); }
 .systemFigure { margin: 0; }
 .systemRail {
   display: grid;
@@ -149,10 +150,10 @@
 }
 
 .systemNode { min-height: 290px; padding: 25px 20px; display: flex; flex-direction: column; gap: 15px; }
-.systemNode small { color: var(--case-accent); font-weight: 700; }
+.systemNode small { color: var(--case-accent-on-dark); font-weight: 700; }
 .systemNode strong { margin-top: auto; font-family: Georgia, serif; font-size: clamp(24px, 2.4vw, 38px); font-weight: 400; line-height: 1.05; }
 .systemNode > span, .routeColumns span { color: #c8c5bb; font-size: 12px; line-height: 1.4; }
-.systemArrow { display: grid; place-items: center; color: var(--case-accent); font-size: 28px; }
+.systemArrow { display: grid; place-items: center; color: var(--case-accent-on-dark); font-size: 28px; }
 .routeColumns { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 8px; }
 .routeColumns div { display: flex; flex-direction: column; gap: 7px; }
 .systemFigure figcaption, .progressFigure figcaption {
