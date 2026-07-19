@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import { ContactBlock, PageIntro, SiteFooter, SiteHeader } from "../site-components";
 import { caseStudies } from "../site-data";
 
@@ -12,7 +13,11 @@ export default function CaseStudiesPage() {
       <div className="case-kicker"><span>{item.number} / Case Study</span><span>{item.role}</span></div>
       <h2>{item.title}</h2><p className="case-summary">{item.summary}</p>
       <div className="tags">{item.tags.map(tag => <span key={tag}>{tag}</span>)}</div>
-      {"image" in item && item.image ? <Image className="case-image" src={item.image} alt={`${item.title} work sample`} width={1920} height={1080} /> : null}
+      {"image" in item && item.image ? item.slug === "edge-of-company" ? (
+        <Link href="/case-studies/edge-of-company" aria-label="View the Edge of Company case study">
+          <Image className="case-image" src={item.image} alt={`${item.title} work sample`} width={1920} height={1080} unoptimized />
+        </Link>
+      ) : <Image className="case-image" src={item.image} alt={`${item.title} work sample`} width={1920} height={1080} unoptimized /> : null}
       <div className="case-columns"><div><h3>The gap</h3><p>{item.challenge}</p></div><div><h3>The system</h3><ul>{item.system.map(point => <li key={point}>{point}</li>)}</ul></div></div>
       <div className="result-grid">{item.results.map(result => <div key={result}>{result}</div>)}</div>
     </div></article>)}

@@ -53,6 +53,7 @@ export const caseStudies = [
     system: ["Guest preparation and live host scripts", "Recording and publishing handoffs", "YouTube production and channel management", "X Spaces and Outer Edge LA event support"],
     results: ["24,000+ additional profile visits", "35% follower growth", "28% impression growth", "49% increase in YouTube watch hours"],
     tags: ["Podcast production", "Audience growth", "Events"],
+    image: "/assets/future-of-storytelling.jpeg",
   },
   {
     slug: "web3-metal",
