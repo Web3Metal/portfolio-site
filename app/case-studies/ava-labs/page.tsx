@@ -18,12 +18,13 @@ export const metadata: Metadata = {
 };
 
 const title = "Ava Labs — Developer Engagement Manager";
-const date = "Oct 2024 to Present";
+const date = "Oct 2024 to Oct 2025";
 const context = "Ava Labs is the team behind Avalanche, creating high performance blockchain infrastructure, developer tools, and programs to support app and chain builders.";
-const roleOverview = "Part of a small engagement team driving developer adoption of Avalanche. Quickly emerged as the top engager, consistently leading the team in new lead discovery, link clicks, and downstream conversions. Specialized in using Sprinklr search and native X tools to identify and qualify builders, then routing them into programs like Elevate, Builders Hub, and Hackathons. Extended tracking beyond Sprinklr by building and deploying UTM tagged links, enabling click through measurement in otherwise untracked channels.";
+const challenge = "Avalanche wanted to increase the number of developers building long term projects in its ecosystem. The challenge wasn't simply generating awareness. It was identifying promising developers, understanding where they were in their journey, and connecting them with the right programs, events, and internal teams to help them continue building.";
+const roleOverview = "Part of a small engagement team driving developer adoption of Avalanche. Managed developer relationships from first interaction through qualified interest, program participation, and handoff to deeper technical support.";
 
 const scope = [
-  "Led day to day developer outreach on X, consistently ranking as the top performer on the team for engagement and lead discovery",
+  "Led day to day developer outreach on X and consistently ranked among the team's strongest performers for click through rate and lead discovery",
   "Partnered with Sprinklr specialists to design dashboards that improved lead visibility and funnel tracking",
   "Used UTM tagged links to measure clicks in channels Sprinklr could not reach, ensuring full funnel visibility",
   "Qualified leads and routed them into Avalanche builder programs, including Elevate, Builders Hub, Hackathons, and Team1",
@@ -31,7 +32,7 @@ const scope = [
 ];
 
 const strengths = [
-  "Top engager in team metrics for click through rate and lead discovery",
+  "Ranked among the team's strongest performers for click through rate and lead discovery",
   "Search workflows across Sprinklr and native X to uncover quality leads",
   "UTM tracking expertise for non native channels",
   "Cross functional collaboration with Sprinklr operations and Business Development teams",
@@ -94,7 +95,7 @@ export default function AvaLabsCaseStudyPage() {
       <CaseStudyHero index="01" date={date} title={title} context={context} tags={tags} />
 
       <CaseStudySection number="01" title="Challenge" headingId="challenge-heading">
-        <ProseLead><p>{context}</p></ProseLead>
+        <ProseLead><p>{challenge}</p></ProseLead>
       </CaseStudySection>
 
       <CaseStudySection number="02" title="My Role" headingId="role-heading">
