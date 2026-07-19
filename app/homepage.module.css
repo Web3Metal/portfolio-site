@@ -1,8 +1,73 @@
 .homeHero {
+  position: relative;
+  overflow: hidden;
   min-height: min(900px, calc(100vh - 76px));
 }
 
-.homeHero h1 { text-wrap: balance; }
+.homeHero h1 {
+  position: relative;
+  z-index: 2;
+  max-width: min(78vw, 1080px);
+  text-wrap: balance;
+}
+
+.homeHero :global(.eyebrow),
+.homeHero :global(.hero-bottom) {
+  position: relative;
+  z-index: 2;
+}
+
+.homeHero :global(.hero-bottom) {
+  width: calc(100% - clamp(300px, 29vw, 410px));
+}
+
+.heroPortrait {
+  position: absolute;
+  right: clamp(-24px, -1vw, -8px);
+  bottom: 0;
+  z-index: 1;
+  width: clamp(320px, 30vw, 430px);
+  margin: 0;
+}
+
+.heroPortrait img {
+  width: 100%;
+  height: auto;
+}
+
+@media (min-width: 921px) {
+  .homeHero {
+    display: flex;
+    padding-top: clamp(72px, 6vw, 92px);
+    justify-content: space-between;
+  }
+
+  .homeHero :global(.eyebrow) {
+    margin-bottom: 28px;
+  }
+
+  .homeHero h1 {
+    max-width: min(70vw, 960px);
+    font-size: clamp(78px, 6.1vw, 96px);
+  }
+
+  .heroPortrait {
+    position: absolute;
+    right: clamp(-170px, -9vw, -110px);
+    bottom: clamp(-110px, -6vw, -80px);
+    width: clamp(660px, 48vw, 820px);
+    opacity: .68;
+    filter: grayscale(.52) saturate(.62) contrast(.9);
+  }
+
+  .homeHero :global(.hero-bottom) {
+    width: 100%;
+    margin-top: 52px;
+    grid-template-columns: minmax(280px, 520px) auto;
+    justify-content: start;
+    gap: 40px;
+  }
+}
 
 .homeSection {
   width: min(1380px, calc(100% - 72px));
@@ -373,6 +438,9 @@
 .writingPanel .caseLink { margin-top: 38px; }
 
 @media (max-width: 920px) {
+  .homeHero h1 { max-width: 76vw; }
+  .homeHero :global(.hero-bottom) { width: calc(100% - 280px); }
+  .heroPortrait { width: 285px; }
   .homeSection { width: min(100% - 36px, 1380px); }
   .sectionHeader { grid-template-columns: 48px 1fr; }
   .sectionLink { grid-column: 2; justify-self: start; }
@@ -395,8 +463,16 @@
 
 @media (max-width: 560px) {
   .homeHero { min-height: auto; padding-top: 50px; padding-bottom: 46px; }
-  .homeHero h1 { font-size: clamp(42px, 12.7vw, 58px); line-height: .94; }
-  .homeHero :global(.eyebrow) { margin-bottom: 34px; font-size: 10px; line-height: 1.45; }
+  .homeHero h1 { max-width: none; font-size: clamp(42px, 12.7vw, 58px); line-height: .94; }
+  .homeHero :global(.eyebrow) { max-width: calc(100% - 116px); margin-bottom: 34px; font-size: 10px; line-height: 1.45; }
+  .homeHero :global(.hero-bottom) { width: 100%; }
+  .heroPortrait {
+    top: 4px;
+    right: -4px;
+    bottom: auto;
+    width: clamp(90px, 27vw, 108px);
+    border-left: 0;
+  }
   .homeHero :global(.hero-bottom) { margin-top: 38px; gap: 20px; }
   .homeHero :global(.lede) { font-size: 18px; }
   .homeHero :global(.text-link) { min-height: 44px; margin-top: 10px; }

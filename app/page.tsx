@@ -66,6 +66,9 @@ export default function Home() {
         <section className={`hero wrap ${styles.homeHero}`} id="home">
           <p className="eyebrow">Shawn Porter / Growth, community & creative technology</p>
           <h1>I find the missing system behind an idea—then build <span className={styles.contentPhrase}>the content,</span> community, or product that makes it work.</h1>
+          <figure className={styles.heroPortrait}>
+            <img src="/assets/shawn-hero-portrait.png" alt="Portrait of Shawn Porter wearing glasses and a cap" />
+          </figure>
           <div className="hero-bottom">
             <p className="lede">I turn ambitious ideas into working ecosystems: clear stories, repeatable programs, measurable growth, and media people want to return to.</p>
             <Link className="text-link" href="/case-studies">View case studies <span>↗</span></Link>
