@@ -2,15 +2,49 @@ import type { Metadata } from "next";
 import { ContactBlock, PageIntro, SiteFooter, SiteHeader } from "../site-components";
 
 export const metadata: Metadata = { title: "Writing" };
-const areas = [
-  ["Technology", "Reporting on crypto, Web3, AI, platforms, and the people building around emerging tools.", "CryptoSlate · Web3 Metal"],
-  ["Culture & music", "Artist interviews, live-show coverage, metal culture, and the evolving relationship between music and technology.", "Seattle Weekly · MetalShout · Sinner Magazine"],
-  ["Civics & politics", "Local reporting, national campaign coverage, public forums, and explanatory work grounded in communities.", "International Examiner · The Mukilteo Beacon · independent media"],
-  ["Editorial systems", "Newsletters, scripts, white papers, social narratives, and campaign copy designed to move from information to participation.", "Founder and client work"],
+const sections = [
+  {
+    title: "Reporting and Essays",
+    copy: "Selected journalism, analysis, and commentary on technology, culture, politics, music, and the systems shaping how people create and organize online.",
+  },
+  {
+    title: "Interviews",
+    copy: "Conversations with artists, builders, founders, and other people working at the edges of emerging culture and technology.",
+  },
+  {
+    title: "Creative Writing",
+    copy: "Selected poetry, lyrics, fiction, and narrative experiments connected to music, worldbuilding, and interactive projects.",
+    note: "This section is intentionally selective rather than a complete archive of everything I have written.",
+  },
+  {
+    title: "Archive",
+    copy: "Additional published work and older reporting can be found through the full writing archive.",
+    href: "https://authory.com/Shawnsporter",
+  },
 ];
-export default function WritingPage() { return <><SiteHeader /><main>
-  <PageIntro kicker="Writing / Selected areas" title="Reporting, explaining, and finding the human story inside a system." copy="More than eight years of multimedia journalism and editorial work across politics, culture, music, technology, and community." />
-  <section className="content-section"><div className="wrap content-grid">{areas.map(([title,copy,source], i) => <article className="content-card" key={title}><div><p className="tag">0{i+1}</p><h3>{title}</h3></div><div><p>{copy}</p><p className="tag">{source}</p></div></article>)}</div></section>
-  <ContactBlock />
+
+export default function WritingPage() {
+  return <><SiteHeader /><main>
+    <PageIntro
+      kicker="Writing / Selected work"
+      title="Reporting, essays, interviews, and creative work."
+      copy="Shaped by a journalism background and a habit of looking for the overlooked angle."
+    />
+    <section className="content-section">
+      <div className="wrap">
+        <p className="lede" style={{ maxWidth: 900, marginBottom: "clamp(48px, 7vw, 90px)" }}>The subjects vary—technology, culture, politics, music, online communities, and emerging creative tools—but the goal stays the same: understand what is actually happening beneath the surface and explain why it matters.</p>
+        <div className="content-grid">
+          {sections.map((section, index) => <article className="content-card" key={section.title}>
+            <div><p className="tag">0{index + 1}</p><h3>{section.title}</h3></div>
+            <div>
+              <p>{section.copy}</p>
+              {section.note ? <p>{section.note}</p> : null}
+              {section.href ? <a className="text-link" href={section.href} target="_blank" rel="noreferrer">View Writing Archive <span aria-hidden="true">↗</span></a> : null}
+            </div>
+          </article>)}
+        </div>
+      </div>
+    </section>
+    <ContactBlock />
   </main><SiteFooter /></>;
 }

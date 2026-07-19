@@ -17,7 +17,7 @@ const title = "Cointelegraph Media";
 const challenge = "Cointelegraph Media’s agency team managed social content for multiple blockchain clients with different products, audiences, and levels of technical complexity. The challenge was turning each client’s goals into clear, platform-ready campaigns without flattening them into the same generic crypto voice.";
 const myRole = "I managed social content across multiple blockchain clients, translating technical products and campaign goals into clear copy, visual briefs, publishing plans, and platform-specific posts. I coordinated with designers, scheduled and published content, and used performance data to refine what we produced.";
 const system = "Each client moved through the same core workflow: understand the product and campaign goal, translate it into a clear content angle, coordinate the visual execution, publish across the right channels, and use performance data to adjust future work. The structure stayed consistent while the voice and message changed by client.";
-const assets = "No original campaign files are currently available. This case study should rely on concise role context and reconstructed workflow diagrams rather than pretending there’s a shiny archive somewhere.";
+const assets = "Original campaign files from this work are not currently available. The reconstructed workflow above documents the repeatable process used across copy, visual coordination, publishing, and performance-led iteration for multiple client accounts.";
 const lesson = "A repeatable production workflow makes it possible to manage multiple clients while preserving a distinct voice for each one.";
 
 const tags = ["clear copy", "publishing plans", "platform-specific posts"];

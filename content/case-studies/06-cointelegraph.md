@@ -22,7 +22,7 @@ Each client moved through the same core workflow: understand the product and cam
 
 ## Assets
 
-No original campaign files are currently available. This case study should rely on concise role context and reconstructed workflow diagrams rather than pretending there’s a shiny archive somewhere.
+Original campaign files from this work are not currently available. The reconstructed workflow above documents the repeatable process used across copy, visual coordination, publishing, and performance-led iteration for multiple client accounts.
 
 ## Lessons
 
