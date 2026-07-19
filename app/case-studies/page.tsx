@@ -13,8 +13,8 @@ export default function CaseStudiesPage() {
       <div className="case-kicker"><span>{item.number} / Case Study</span><span>{item.role}</span></div>
       <h2>{item.title}</h2><p className="case-summary">{item.summary}</p>
       <div className="tags">{item.tags.map(tag => <span key={tag}>{tag}</span>)}</div>
-      {"image" in item && item.image ? item.slug === "edge-of-company" ? (
-        <Link href="/case-studies/edge-of-company" aria-label="View the Edge of Company case study">
+      {"image" in item && item.image ? ["edge-of-company", "web3-metal"].includes(item.slug) ? (
+        <Link href={`/case-studies/${item.slug}`} aria-label={`View the ${item.title} case study`}>
           <Image className="case-image" src={item.image} alt={`${item.title} work sample`} width={1920} height={1080} unoptimized />
         </Link>
       ) : <Image className="case-image" src={item.image} alt={`${item.title} work sample`} width={1920} height={1080} unoptimized /> : null}

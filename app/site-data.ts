@@ -65,6 +65,7 @@ export const caseStudies = [
     system: ["Newsletter and editorial hub", "Discord community and skills-based challenges", "Collaborative releases and creator partnerships", "Incubation of community-led projects including Cyber Metal Radio"],
     results: ["192-member focused community", "16,000 personal artist plays", "500+ artist likes", "Summer of Suno winner"],
     tags: ["Founder", "Community design", "Creative technology"],
+    image: "/assets/newsletter-metal-gods.png",
   },
   {
     slug: "cointelegraph",
