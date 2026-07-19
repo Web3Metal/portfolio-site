@@ -11,7 +11,9 @@ export default function CaseStudiesPage() {
     <PageIntro kicker="Case Studies / 01–06" title="Systems built to make ideas participate." copy="Selected work across developer growth, creator ecosystems, community programs, media operations, and emerging technology." />
     {caseStudies.map((item) => <article className="case-detail" id={item.slug} key={item.slug}><div className="wrap">
       <div className="case-kicker"><span>{item.number} / Case Study</span><span>{item.role}</span></div>
-      <h2>{item.title}</h2><p className="case-summary">{item.summary}</p>
+      {item.slug === "cointelegraph" ? (
+        <h2><Link href="/case-studies/cointelegraph">{item.title}</Link></h2>
+      ) : <h2>{item.title}</h2>}<p className="case-summary">{item.summary}</p>
       <div className="tags">{item.tags.map(tag => <span key={tag}>{tag}</span>)}</div>
       {"image" in item && item.image ? ["edge-of-company", "web3-metal"].includes(item.slug) ? (
         <Link href={`/case-studies/${item.slug}`} aria-label={`View the ${item.title} case study`}>
