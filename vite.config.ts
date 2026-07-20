@@ -54,9 +54,7 @@ export default defineConfig(async () => {
       plugins: [
         tailwindcss(),
         vinext(),
-        nitro({
-          output: { dir: ".output" },
-        }),
+        nitro(),
       ],
     };
   }
