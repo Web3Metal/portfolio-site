@@ -17,6 +17,7 @@
 /.next/
 /.vinext/
 /out/
+/.output/
 
 # operating systems and editors
 .DS_Store
