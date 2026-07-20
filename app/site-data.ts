@@ -19,7 +19,7 @@ export const caseStudies = [
     system: ["Search workflows for qualified builder discovery", "UTM-tagged links for channels outside native reporting", "Program routing across Elevate, Builders Hub, hackathons, and Team1", "Leadership reporting tied to engagement and intent"],
     results: ["9,000+ developers engaged", "6,900+ visits to ecosystem resources", "4,400+ initial interactions", "3,500+ continued conversations"],
     tags: ["Developer engagement", "Growth operations", "Analytics"],
-    image: "/assets/builder-wins.png",
+    image: "/assets/builder-wins.webp",
   },
   {
     slug: "cyber-metal-radio",
@@ -65,7 +65,7 @@ export const caseStudies = [
     system: ["Newsletter and editorial hub", "Discord community and skills-based challenges", "Collaborative releases and creator partnerships", "Incubation of community-led projects including Cyber Metal Radio"],
     results: ["192 Discord members", "27 newsletter issues", "37.59% open rate", "20% click-to-open rate"],
     tags: ["Founder", "Community design", "Creative technology"],
-    image: "/assets/newsletter-metal-gods.png",
+    image: "/assets/newsletter-metal-gods.webp",
   },
   {
     slug: "cointelegraph",

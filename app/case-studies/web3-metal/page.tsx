@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import {
   CaseStudyHero,
   CaseStudyPage,
@@ -65,9 +66,14 @@ export default function Web3MetalCaseStudyPage() {
 
       <figure className={styles.heroEvidence}>
         <div className={styles.heroImage}>
-          <img
-            src="/assets/newsletter-metal-gods.png"
+          <Image
+            src="/assets/newsletter-metal-gods.webp"
             alt="Web3 Metal newsletter artwork featuring Metal Gods"
+            width={1200}
+            height={630}
+            sizes="(max-width: 900px) 100vw, 1200px"
+            unoptimized
+            priority
           />
         </div>
         <figcaption>
@@ -109,7 +115,7 @@ export default function Web3MetalCaseStudyPage() {
           </div>
           <div className={styles.ecosystemGrid}>
             <div className={styles.logoPanel}>
-              <img src="/assets/web3-metal-logo.png" alt="Web3 Metal logo" />
+              <Image src="/assets/web3-metal-logo.webp" alt="Web3 Metal logo" width={1080} height={1080} sizes="(max-width: 800px) 100vw, 40vw" unoptimized />
             </div>
             {ecosystem.map((item, index) => (
               <div className={styles.ecosystemItem} key={item}>
@@ -148,15 +154,15 @@ export default function Web3MetalCaseStudyPage() {
       <CaseStudySection number="05" title="Assets" headingId="assets-heading">
         <div className={styles.assetGallery}>
           <figure className={styles.assetLead}>
-            <img src="/assets/newsletter-onchain-releases.png" alt="Web3 Metal newsletter artwork covering onchain releases" />
+            <Image src="/assets/newsletter-onchain-releases.webp" alt="Web3 Metal newsletter artwork covering onchain releases" width={1600} height={900} sizes="(max-width: 800px) 100vw, 65vw" unoptimized />
             <figcaption><span>01</span>Newsletter issue archive</figcaption>
           </figure>
           <figure>
-            <img src="/assets/discord-programming.png" alt="Web3 Metal Discord programming artwork" />
+            <Image src="/assets/discord-programming.webp" alt="Web3 Metal Discord programming artwork" width={1600} height={900} sizes="(max-width: 800px) 100vw, 50vw" unoptimized />
             <figcaption><span>02</span>Discord community</figcaption>
           </figure>
           <figure>
-            <img src="/assets/suno-metal-editorial.png" alt="Web3 Metal editorial artwork about metal made with Suno" />
+            <Image src="/assets/suno-metal-editorial.webp" alt="Web3 Metal editorial artwork about metal made with Suno" width={1280} height={720} sizes="(max-width: 800px) 100vw, 50vw" unoptimized />
             <figcaption><span>03</span>Editorial coverage</figcaption>
           </figure>
         </div>

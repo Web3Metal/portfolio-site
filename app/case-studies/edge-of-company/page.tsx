@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import {
   CaseStudyHero,
   CaseStudyPage,
@@ -66,9 +67,14 @@ export default function EdgeOfCompanyCaseStudyPage() {
 
       <figure className={styles.heroEvidence}>
         <div className={styles.heroImage}>
-          <img
+          <Image
             src="/assets/future-of-storytelling.jpeg"
             alt="Edge of NFT episode artwork for The Future of Storytelling with Henry Finn"
+            width={1280}
+            height={720}
+            sizes="(max-width: 900px) 100vw, 1200px"
+            unoptimized
+            priority
           />
         </div>
         <figcaption>
@@ -158,16 +164,24 @@ export default function EdgeOfCompanyCaseStudyPage() {
         <div className={styles.assetLayout}>
           <div className={styles.assetGallery}>
             <figure>
-              <img
+              <Image
                 src="/assets/edge-of-ai-launch.jpeg"
                 alt="Edge of AI podcast launch artwork featuring Ron Levy"
+                width={680}
+                height={383}
+                sizes="(max-width: 800px) 100vw, 50vw"
+                unoptimized
               />
               <figcaption><span>01</span>Edge of AI launch</figcaption>
             </figure>
             <figure>
-              <img
+              <Image
                 src="/assets/swoops-episode.jpeg"
                 alt="Edge of NFT episode artwork featuring SWOOPS and David Goldberg"
+                width={680}
+                height={383}
+                sizes="(max-width: 800px) 100vw, 50vw"
+                unoptimized
               />
               <figcaption><span>02</span>SWOOPS episode</figcaption>
             </figure>

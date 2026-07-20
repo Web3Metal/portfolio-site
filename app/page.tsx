@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import {
   ExperimentFeature,
   FeaturedCaseStudy,
@@ -14,7 +15,7 @@ const featuredCaseStudyConfig = [
     slug: "ava-labs",
     href: "/case-studies/ava-labs",
     mediaLabel: "Builder engagement evidence",
-    image: { src: "/assets/builder-wins.png", alt: "Ava Labs Builder Engagement Wins presentation cover", position: "left center" },
+    image: { src: "/assets/builder-wins.webp", alt: "Ava Labs Builder Engagement Wins presentation cover", width: 1920, height: 1080, position: "left center" },
     summary: "Built and improved developer engagement pathways that moved builders from first contact toward programs, events, and deeper technical support.",
     proofPoint: "9,000+ developers engaged",
   },
@@ -30,7 +31,7 @@ const featuredCaseStudyConfig = [
     slug: "fight-legends",
     href: "/case-studies/fight-legends",
     mediaLabel: "Visible development progress",
-    image: { src: "/assets/fight-legends/hero-development.png", alt: "Fight Legends character model development evidence" },
+    image: { src: "/assets/fight-legends/hero-development.png", alt: "Fight Legends character model development evidence", width: 1280, height: 720 },
     summary: "Created a weekly development show and surrounding content system that made an unfinished game easier to follow and worth returning to.",
     proofPoint: "25% increase in YouTube subscribers",
   },
@@ -38,7 +39,7 @@ const featuredCaseStudyConfig = [
     slug: "edge-of-company",
     href: "/case-studies/edge-of-company",
     mediaLabel: "Interview production and episode packaging",
-    image: { src: "/assets/future-of-storytelling.jpeg", alt: "Edge of NFT Future of Storytelling episode artwork" },
+    image: { src: "/assets/future-of-storytelling.jpeg", alt: "Edge of NFT Future of Storytelling episode artwork", width: 1280, height: 720 },
     summary: "Connected podcast production, social programming, live conversations, and event coverage into one audience-growth engine.",
     proofPoint: "35% follower growth",
   },
@@ -67,7 +68,15 @@ export default function Home() {
           <p className="eyebrow">Shawn Porter / Growth, community & creative technology</p>
           <h1>I find the missing system behind an idea—then build <span className={styles.contentPhrase}>the content,</span> community, or product that makes it work.</h1>
           <figure className={styles.heroPortrait}>
-            <img src="/assets/shawn-hero-portrait.png" alt="Portrait of Shawn Porter wearing glasses and a cap" />
+            <Image
+              src="/assets/shawn-hero-portrait.webp"
+              alt="Portrait of Shawn Porter wearing glasses and a cap"
+              width={1254}
+              height={1254}
+              sizes="(min-width: 921px) min(48vw, 820px), 108px"
+              unoptimized
+              priority
+            />
           </figure>
           <div className="hero-bottom">
             <p className="lede">I turn ambitious ideas into working ecosystems: clear stories, repeatable programs, measurable growth, and media people want to return to.</p>
@@ -107,7 +116,7 @@ export default function Home() {
               status="Workflow"
               title="AI music workflows"
               copy="Prompt design, rapid song prototyping, collaborative challenges, and public release experiments that connect tools to creative practice."
-              image={{ src: "/assets/suno-metal-editorial.png", alt: "Web3 Metal editorial artwork about metal made with Suno" }}
+              image={{ src: "/assets/suno-metal-editorial.webp", alt: "Web3 Metal editorial artwork about metal made with Suno", width: 1280, height: 720 }}
             />
             <ExperimentFeature
               number="02"
@@ -115,7 +124,7 @@ export default function Home() {
               status="Early concept"
               title="Competition tools"
               copy="Early concepts for submission forms, ranking flows, and lightweight creator tools designed around real community behavior."
-              image={{ src: "/assets/discord-programming.png", alt: "Web3 Metal community programming artwork" }}
+              image={{ src: "/assets/discord-programming.webp", alt: "Web3 Metal community programming artwork", width: 1600, height: 900 }}
             />
           </div>
           <div className={styles.labFooter}>

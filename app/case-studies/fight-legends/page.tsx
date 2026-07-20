@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import {
   CaseStudyHero,
   CaseStudyPage,
@@ -60,9 +61,14 @@ export default function FightLegendsCaseStudyPage() {
 
       <figure className={styles.heroEvidence}>
         <div className={styles.heroImage}>
-          <img
+          <Image
             src="/assets/fight-legends/hero-development.png"
             alt="In-development Fight Legends 3D character model"
+            width={1280}
+            height={720}
+            sizes="(max-width: 900px) 100vw, 1200px"
+            unoptimized
+            priority
           />
         </div>
         <figcaption>
@@ -87,7 +93,7 @@ export default function FightLegendsCaseStudyPage() {
             {evidenceFrames.map((frame, index) => (
               <div className={styles.frame} key={frame.src}>
                 <div className={styles.frameImage}>
-                  <img src={frame.src} alt={frame.alt} />
+                  <Image src={frame.src} alt={frame.alt} width={1280} height={720} sizes="(max-width: 800px) 100vw, 33vw" unoptimized />
                 </div>
                 <p><span>0{index + 1}</span>{frame.label}</p>
               </div>
@@ -146,9 +152,13 @@ export default function FightLegendsCaseStudyPage() {
         <div className={styles.assetGrid}>
           <article className={styles.assetVisual}>
             <div className={styles.assetImage}>
-              <img
+              <Image
                 src="/assets/fight-legends/character-creation.png"
                 alt="Fight Legends character-creation interface"
+                width={1280}
+                height={720}
+                sizes="(max-width: 800px) 100vw, 50vw"
+                unoptimized
               />
             </div>
             <div><span>Source footage</span><h3>Character creation</h3></div>

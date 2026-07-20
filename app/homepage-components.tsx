@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import styles from "./homepage.module.css";
 
 type SectionLink = {
@@ -17,6 +18,8 @@ type EditorialMediaProps = {
   image?: {
     src: string;
     alt: string;
+    width: number;
+    height: number;
     position?: string;
   };
   label: string;
@@ -50,6 +53,8 @@ type ExperimentFeatureProps = {
   image: {
     src: string;
     alt: string;
+    width: number;
+    height: number;
   };
 };
 
@@ -67,7 +72,15 @@ export function EditorialMedia({ image, label, typography }: EditorialMediaProps
   if (image) {
     return (
       <figure className={styles.editorialMedia}>
-        <img src={image.src} alt={image.alt} style={image.position ? { objectPosition: image.position } : undefined} />
+        <Image
+          src={image.src}
+          alt={image.alt}
+          width={image.width}
+          height={image.height}
+          sizes="(max-width: 920px) calc(100vw - 36px), 58vw"
+          unoptimized
+          style={image.position ? { objectPosition: image.position } : undefined}
+        />
         <figcaption>{label}</figcaption>
       </figure>
     );
@@ -135,7 +148,16 @@ export function ProcessRail({ items }: { items: readonly ProcessItem[] }) {
 export function ExperimentFeature({ number, category, status, title, copy, image }: ExperimentFeatureProps) {
   return (
     <article className={styles.experimentFeature}>
-      <figure><img src={image.src} alt={image.alt} /></figure>
+      <figure>
+        <Image
+          src={image.src}
+          alt={image.alt}
+          width={image.width}
+          height={image.height}
+          sizes="(max-width: 920px) calc(100vw - 36px), 55vw"
+          unoptimized
+        />
+      </figure>
       <div>
         <p className={styles.experimentKicker}><span>{number}</span>{category} / {status}</p>
         <h3>{title}</h3>
