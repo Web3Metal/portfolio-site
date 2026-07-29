@@ -1,3 +1,56 @@
+.heroEvidence {
+  width: 100%;
+  margin: 0;
+}
+
+.heroImage {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: #171714;
+}
+
+.heroImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.heroEvidence figcaption {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 24px;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--case-line);
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.heroEvidence figcaption > span,
+.heroEvidence figcaption a {
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+.heroEvidence figcaption p {
+  grid-column: 1 / -1;
+  max-width: 660px;
+  margin: 0;
+}
+
+.heroEvidence figcaption a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.heroEvidence figcaption a:hover,
+.heroEvidence figcaption a:focus-visible {
+  color: var(--case-accent);
+}
+
 .loopFigure {
   margin: 0;
 }
@@ -6,7 +59,7 @@
   display: flex;
   justify-content: space-between;
   gap: 24px;
-  padding-bottom: 24px;
+  padding-bottom: 16px;
   border-bottom: 1px solid #605f59;
   font-size: 11px;
   font-weight: 700;
@@ -31,8 +84,8 @@
 
 .loopStage {
   position: relative;
-  min-height: 320px;
-  padding: 28px 26px;
+  min-height: 190px;
+  padding: 20px 18px;
   display: flex;
   flex-direction: column;
   border-right: 1px solid #605f59;
@@ -71,10 +124,10 @@
 }
 
 .loopStage strong {
-  max-width: 210px;
+  max-width: 180px;
   margin-top: auto;
   font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(29px, 3vw, 46px);
+  font-size: clamp(24px, 2.4vw, 36px);
   font-weight: 400;
   letter-spacing: -.035em;
   line-height: 1;
@@ -82,7 +135,7 @@
 
 .returnRail {
   position: relative;
-  height: 86px;
+  height: 54px;
   margin: 0 8%;
   border-right: 1px solid var(--case-accent);
   border-bottom: 1px solid var(--case-accent);
@@ -120,7 +173,7 @@
 
 .loopFigure figcaption {
   max-width: 790px;
-  margin: 56px 0 0 auto;
+  margin: 34px 0 0 auto;
   color: #aaa79e;
   font-size: 12px;
   line-height: 1.55;
@@ -171,12 +224,30 @@
 }
 
 @media (max-width: 920px) {
+  .metricPanel {
+    grid-template-columns: 1fr;
+  }
+
+  .metricPanel article,
+  .metricPanel article:first-child {
+    min-height: 200px;
+    padding: 26px 0;
+    border-right: 0;
+    border-bottom: 1px solid var(--case-line);
+  }
+
+  .metricPanel article:last-child {
+    border-bottom: 0;
+  }
+}
+
+@media (max-width: 700px) {
   .loopTrack {
     grid-template-columns: 1fr;
   }
 
   .loopStage {
-    min-height: 190px;
+    min-height: 132px;
     border-right: 0;
     border-bottom: 1px solid #605f59;
   }
@@ -199,22 +270,6 @@
   .loopFigure figcaption {
     margin-top: 30px;
   }
-
-  .metricPanel {
-    grid-template-columns: 1fr;
-  }
-
-  .metricPanel article,
-  .metricPanel article:first-child {
-    min-height: 200px;
-    padding: 26px 0;
-    border-right: 0;
-    border-bottom: 1px solid var(--case-line);
-  }
-
-  .metricPanel article:last-child {
-    border-bottom: 0;
-  }
 }
 
 @media (max-width: 560px) {
@@ -228,7 +283,7 @@
   }
 
   .loopStage strong {
-    font-size: 35px;
+    font-size: 30px;
   }
 
   .metricPanel strong {

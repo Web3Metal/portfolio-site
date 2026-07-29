@@ -54,6 +54,23 @@
   line-height: 1.18;
 }
 
+.heroContextRow {
+  display: grid;
+  grid-template-columns: minmax(360px, .8fr) minmax(500px, 1.2fr);
+  align-items: start;
+  gap: clamp(42px, 6vw, 100px);
+  margin-bottom: 44px;
+}
+
+.heroContextRow .context {
+  max-width: none;
+  margin: 0;
+}
+
+.heroVisual {
+  min-width: 0;
+}
+
 .tags { display: flex; flex-wrap: wrap; gap: 8px; }
 .tags span {
   padding: 7px 11px;
@@ -204,6 +221,9 @@
 @media (max-width: 920px) {
   .hero, .section { width: min(100% - 36px, 1380px); }
   .hero { min-height: auto; }
+  .heroContextRow { grid-template-columns: 1fr; gap: 36px; margin-bottom: 36px; }
+  .heroContextRow .context { order: 1; }
+  .heroVisual { order: 2; }
   .proseLead, .roleContent { margin-left: 0; }
   .systemSection { width: 100%; padding-left: 18px; padding-right: 18px; }
   .systemRail { grid-template-columns: 1fr; }

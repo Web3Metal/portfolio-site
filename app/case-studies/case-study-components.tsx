@@ -12,6 +12,7 @@ type CaseStudyHeroProps = {
   title: string;
   context: string;
   tags: readonly string[];
+  visual?: ReactNode;
 };
 
 type CaseStudySectionProps = {
@@ -73,7 +74,7 @@ export function CaseStudyPage({ children }: CaseStudyPageProps) {
   );
 }
 
-export function CaseStudyHero({ index, date, title, context, tags }: CaseStudyHeroProps) {
+export function CaseStudyHero({ index, date, title, context, tags, visual }: CaseStudyHeroProps) {
   return (
     <header className={styles.hero}>
       <div className={styles.heroTop}>
@@ -81,7 +82,14 @@ export function CaseStudyHero({ index, date, title, context, tags }: CaseStudyHe
         <p>{date}</p>
       </div>
       <h1>{title}</h1>
-      <p className={styles.context}>{context}</p>
+      {visual ? (
+        <div className={styles.heroContextRow}>
+          <div className={styles.heroVisual}>{visual}</div>
+          <p className={styles.context}>{context}</p>
+        </div>
+      ) : (
+        <p className={styles.context}>{context}</p>
+      )}
       <div className={styles.tags} aria-label="Case study tags">
         {tags.map((tag) => <span key={tag}>{tag}</span>)}
       </div>

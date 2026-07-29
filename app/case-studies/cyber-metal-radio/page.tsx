@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import {
-  AssetCards,
   CaseStudyHero,
   CaseStudyPage,
   CaseStudySection,
@@ -16,6 +16,7 @@ export const metadata: Metadata = {
 
 const title = "Cyber Metal Radio";
 const role = "Co-Founder and Growth Lead";
+const stationUrl = "https://www.cybermetalradio.com/";
 const challenge = "AI metal artists had plenty of places to upload music, but few spaces built around consistent discovery, recognition, and community ritual. Cyber Metal Radio set out to create a dedicated platform where artists could submit new work, reach listeners, participate in recurring weekly programming, and become part of a community with a shared rhythm people genuinely wanted to preserve.";
 const myRole = "I led zero-to-one marketing and growth for Cyber Metal Radio, bringing together the early community that helped shape the station and turning it into a repeatable creator engagement system. I recruited artists, promoted weekly programming, supported submissions and chart participation, helped establish community rituals, and co-created the annual awards that extended recognition beyond the weekly cycle.";
 const systemCaption = "Cyber Metal Radio developed a recurring creator loop: artists made new music, submitted it through New Metal Monday, returned for the weekly Top 15 countdown, shared the results, and came back to participate again. Listening parties, community discussion, and the annual awards added recognition at different levels, turning a radio station into a dependable rhythm of creation, discovery, and belonging.";
@@ -43,23 +44,36 @@ const supportingResults = [
   { text: "Created a community strong enough that members actively wanted to preserve its culture as it grew" },
 ];
 
-const assets = [
-  {
-    eyebrow: "Reconstructed system",
-    title: "The Weekly Creator Loop",
-    caption: "Built from the approved Cyber Metal Radio system description.",
-  },
-  {
-    eyebrow: "Verified evidence",
-    title: "Results Evidence Panel",
-    caption: "Uses the approved public metrics: 1,765 artist submissions in 2025, 200,000+ listens, and 16,000+ community interactions.",
-  },
-];
-
 export default function CyberMetalRadioCaseStudyPage() {
   return (
     <CaseStudyPage>
-      <CaseStudyHero index="02" date={role} title={title} context={challenge} tags={tags} />
+      <CaseStudyHero
+        index="02"
+        date={role}
+        title={title}
+        context={challenge}
+        tags={tags}
+        visual={(
+          <figure className={styles.heroEvidence}>
+            <div className={styles.heroImage}>
+              <Image
+                src="/assets/cyber-metal-radio/station-dashboard.png"
+                alt="Cyber Metal Radio live station dashboard with artist charts, player, upcoming shows, and community chat"
+                width={1892}
+                height={917}
+                sizes="(max-width: 900px) 100vw, 44vw"
+                unoptimized
+                priority
+              />
+            </div>
+            <figcaption>
+              <span>Live station</span>
+              <a href={stationUrl} target="_blank" rel="noreferrer">Listen live <span aria-hidden="true">↗</span></a>
+              <p>The listening experience brings discovery, recurring programming, artist rankings, and community conversation into one place.</p>
+            </figcaption>
+          </figure>
+        )}
+      />
 
       <CaseStudySection number="01" title="Challenge" headingId="challenge-heading">
         <ProseLead><p>{challenge}</p></ProseLead>
@@ -102,11 +116,7 @@ export default function CyberMetalRadioCaseStudyPage() {
         </div>
       </CaseStudySection>
 
-      <CaseStudySection number="05" title="Assets" headingId="assets-heading">
-        <AssetCards cards={assets} />
-      </CaseStudySection>
-
-      <CaseStudySection number="06" title="Lessons" headingId="lessons-heading" variant="lessons">
+      <CaseStudySection number="05" title="Lessons" headingId="lessons-heading" variant="lessons">
         <LessonsList lessons={[lesson]} />
       </CaseStudySection>
     </CaseStudyPage>
