@@ -79,7 +79,7 @@ export default function Home() {
             />
           </figure>
           <div className="hero-bottom">
-            <p className="lede">I turn ambitious ideas into working ecosystems: clear stories, repeatable programs, measurable growth, and media people want to return to.</p>
+            <p className="lede">Clear stories, repeatable programs, measurable growth, and media people want to return to—built as working ecosystems.</p>
             <Link className="text-link" href="/case-studies">View case studies <span>↗</span></Link>
           </div>
         </section>
