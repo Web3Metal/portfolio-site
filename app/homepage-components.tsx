@@ -112,20 +112,24 @@ export function FeaturedCaseStudy({
 }: FeaturedCaseStudyProps) {
   return (
     <article className={`${styles.featuredCase} ${reverse ? styles.featuredCaseReverse : ""}`}>
-      <EditorialMedia image={image} label={mediaLabel} typography={typography} />
-      <div className={styles.featuredCopy}>
+      <div className={styles.featuredHeading}>
         <p className={styles.caseNumber}>{number}</p>
         <h3><Link href={href}>{title}</Link></h3>
-        <div className={styles.caseRole}>
-          <span>Role</span>
-          <p>{role}</p>
+      </div>
+      <div className={styles.featuredBody}>
+        <EditorialMedia image={image} label={mediaLabel} typography={typography} />
+        <div className={styles.featuredCopy}>
+          <div className={styles.caseRole}>
+            <span>Role</span>
+            <p>{role}</p>
+          </div>
+          <p className={styles.caseSummary}>{summary}</p>
+          <div className={styles.proofPoint}>
+            <span>Selected result</span>
+            <strong>{proofPoint}</strong>
+          </div>
+          <Link className={styles.caseLink} href={href}>Read case study <span>↗</span></Link>
         </div>
-        <p className={styles.caseSummary}>{summary}</p>
-        <div className={styles.proofPoint}>
-          <span>Selected result</span>
-          <strong>{proofPoint}</strong>
-        </div>
-        <Link className={styles.caseLink} href={href}>Read case study <span>↗</span></Link>
       </div>
     </article>
   );

@@ -120,15 +120,22 @@
 .caseLink span { color: var(--accent-readable); }
 
 .featuredCase {
-  display: grid;
-  grid-template-columns: repeat(12, minmax(0, 1fr));
-  gap: clamp(30px, 4.5vw, 72px);
-  align-items: stretch;
   padding: clamp(50px, 7vw, 98px) 0;
   border-top: 1px solid var(--line);
 }
 
 .featuredCase:last-of-type { border-bottom: 1px solid var(--line); }
+
+.featuredHeading {
+  margin-bottom: clamp(32px, 4vw, 58px);
+}
+
+.featuredBody {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: clamp(30px, 4.5vw, 72px);
+  align-items: stretch;
+}
 
 .editorialMedia {
   grid-column: 1 / 8;
@@ -176,8 +183,9 @@
   letter-spacing: .14em;
 }
 
-.featuredCopy h3 {
-  margin: 24px 0 30px;
+.featuredHeading h3 {
+  max-width: 980px;
+  margin: 24px 0 0;
   font-family: Georgia, "Times New Roman", serif;
   font-size: clamp(44px, 5vw, 76px);
   font-weight: 400;
@@ -444,14 +452,13 @@
   .homeSection { width: min(100% - 36px, 1380px); }
   .sectionHeader { grid-template-columns: 48px 1fr; }
   .sectionLink { grid-column: 2; justify-self: start; }
-  .featuredCase,
-  .featuredCaseReverse { grid-template-columns: 1fr; gap: 34px; }
+  .featuredBody { grid-template-columns: 1fr; gap: 34px; }
   .featuredCase .editorialMedia,
   .featuredCaseReverse .editorialMedia,
   .featuredCase .featuredCopy,
   .featuredCaseReverse .featuredCopy { grid-column: 1; order: initial; }
   .featuredCopy { min-height: 0; }
-  .featuredCopy h3 { margin-top: 26px; }
+  .featuredHeading h3 { margin-top: 26px; }
   .proofPoint { margin-top: 40px; }
   .processSection, .writingSection { padding-right: 18px; padding-left: 18px; }
   .processRail li { grid-template-columns: 120px 1fr; }
@@ -480,8 +487,9 @@
   .sectionHeader { grid-template-columns: 36px 1fr; gap: 12px; margin-bottom: 54px; }
   .sectionHeader h2 { font-size: 48px; }
   .featuredCase { padding: 46px 0 58px; }
+  .featuredHeading { margin-bottom: 30px; }
   .editorialMedia img { aspect-ratio: 4 / 3; }
-  .featuredCopy h3 { margin: 24px 0; font-size: 49px; }
+  .featuredHeading h3 { margin-top: 22px; font-size: 49px; }
   .caseRole { grid-template-columns: 54px minmax(0, 1fr); gap: 14px; }
   .caseSummary { font-size: 15px; }
   .proofPoint { margin-top: 34px; padding: 0 0 28px; }
