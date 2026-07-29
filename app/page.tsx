@@ -66,7 +66,7 @@ export default function Home() {
       <main>
         <section className={`hero wrap ${styles.homeHero}`} id="home">
           <p className="eyebrow">Shawn Porter / Growth, community & creative technology</p>
-          <h1>I find the missing system behind an idea—then build <span className={styles.contentPhrase}>the content,</span> community, or product that makes it work.</h1>
+          <h1>I turn ideas into products, content, and communities.</h1>
           <figure className={styles.heroPortrait}>
             <Image
               src="/assets/shawn-hero-portrait.webp"
