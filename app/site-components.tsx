@@ -17,7 +17,7 @@ export function SiteHeader() {
 }
 
 export function SiteFooter() {
-  return <footer className="site-footer"><div className="wrap"><p>Shawn Porter</p><p>Seattle, WA · Growth / Community / Media / Creative Technology</p><p>© {new Date().getFullYear()}</p></div></footer>;
+  return <footer className="site-footer"><div className="wrap"><p>Shawn Porter</p><p>Seattle, WA · Growth / Community / Media / Creative Technology</p><p><Link href="/writing">Writing ↗</Link></p><p>© {new Date().getFullYear()}</p></div></footer>;
 }
 
 export function PageIntro({ kicker, title, copy }: { kicker: string; title: string; copy: string }) {

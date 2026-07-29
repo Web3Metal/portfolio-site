@@ -95,7 +95,7 @@ export default function FightLegendsCaseStudyPage() {
                 <div className={styles.frameImage}>
                   <Image src={frame.src} alt={frame.alt} width={1280} height={720} sizes="(max-width: 800px) 100vw, 33vw" unoptimized />
                 </div>
-                <p><span>0{index + 1}</span>{frame.label}</p>
+                <p><span>{String.fromCharCode(65 + index)}</span>{frame.label}</p>
               </div>
             ))}
           </div>
@@ -112,7 +112,7 @@ export default function FightLegendsCaseStudyPage() {
           <div className={styles.systemTrack}>
             {systemStages.map((stage, index) => (
               <div className={styles.systemStage} key={stage}>
-                <small>0{index + 1}</small>
+                <small>{String.fromCharCode(65 + index)}</small>
                 <strong>{stage}</strong>
               </div>
             ))}
@@ -168,10 +168,10 @@ export default function FightLegendsCaseStudyPage() {
             <span>Selected worldbuilding</span>
             <h3>One narrative world, organized over time.</h3>
             <ol>
-              <li><span>01</span>Fagan City</li>
-              <li><span>02</span>The Rifts</li>
-              <li><span>03</span>Rift Wars</li>
-              <li><span>04</span>The Agency</li>
+              <li><span>A</span>Fagan City</li>
+              <li><span>B</span>The Rifts</li>
+              <li><span>C</span>Rift Wars</li>
+              <li><span>D</span>The Agency</li>
             </ol>
           </article>
         </div>

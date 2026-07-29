@@ -22,8 +22,14 @@ const featuredCaseStudyConfig = [
   {
     slug: "cyber-metal-radio",
     href: "/case-studies/cyber-metal-radio",
-    mediaLabel: "Recurring creator loop",
-    typography: ["Artists create", "Submit", "Get discovered", "Community engages", "Artists return"],
+    mediaLabel: "Cyber Metal Radio",
+    image: {
+      src: "/assets/cyber-metal-radio/logo-card.png",
+      alt: "Cyber Metal Radio logo",
+      width: 1536,
+      height: 1024,
+      position: "center",
+    },
     summary: "Helped turn an internet radio station into a recurring creator loop built around discovery, recognition, and community ritual.",
     proofPoint: "1,765 artist submissions in 2025",
   },
@@ -56,8 +62,6 @@ const processItems = [
   { title: "Build the system", copy: "Shape the content, programming, workflows, and touchpoints that make the idea useful and repeatable." },
   { title: "Run the loop", copy: "Publish, host, engage, measure, and refine until the system produces real momentum." },
 ] as const;
-
-const writingSubjects = ["Technology", "Culture & music", "Civics & politics", "Editorial systems"] as const;
 
 export default function Home() {
   return (
@@ -116,7 +120,7 @@ export default function Home() {
             <p className={styles.labIntro}>A working space for ideas that cross media, music, community, and lightweight product design.</p>
             <div className={styles.experimentGrid}>
               <ExperimentFeature
-                number="01"
+                number="A"
                 category="Creator experiment"
                 status="Workflow"
                 title="AI music workflows"
@@ -124,7 +128,7 @@ export default function Home() {
                 image={{ src: "/assets/suno-metal-editorial.webp", alt: "Web3 Metal editorial artwork about metal made with Suno", width: 1280, height: 720 }}
               />
               <ExperimentFeature
-                number="02"
+                number="B"
                 category="Community product"
                 status="Early concept"
                 title="Competition tools"
@@ -134,20 +138,6 @@ export default function Home() {
             </div>
             <div className={styles.labFooter}>
               <Link className={styles.caseLink} href="/lab">Enter the Lab <span>↗</span></Link>
-            </div>
-          </div>
-        </section>
-
-        <section className={styles.writingSection} aria-labelledby="writing">
-          <div className={styles.writingPanel}>
-            <div>
-              <p className={styles.sectionNumber}>04</p>
-              <h2 id="writing">Writing</h2>
-            </div>
-            <div className={styles.writingCopy}>
-              <p>Reporting and essays across technology, culture, music, politics, and the communities forming around them.</p>
-              <ul className={styles.writingSubjects}>{writingSubjects.map((subject) => <li key={subject}>{subject}</li>)}</ul>
-              <Link className={styles.caseLink} href="/writing">Browse writing <span>↗</span></Link>
             </div>
           </div>
         </section>

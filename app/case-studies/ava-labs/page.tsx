@@ -42,17 +42,17 @@ const strengths = [
 const tags = ["devrel", "growth", "sprinklr", "utm", "web3", "community", "content", "bd", "xspaces"];
 
 const systemNodes = [
-  { label: "01", title: "Builder discovery", details: ["Sprinklr search and native X tools"] },
-  { label: "02", title: "Needs qualification" },
+  { label: "A", title: "Builder discovery", details: ["Sprinklr search and native X tools"] },
+  { label: "B", title: "Needs qualification" },
   {
-    label: "03",
+    label: "C",
     title: "Program and partner routing",
     columns: [
       ["Elevate", "Builders Hub", "Hackathons", "Team1"],
       ["Business Development", "Ecosystem partners"],
     ],
   },
-  { label: "04", title: "Tracking and reporting", details: ["UTM tracking", "Dashboard reporting"] },
+  { label: "D", title: "Tracking and reporting", details: ["UTM tracking", "Dashboard reporting"] },
 ];
 
 const outcomes = [

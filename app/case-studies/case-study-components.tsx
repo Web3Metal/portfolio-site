@@ -121,7 +121,7 @@ export function RoleContent({ overview, scope }: RoleContentProps) {
     <div className={styles.roleContent}>
       <p className={styles.roleOverview}>{overview}</p>
       <ol className={styles.scopeList}>
-        {scope.map((item, index) => <li key={item}><span>0{index + 1}</span><p>{item}</p></li>)}
+        {scope.map((item, index) => <li key={item}><span>{String.fromCharCode(65 + index)}</span><p>{item}</p></li>)}
       </ol>
     </div>
   );

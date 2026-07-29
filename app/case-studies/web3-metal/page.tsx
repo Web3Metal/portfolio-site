@@ -119,7 +119,7 @@ export default function Web3MetalCaseStudyPage() {
             </div>
             {ecosystem.map((item, index) => (
               <div className={styles.ecosystemItem} key={item}>
-                <small>0{index + 1}</small>
+                <small>{String.fromCharCode(65 + index)}</small>
                 <strong>{item}</strong>
               </div>
             ))}
@@ -145,7 +145,7 @@ export default function Web3MetalCaseStudyPage() {
           </div>
           <ol>
             {continuedResults.map((result, index) => (
-              <li key={result}><span>0{index + 1}</span><p>{result}</p></li>
+              <li key={result}><span>{String.fromCharCode(65 + index)}</span><p>{result}</p></li>
             ))}
           </ol>
         </div>
@@ -155,15 +155,15 @@ export default function Web3MetalCaseStudyPage() {
         <div className={styles.assetGallery}>
           <figure className={styles.assetLead}>
             <Image src="/assets/newsletter-onchain-releases.webp" alt="Web3 Metal newsletter artwork covering onchain releases" width={1600} height={900} sizes="(max-width: 800px) 100vw, 65vw" unoptimized />
-            <figcaption><span>01</span>Newsletter issue archive</figcaption>
+            <figcaption><span>A</span>Newsletter issue archive</figcaption>
           </figure>
           <figure>
             <Image src="/assets/discord-programming.webp" alt="Web3 Metal Discord programming artwork" width={1600} height={900} sizes="(max-width: 800px) 100vw, 50vw" unoptimized />
-            <figcaption><span>02</span>Discord community</figcaption>
+            <figcaption><span>B</span>Discord community</figcaption>
           </figure>
           <figure>
             <Image src="/assets/suno-metal-editorial.webp" alt="Web3 Metal editorial artwork about metal made with Suno" width={1280} height={720} sizes="(max-width: 800px) 100vw, 50vw" unoptimized />
-            <figcaption><span>03</span>Editorial coverage</figcaption>
+            <figcaption><span>C</span>Editorial coverage</figcaption>
           </figure>
         </div>
 
@@ -171,7 +171,7 @@ export default function Web3MetalCaseStudyPage() {
           <p>Assets</p>
           <ol>
             {assetInventory.map((asset, index) => (
-              <li key={asset}><span>0{index + 1}</span>{asset}</li>
+              <li key={asset}><span>{String.fromCharCode(65 + index)}</span>{asset}</li>
             ))}
           </ol>
         </div>

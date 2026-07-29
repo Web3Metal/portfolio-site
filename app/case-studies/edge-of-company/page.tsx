@@ -125,7 +125,7 @@ export default function EdgeOfCompanyCaseStudyPage() {
           <div className={styles.pipelineTrack}>
             {pipeline.map((stage, index) => (
               <div className={styles.pipelineStage} key={stage}>
-                <small>0{index + 1}</small>
+                <small>{String.fromCharCode(65 + index)}</small>
                 <strong>{stage}</strong>
               </div>
             ))}
@@ -172,7 +172,7 @@ export default function EdgeOfCompanyCaseStudyPage() {
                 sizes="(max-width: 800px) 100vw, 50vw"
                 unoptimized
               />
-              <figcaption><span>01</span>Edge of AI launch</figcaption>
+              <figcaption><span>A</span>Edge of AI launch</figcaption>
             </figure>
             <figure>
               <Image
@@ -183,7 +183,7 @@ export default function EdgeOfCompanyCaseStudyPage() {
                 sizes="(max-width: 800px) 100vw, 50vw"
                 unoptimized
               />
-              <figcaption><span>02</span>SWOOPS episode</figcaption>
+              <figcaption><span>B</span>SWOOPS episode</figcaption>
             </figure>
           </div>
 
@@ -191,7 +191,7 @@ export default function EdgeOfCompanyCaseStudyPage() {
             <p>Approved asset scope</p>
             <ol>
               {assetInventory.map((asset, index) => (
-                <li key={asset}><span>0{index + 1}</span>{asset}</li>
+                <li key={asset}><span>{String.fromCharCode(65 + index)}</span>{asset}</li>
               ))}
             </ol>
           </div>

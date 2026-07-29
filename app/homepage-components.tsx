@@ -91,7 +91,7 @@ export function EditorialMedia({ image, label, typography }: EditorialMediaProps
       <figcaption>{label}</figcaption>
       <ol>
         {typography?.map((item, index) => (
-          <li key={item}><span>0{index + 1}</span><strong>{item}</strong></li>
+          <li key={item}><span>{String.fromCharCode(65 + index)}</span><strong>{item}</strong></li>
         ))}
       </ol>
     </figure>
@@ -140,7 +140,7 @@ export function ProcessRail({ items }: { items: readonly ProcessItem[] }) {
     <ol className={styles.processRail}>
       {items.map((item, index) => (
         <li key={item.title}>
-          <span className={styles.processIndex}>0{index + 1}</span>
+          <span className={styles.processIndex}>{String.fromCharCode(65 + index)}</span>
           <h3>{item.title}</h3>
           <p>{item.copy}</p>
         </li>

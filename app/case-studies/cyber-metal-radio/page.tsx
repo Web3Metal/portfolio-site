@@ -92,7 +92,7 @@ export default function CyberMetalRadioCaseStudyPage() {
           <div className={styles.loopTrack}>
             {loopStages.map((stage, index) => (
               <div className={styles.loopStage} key={stage}>
-                <small>0{index + 1}</small>
+                <small>{String.fromCharCode(65 + index)}</small>
                 <strong>{stage}</strong>
               </div>
             ))}
