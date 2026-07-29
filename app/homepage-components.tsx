@@ -8,7 +8,7 @@ type SectionLink = {
 };
 
 type HomepageSectionHeaderProps = {
-  number: string;
+  number?: string;
   title: string;
   headingId: string;
   link?: SectionLink;
@@ -60,8 +60,8 @@ type ExperimentFeatureProps = {
 
 export function HomepageSectionHeader({ number, title, headingId, link }: HomepageSectionHeaderProps) {
   return (
-    <div className={styles.sectionHeader}>
-      <p className={styles.sectionNumber}>{number}</p>
+    <div className={`${styles.sectionHeader} ${number ? "" : styles.sectionHeaderWithoutNumber}`}>
+      {number ? <p className={styles.sectionNumber}>{number}</p> : null}
       <h2 id={headingId}>{title}</h2>
       {link ? <Link className={styles.sectionLink} href={link.href}>{link.label} <span>↗</span></Link> : null}
     </div>

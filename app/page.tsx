@@ -64,40 +64,44 @@ export default function Home() {
     <>
       <SiteHeader />
       <main>
-        <section className={`hero wrap ${styles.homeHero}`} id="home">
-          <p className="eyebrow">Shawn Porter / Growth, community & creative technology</p>
-          <h1>I turn ideas into products, content, and communities.</h1>
-          <figure className={styles.heroPortrait}>
-            <Image
-              src="/assets/shawn-hero-portrait.webp"
-              alt="Portrait of Shawn Porter wearing glasses and a cap"
-              width={1254}
-              height={1254}
-              sizes="(min-width: 921px) min(48vw, 820px), 108px"
-              unoptimized
-              priority
-            />
-          </figure>
-          <div className="hero-bottom">
-            <p className="lede">Clear stories, repeatable programs, measurable growth, and media people want to return to—built as working ecosystems.</p>
-            <Link className="text-link" href="/case-studies">View case studies <span>↗</span></Link>
+        <section className={styles.heroBand} id="home">
+          <div className={`hero wrap ${styles.homeHero}`}>
+            <p className="eyebrow">Shawn Porter / Growth, community & creative technology</p>
+            <h1>I turn ideas into products, content, and communities.</h1>
+            <figure className={styles.heroPortrait}>
+              <Image
+                src="/assets/shawn-hero-portrait.webp"
+                alt="Portrait of Shawn Porter wearing glasses and a cap"
+                width={1254}
+                height={1254}
+                sizes="(min-width: 921px) min(48vw, 820px), 108px"
+                unoptimized
+                priority
+              />
+            </figure>
+            <div className="hero-bottom">
+              <p className="lede">Clear stories, repeatable programs, measurable growth, and media people want to return to—built as working ecosystems.</p>
+              <Link className="text-link" href="/case-studies">View case studies <span>↗</span></Link>
+            </div>
           </div>
         </section>
 
-        <section className={styles.homeSection} aria-labelledby="selected-work">
-          <HomepageSectionHeader number="01" title="Selected Case Studies" headingId="selected-work" />
-          {featuredCaseStudies.map(({ caseStudy, ...config }, index) => (
-            <FeaturedCaseStudy
-              key={caseStudy.slug}
-              number={caseStudy.number}
-              title={caseStudy.title}
-              role={caseStudy.role}
-              reverse={index % 2 === 1}
-              {...config}
-            />
-          ))}
-          <div className={styles.labFooter}>
-            <Link className={styles.caseLink} href="/case-studies">View all case studies <span>↗</span></Link>
+        <section className={`${styles.homeSectionBand} ${styles.selectedWorkBand}`} aria-labelledby="selected-work">
+          <div className={styles.homeSection}>
+            <HomepageSectionHeader title="Selected Case Studies" headingId="selected-work" />
+            {featuredCaseStudies.map(({ caseStudy, ...config }, index) => (
+              <FeaturedCaseStudy
+                key={caseStudy.slug}
+                number={caseStudy.number}
+                title={caseStudy.title}
+                role={caseStudy.role}
+                reverse={index % 2 === 1}
+                {...config}
+              />
+            ))}
+            <div className={styles.labFooter}>
+              <Link className={styles.caseLink} href="/case-studies">View all case studies <span>↗</span></Link>
+            </div>
           </div>
         </section>
 
@@ -106,29 +110,31 @@ export default function Home() {
           <ProcessRail items={processItems} />
         </section>
 
-        <section className={styles.homeSection} aria-labelledby="creative-lab">
-          <HomepageSectionHeader number="03" title="Creative Lab" headingId="creative-lab" />
-          <p className={styles.labIntro}>A working space for ideas that cross media, music, community, and lightweight product design.</p>
-          <div className={styles.experimentGrid}>
-            <ExperimentFeature
-              number="01"
-              category="Creator experiment"
-              status="Workflow"
-              title="AI music workflows"
-              copy="Prompt design, rapid song prototyping, collaborative challenges, and public release experiments that connect tools to creative practice."
-              image={{ src: "/assets/suno-metal-editorial.webp", alt: "Web3 Metal editorial artwork about metal made with Suno", width: 1280, height: 720 }}
-            />
-            <ExperimentFeature
-              number="02"
-              category="Community product"
-              status="Early concept"
-              title="Competition tools"
-              copy="Early concepts for submission forms, ranking flows, and lightweight creator tools designed around real community behavior."
-              image={{ src: "/assets/discord-programming.webp", alt: "Web3 Metal community programming artwork", width: 1600, height: 900 }}
-            />
-          </div>
-          <div className={styles.labFooter}>
-            <Link className={styles.caseLink} href="/lab">Enter the Lab <span>↗</span></Link>
+        <section className={`${styles.homeSectionBand} ${styles.creativeLabBand}`} aria-labelledby="creative-lab">
+          <div className={styles.homeSection}>
+            <HomepageSectionHeader number="03" title="Creative Lab" headingId="creative-lab" />
+            <p className={styles.labIntro}>A working space for ideas that cross media, music, community, and lightweight product design.</p>
+            <div className={styles.experimentGrid}>
+              <ExperimentFeature
+                number="01"
+                category="Creator experiment"
+                status="Workflow"
+                title="AI music workflows"
+                copy="Prompt design, rapid song prototyping, collaborative challenges, and public release experiments that connect tools to creative practice."
+                image={{ src: "/assets/suno-metal-editorial.webp", alt: "Web3 Metal editorial artwork about metal made with Suno", width: 1280, height: 720 }}
+              />
+              <ExperimentFeature
+                number="02"
+                category="Community product"
+                status="Early concept"
+                title="Competition tools"
+                copy="Early concepts for submission forms, ranking flows, and lightweight creator tools designed around real community behavior."
+                image={{ src: "/assets/discord-programming.webp", alt: "Web3 Metal community programming artwork", width: 1600, height: 900 }}
+              />
+            </div>
+            <div className={styles.labFooter}>
+              <Link className={styles.caseLink} href="/lab">Enter the Lab <span>↗</span></Link>
+            </div>
           </div>
         </section>
 
