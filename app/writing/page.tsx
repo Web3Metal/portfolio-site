@@ -34,8 +34,8 @@ export default function WritingPage() {
       <div className="wrap">
         <p className="lede" style={{ maxWidth: 900, marginBottom: "clamp(48px, 7vw, 90px)" }}>The subjects vary—technology, culture, politics, music, online communities, and emerging creative tools—but the goal stays the same: understand what is actually happening beneath the surface and explain why it matters.</p>
         <div className="content-grid">
-          {sections.map((section, index) => <article className="content-card" key={section.title}>
-            <div><p className="tag">0{index + 1}</p><h3>{section.title}</h3></div>
+          {sections.map((section) => <article className="content-card" key={section.title}>
+            <div><h3>{section.title}</h3></div>
             <div>
               <p>{section.copy}</p>
               {section.note ? <p>{section.note}</p> : null}

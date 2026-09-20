@@ -36,7 +36,7 @@ export default function ContentPortfolio() {
                 <article className={`${styles.workItem} ${item.orientation === "portrait" ? styles.portrait : ""}`} key={item.slug}>
                   <div className={styles.media}><PortfolioMedia item={item} priority={index === 0} /></div>
                   <div className={styles.copy}>
-                    <p className={styles.meta}>{String(index + 1).padStart(2, "0")} / {item.format}</p>
+                    <p className={styles.meta}>{item.format}</p>
                     <h3>{item.title}</h3>
                     <p className={styles.summary}>{item.summary}</p>
                     <dl><div><dt>My contribution</dt><dd>{item.contribution}</dd></div><div><dt>Impact</dt><dd>{item.impact}</dd></div></dl>
@@ -52,7 +52,7 @@ export default function ContentPortfolio() {
         <section className={styles.disciplines} aria-labelledby="disciplines">
           <div className={styles.wrap}>
             <header className={styles.sectionHead}><p>Formats &amp; craft</p><h2 id="disciplines">The work behind the work.</h2></header>
-            <div className={styles.disciplineGrid}>{contentDisciplines.map((item, index) => <article key={item.title}><span>{String(index + 1).padStart(2, "0")}</span><h3>{item.title}</h3><p>{item.copy}</p></article>)}</div>
+            <div className={styles.disciplineGrid}>{contentDisciplines.map((item) => <article key={item.title}><h3>{item.title}</h3><p>{item.copy}</p></article>)}</div>
           </div>
         </section>
 

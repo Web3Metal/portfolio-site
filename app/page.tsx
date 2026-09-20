@@ -50,7 +50,7 @@ export default function Home() {
           <div className={styles.sectionWrap}>
             <header className={styles.sectionHeader}>
               <div><p>The work</p><h2 id="selected-content">Content Creation</h2></div>
-              <p>A quick view of the formats, visual systems, and editorial work I bring together around an idea.</p>
+              <p>Capabilities first, with a representative piece of work showing how each one comes to life.</p>
             </header>
             <div className={styles.reelGrid}>
               {homepageContent.map((item, index) => (
@@ -65,18 +65,6 @@ export default function Home() {
               ))}
             </div>
             <div className={styles.sectionCta}><Link href="/content">Explore the content portfolio <span>↗</span></Link></div>
-          </div>
-        </section>
-
-        <section className={styles.capabilityBand} aria-labelledby="formats">
-          <div className={styles.sectionWrap}>
-            <p className={styles.miniLabel}>Formats &amp; craft</p>
-            <div className={styles.capabilityLayout}>
-              <h2 id="formats">From first idea to finished release.</h2>
-              <ul>
-                <li>Video &amp; social cuts</li><li>Podcasts &amp; interviews</li><li>Editorial &amp; campaign copy</li><li>Live shows &amp; community programming</li><li>Visual packaging &amp; distribution systems</li>
-              </ul>
-            </div>
           </div>
         </section>
 

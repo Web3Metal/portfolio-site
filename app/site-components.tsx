@@ -27,7 +27,7 @@ export function PageIntro({ kicker, title, copy }: { kicker: string; title: stri
 export function CaseStudyList({ compact = false }: { compact?: boolean }) {
   return <div className={compact ? "case-list compact" : "case-list"}>{caseStudies.map((item) => (
     <Link className="case-row" href={`/case-studies#${item.slug}`} key={item.slug}>
-      <span className="case-number">{item.number}</span><span><strong>{item.title}</strong><small>{item.role}</small></span><p>{item.summary}</p><span className="case-arrow" aria-hidden="true">↗</span>
+      <span><strong>{item.title}</strong><small>{item.role}</small></span><p>{item.summary}</p><span className="case-arrow" aria-hidden="true">↗</span>
     </Link>
   ))}</div>;
 }

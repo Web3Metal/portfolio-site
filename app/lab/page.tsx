@@ -23,7 +23,7 @@ export default function LabPage() { return <><SiteHeader /><main>
   <PageIntro kicker="Lab / Experiments and early concepts" title="The Creative Lab is where I test ideas that do not fit neatly into a case study." copy="AI music systems, interactive worlds, performance tools, narrative experiments, and early product concepts." />
   <section className="content-section"><div className="wrap">
     <p className="lede" style={{ maxWidth: 900, marginBottom: "clamp(48px, 7vw, 90px)" }}>These are experiments and early concepts, not a list of launched products.</p>
-    <div className="content-grid">{experiments.map(([status,title,copy], index) => <article className="content-card" key={title}><div><p className="tag">0{index+1} / {status}</p><h3>{title}</h3></div><p>{copy}</p></article>)}</div>
+    <div className="content-grid">{experiments.map(([status,title,copy]) => <article className="content-card" key={title}><div><p className="tag">{status}</p><h3>{title}</h3></div><p>{copy}</p></article>)}</div>
   </div></section>
   <section className="content-section"><div className="wrap case-columns">
     <div><h2>What I’m Exploring</h2><ul>{explorationAreas.map((area) => <li key={area}>{area}</li>)}</ul></div>
