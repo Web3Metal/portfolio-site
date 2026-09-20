@@ -7,7 +7,7 @@
   position: relative;
   aspect-ratio: 4 / 3;
   overflow: hidden;
-  background: #171714;
+  background: #151a22;
 }
 
 .heroImage img {
@@ -60,7 +60,7 @@
   justify-content: space-between;
   gap: 24px;
   padding-bottom: 16px;
-  border-bottom: 1px solid #605f59;
+  border-bottom: 1px solid #586575;
   font-size: 11px;
   font-weight: 700;
   letter-spacing: .12em;
@@ -73,13 +73,13 @@
 }
 
 .loopHeading span {
-  color: #aaa79e;
+  color: #9da9b8;
 }
 
 .loopTrack {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  border-bottom: 1px solid #605f59;
+  border-bottom: 1px solid #586575;
 }
 
 .loopStage {
@@ -88,7 +88,7 @@
   padding: 20px 18px;
   display: flex;
   flex-direction: column;
-  border-right: 1px solid #605f59;
+  border-right: 1px solid #586575;
 }
 
 .loopStage:last-child {
@@ -163,7 +163,7 @@
   left: 50%;
   padding: 0 14px;
   background: var(--case-ink);
-  color: #aaa79e;
+  color: #9da9b8;
   font-size: 10px;
   font-weight: 700;
   letter-spacing: .1em;
@@ -174,7 +174,7 @@
 .loopFigure figcaption {
   max-width: 790px;
   margin: 34px 0 0 auto;
-  color: #aaa79e;
+  color: #9da9b8;
   font-size: 12px;
   line-height: 1.55;
 }
@@ -249,7 +249,7 @@
   .loopStage {
     min-height: 132px;
     border-right: 0;
-    border-bottom: 1px solid #605f59;
+    border-bottom: 1px solid #586575;
   }
 
   .loopStage:not(:last-child)::after {

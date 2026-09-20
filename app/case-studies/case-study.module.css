@@ -1,9 +1,9 @@
 .page {
-  --case-accent: #c43f2b;
-  --case-accent-on-dark: #f06d59;
-  --case-ink: #171714;
-  --case-paper: #f4f1ea;
-  --case-line: #c9c4b9;
+  --case-accent: #b93f37;
+  --case-accent-on-dark: #ef7569;
+  --case-ink: #151a22;
+  --case-paper: #f3f0e8;
+  --case-line: #c6c9ce;
   background: var(--case-paper);
   color: var(--case-ink);
 }
@@ -162,21 +162,21 @@
   display: grid;
   grid-template-columns: 1fr auto .75fr auto 1.65fr auto 1fr;
   align-items: stretch;
-  border-top: 1px solid #605f59;
-  border-bottom: 1px solid #605f59;
+  border-top: 1px solid #586575;
+  border-bottom: 1px solid #586575;
 }
 
 .systemNode { min-height: 220px; padding: 22px 18px; display: flex; flex-direction: column; gap: 12px; }
 .systemNode small { color: var(--case-accent-on-dark); font-weight: 700; }
 .systemNode strong { margin-top: auto; font-family: Georgia, serif; font-size: clamp(24px, 2.4vw, 38px); font-weight: 400; line-height: 1.05; }
-.systemNode > span, .routeColumns span { color: #c8c5bb; font-size: 12px; line-height: 1.4; }
+.systemNode > span, .routeColumns span { color: #c4ccd6; font-size: 12px; line-height: 1.4; }
 .systemArrow { display: grid; place-items: center; color: var(--case-accent-on-dark); font-size: 28px; }
 .routeColumns { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 8px; }
 .routeColumns div { display: flex; flex-direction: column; gap: 7px; }
 .systemFigure figcaption, .progressFigure figcaption {
   max-width: 720px;
   margin: 20px 0 0 auto;
-  color: #aaa79e;
+  color: #9da9b8;
   font-size: 12px;
   line-height: 1.55;
 }
@@ -187,17 +187,17 @@
 .outcomePair strong { font-family: Georgia, serif; font-size: clamp(54px, 7vw, 96px); font-weight: 400; letter-spacing: -.06em; line-height: .8; }
 .outcomePair span { max-width: 420px; font-size: 14px; text-transform: uppercase; letter-spacing: .08em; }
 
-.progressFigure { margin: clamp(58px, 7vw, 96px) 0; padding: clamp(28px, 4vw, 52px); background: #fffdf7; }
+.progressFigure { margin: clamp(58px, 7vw, 96px) 0; padding: clamp(28px, 4vw, 52px); background: #fffdf8; }
 .figureHeading { padding-bottom: 24px; border-bottom: 1px solid var(--case-ink); }
 .figureHeading p { margin: 0; font-family: Georgia, serif; font-size: clamp(30px, 4vw, 54px); font-weight: 400; letter-spacing: -.035em; text-transform: none; }
-.figureHeading span { align-self: end; color: #66645e; }
+.figureHeading span { align-self: end; color: #788696; }
 .progression { display: grid; grid-template-columns: repeat(4, 1fr); }
 .progression > div { min-height: 195px; padding: 20px 18px; display: flex; flex-direction: column; border-right: 1px solid var(--case-line); }
 .progression > div:last-child { border-right: 0; }
 .progression small { color: var(--case-accent); font-size: 10px; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; }
 .progression strong { margin-top: auto; font-family: Georgia, serif; font-size: clamp(34px, 4vw, 58px); font-weight: 400; letter-spacing: -.04em; }
-.progression span { margin-top: 8px; color: #65635d; font-size: 12px; }
-.progressFigure figcaption { color: #65635d; }
+.progression span { margin-top: 8px; color: #788696; font-size: 12px; }
+.progressFigure figcaption { color: #788696; }
 
 .evidenceGrid { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--case-ink); }
 .evidenceGrid article { min-height: 175px; padding: 22px 24px 22px 0; display: flex; flex-direction: column; justify-content: space-between; border-right: 1px solid var(--case-line); border-bottom: 1px solid var(--case-line); }
@@ -208,7 +208,7 @@
 .evidenceGrid p { max-width: 340px; margin: auto 0 0; font-family: Georgia, serif; font-size: clamp(23px, 2.5vw, 36px); letter-spacing: -.025em; line-height: 1.1; }
 
 .assetCards { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
-.assetCards article { min-height: 270px; padding: clamp(24px, 3vw, 42px); display: flex; flex-direction: column; background: #fffdf7; }
+.assetCards article { min-height: 270px; padding: clamp(24px, 3vw, 42px); display: flex; flex-direction: column; background: #fffdf8; }
 .assetCards article:last-child { background: var(--case-accent); color: #fff; }
 .assetCards article > span { font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
 .assetCards h3 { max-width: 580px; margin: auto 0 24px; font-family: Georgia, serif; font-size: clamp(31px, 3.3vw, 50px); font-weight: 400; letter-spacing: -.04em; line-height: 1.02; }
@@ -227,7 +227,7 @@
   .proseLead, .roleContent { margin-left: 0; }
   .systemSection { width: 100%; padding-left: 18px; padding-right: 18px; }
   .systemRail { grid-template-columns: 1fr; }
-  .systemNode { min-height: 190px; border-bottom: 1px solid #605f59; }
+  .systemNode { min-height: 190px; border-bottom: 1px solid #586575; }
   .systemArrow { min-height: 54px; transform: rotate(90deg); }
   .progression { grid-template-columns: 1fr 1fr; }
   .progression > div:nth-child(2) { border-right: 0; }

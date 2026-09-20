@@ -7,7 +7,7 @@
   position: relative;
   aspect-ratio: 16 / 8.7;
   overflow: hidden;
-  background: #2f2f2f;
+  background: #253342;
 }
 
 .heroImage img {
@@ -45,7 +45,7 @@
 .progressFigure {
   margin: clamp(80px, 10vw, 140px) 0 0;
   padding: clamp(30px, 4vw, 54px);
-  background: #fffdf7;
+  background: #fffdf8;
 }
 
 .figureHeading,
@@ -71,7 +71,7 @@
 .figureHeading span,
 .systemHeading span,
 .estimateHeading span {
-  color: #74716a;
+  color: #788696;
 }
 
 .frameGrid {
@@ -91,7 +91,7 @@
   position: relative;
   aspect-ratio: 16 / 10;
   overflow: hidden;
-  background: #292929;
+  background: #202c3a;
 }
 
 .frameImage img {
@@ -116,7 +116,7 @@
 .progressFigure figcaption {
   max-width: 720px;
   margin: 22px 0 0 auto;
-  color: #66635c;
+  color: #788696;
   font-family: Georgia, "Times New Roman", serif;
   font-size: clamp(20px, 2vw, 28px);
   letter-spacing: -.02em;
@@ -124,13 +124,13 @@
 }
 
 .systemFigure { margin: 0; }
-.systemHeading { border-color: #605f59; }
-.systemHeading span { color: #aaa79e; }
+.systemHeading { border-color: #586575; }
+.systemHeading span { color: #9da9b8; }
 
 .systemTrack {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  border-bottom: 1px solid #605f59;
+  border-bottom: 1px solid #586575;
 }
 
 .systemStage {
@@ -139,7 +139,7 @@
   padding: 26px 24px;
   display: flex;
   flex-direction: column;
-  border-right: 1px solid #605f59;
+  border-right: 1px solid #586575;
 }
 
 .systemStage:last-child {
@@ -211,7 +211,7 @@
   left: 50%;
   padding: 0 13px;
   background: var(--case-ink);
-  color: #aaa79e;
+  color: #9da9b8;
   font-size: 10px;
   font-weight: 700;
   letter-spacing: .09em;
@@ -223,7 +223,7 @@
 .systemFigure figcaption {
   max-width: 790px;
   margin: 52px 0 0 auto;
-  color: #aaa79e;
+  color: #9da9b8;
   font-size: 12px;
   line-height: 1.55;
 }
@@ -276,7 +276,7 @@
 .estimateBlock {
   margin-top: clamp(80px, 10vw, 135px);
   padding: clamp(30px, 4vw, 52px);
-  background: #fffdf7;
+  background: #fffdf8;
 }
 
 .estimateHeading span { color: var(--case-accent); }
@@ -402,7 +402,7 @@
 @media (max-width: 920px) {
   .heroEvidence { width: min(100% - 36px, 1380px); }
   .systemTrack { grid-template-columns: 1fr; }
-  .systemStage { min-height: 180px; border-right: 0; border-bottom: 1px solid #605f59; }
+  .systemStage { min-height: 180px; border-right: 0; border-bottom: 1px solid #586575; }
   .systemStage:not(:last-child)::after { top: auto; right: 50%; bottom: -15px; transform: translateX(50%) rotate(90deg); }
   .returnRail { display: none; }
   .systemFigure figcaption { margin-top: 30px; }
