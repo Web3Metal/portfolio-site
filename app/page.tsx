@@ -1,67 +1,20 @@
-import Link from "next/link";
 import Image from "next/image";
-import {
-  ExperimentFeature,
-  FeaturedCaseStudy,
-  HomepageSectionHeader,
-  ProcessRail,
-} from "./homepage-components";
+import Link from "next/link";
 import styles from "./homepage.module.css";
 import { ContactBlock, SiteFooter, SiteHeader } from "./site-components";
 import { caseStudies } from "./site-data";
+import { homepageContent } from "./content-data";
 
-const featuredCaseStudyConfig = [
-  {
-    slug: "ava-labs",
-    href: "/case-studies/ava-labs",
-    mediaLabel: "Builder engagement evidence",
-    image: { src: "/assets/builder-wins.webp", alt: "Ava Labs Builder Engagement Wins presentation cover", width: 1920, height: 1080, position: "left center" },
-    summary: "Built and improved developer engagement pathways that moved builders from first contact toward programs, events, and deeper technical support.",
-    proofPoint: "9,000+ developers engaged",
-  },
-  {
-    slug: "cyber-metal-radio",
-    href: "/case-studies/cyber-metal-radio",
-    mediaLabel: "Cyber Metal Radio",
-    image: {
-      src: "/assets/cyber-metal-radio/logo-card.png",
-      alt: "Cyber Metal Radio logo",
-      width: 1536,
-      height: 1024,
-      position: "center",
-    },
-    summary: "Helped turn an internet radio station into a recurring creator loop built around discovery, recognition, and community ritual.",
-    proofPoint: "1,765 artist submissions in 2025",
-  },
-  {
-    slug: "fight-legends",
-    href: "/case-studies/fight-legends",
-    mediaLabel: "Visible development progress",
-    image: { src: "/assets/fight-legends/hero-development.png", alt: "Fight Legends character model development evidence", width: 1280, height: 720 },
-    summary: "Created a weekly development show and surrounding content system that made an unfinished game easier to follow and worth returning to.",
-    proofPoint: "25% increase in YouTube subscribers",
-  },
-  {
-    slug: "edge-of-company",
-    href: "/case-studies/edge-of-company",
-    mediaLabel: "Interview production and episode packaging",
-    image: { src: "/assets/future-of-storytelling.jpeg", alt: "Edge of NFT Future of Storytelling episode artwork", width: 1280, height: 720 },
-    summary: "Connected podcast production, social programming, live conversations, and event coverage into one audience-growth engine.",
-    proofPoint: "35% follower growth",
-  },
+const proofPoints = [
+  ["25%", "YouTube subscriber growth for Fight Legends"],
+  ["200K+", "listens for Cyber Metal Radio"],
+  ["35%", "follower growth at Edge of Company"],
 ] as const;
 
-const featuredCaseStudies = featuredCaseStudyConfig.map((config) => {
-  const caseStudy = caseStudies.find((item) => item.slug === config.slug);
-  if (!caseStudy) throw new Error(`Missing case study data for ${config.slug}`);
-  return { ...config, caseStudy };
-});
-
-const processItems = [
-  { title: "Find the gap", copy: "Listen closely, map the audience, and identify what is missing between the idea and participation." },
-  { title: "Build the system", copy: "Shape the content, programming, workflows, and touchpoints that make the idea useful and repeatable." },
-  { title: "Run the loop", copy: "Publish, host, engage, measure, and refine until the system produces real momentum." },
-] as const;
+function ContentMedia({ item, priority = false }: { item: (typeof homepageContent)[number]; priority?: boolean }) {
+  if (item.media.type === "video") return <video controls playsInline preload={priority ? "auto" : "metadata"} poster={"poster" in item.media ? item.media.poster : undefined} aria-label={item.media.alt}><source src={item.media.src} type="video/mp4" /></video>;
+  return <Image src={item.media.src} alt={item.media.alt} width={item.media.width} height={item.media.height} sizes="(max-width: 720px) calc(100vw - 36px), (max-width: 1080px) 50vw, 42vw" unoptimized priority={priority} />;
+}
 
 export default function Home() {
   return (
@@ -70,8 +23,8 @@ export default function Home() {
       <main>
         <section className={styles.heroBand} id="home">
           <div className={`hero wrap ${styles.homeHero}`}>
-            <p className="eyebrow">Shawn Porter / Growth, community & creative technology</p>
-            <h1>I turn ideas into products, content, and communities.</h1>
+            <p className="eyebrow">Shawn Porter / Content strategy &amp; creative production</p>
+            <h1>I create the content and programs that turn ideas into audiences.</h1>
             <figure className={styles.heroPortrait}>
               <Image
                 src="/assets/shawn-hero-portrait.webp"
@@ -84,61 +37,67 @@ export default function Home() {
               />
             </figure>
             <div className="hero-bottom">
-              <p className="lede">Clear stories, repeatable programs, measurable growth, and media people want to return to—built as working ecosystems.</p>
-              <Link className="text-link" href="/case-studies">View case studies <span>↗</span></Link>
+              <p className="lede">Video, podcasts, social content, editorial, live programming, and creator experiences—backed by the systems and measurement that make them useful.</p>
+              <div className={styles.heroActions}>
+                <Link className="text-link" href="/content">View selected content <span>↗</span></Link>
+                <Link className={styles.secondaryLink} href="/case-studies">See the results</Link>
+              </div>
             </div>
           </div>
         </section>
 
-        <section className={`${styles.homeSectionBand} ${styles.selectedWorkBand}`} aria-labelledby="selected-work">
-          <div className={styles.homeSection}>
-            <HomepageSectionHeader title="Selected Case Studies" headingId="selected-work" />
-            {featuredCaseStudies.map(({ caseStudy, ...config }, index) => (
-              <FeaturedCaseStudy
-                key={caseStudy.slug}
-                number={caseStudy.number}
-                title={caseStudy.title}
-                role={caseStudy.role}
-                reverse={index % 2 === 1}
-                {...config}
-              />
-            ))}
-            <div className={styles.labFooter}>
-              <Link className={styles.caseLink} href="/case-studies">View all case studies <span>↗</span></Link>
+        <section className={styles.reelSection} aria-labelledby="selected-content">
+          <div className={styles.sectionWrap}>
+            <header className={styles.sectionHeader}>
+              <div><p>The work</p><h2 id="selected-content">Content Creation</h2></div>
+              <p>A quick view of the formats, visual systems, and editorial work I bring together around an idea.</p>
+            </header>
+            <div className={styles.reelGrid}>
+              {homepageContent.map((item, index) => (
+                <article className={`${styles.reelCard} ${index === 0 ? styles.reelLead : ""} ${item.orientation === "portrait" ? styles.reelPortrait : ""}`} key={item.slug}>
+                  <h3 className={styles.laneTitle}><Link href={`/content/${item.laneSlug}`}>{item.lane}</Link></h3>
+                  <Link className={styles.mediaLink} href={item.href} aria-label={`View ${item.lane}: ${item.title}`}><div className={styles.mediaFrame}><ContentMedia item={item} priority={index === 0} /></div></Link>
+                  <div className={styles.cardCopy}>
+                    <p className={styles.cardMeta}>{item.project} · {item.format}</p>
+                    <p className={styles.shortCredit}>{item.shortCredit}</p>
+                  </div>
+                </article>
+              ))}
+            </div>
+            <div className={styles.sectionCta}><Link href="/content">Explore the content portfolio <span>↗</span></Link></div>
+          </div>
+        </section>
+
+        <section className={styles.capabilityBand} aria-labelledby="formats">
+          <div className={styles.sectionWrap}>
+            <p className={styles.miniLabel}>Formats &amp; craft</p>
+            <div className={styles.capabilityLayout}>
+              <h2 id="formats">From first idea to finished release.</h2>
+              <ul>
+                <li>Video &amp; social cuts</li><li>Podcasts &amp; interviews</li><li>Editorial &amp; campaign copy</li><li>Live shows &amp; community programming</li><li>Visual packaging &amp; distribution systems</li>
+              </ul>
             </div>
           </div>
         </section>
 
-        <section className={styles.processSection} aria-labelledby="how-i-work">
-          <HomepageSectionHeader number="02" title="How I Work" headingId="how-i-work" />
-          <ProcessRail items={processItems} />
+        <section className={styles.caseSection} aria-labelledby="case-studies">
+          <div className={styles.sectionWrap}>
+            <header className={styles.sectionHeader}>
+              <div><p>The outcomes</p><h2 id="case-studies">The work moved something.</h2></div>
+              <p>Audience growth matters here as evidence that the content found its people—not as a substitute for the work itself.</p>
+            </header>
+            <div className={styles.proofGrid}>{proofPoints.map(([value, label]) => <article key={value}><strong>{value}</strong><span>{label}</span></article>)}</div>
+            <div className={styles.caseRail}>
+              {caseStudies.slice(0, 4).map((item) => <Link href={`/case-studies/${item.slug}`} key={item.slug}><strong>{item.title}</strong><small>{item.role}</small><b aria-hidden="true">↗</b></Link>)}
+            </div>
+            <div className={styles.sectionCta}><Link href="/case-studies">View all case studies <span>↗</span></Link></div>
+          </div>
         </section>
 
-        <section className={`${styles.homeSectionBand} ${styles.creativeLabBand}`} aria-labelledby="creative-lab">
-          <div className={styles.homeSection}>
-            <HomepageSectionHeader number="03" title="Creative Lab" headingId="creative-lab" />
-            <p className={styles.labIntro}>A working space for ideas that cross media, music, community, and lightweight product design.</p>
-            <div className={styles.experimentGrid}>
-              <ExperimentFeature
-                number="A"
-                category="Creator experiment"
-                status="Workflow"
-                title="AI music workflows"
-                copy="Prompt design, rapid song prototyping, collaborative challenges, and public release experiments that connect tools to creative practice."
-                image={{ src: "/assets/suno-metal-editorial.webp", alt: "Web3 Metal editorial artwork about metal made with Suno", width: 1280, height: 720 }}
-              />
-              <ExperimentFeature
-                number="B"
-                category="Community product"
-                status="Early concept"
-                title="Competition tools"
-                copy="Early concepts for submission forms, ranking flows, and lightweight creator tools designed around real community behavior."
-                image={{ src: "/assets/discord-programming.webp", alt: "Web3 Metal community programming artwork", width: 1600, height: 900 }}
-              />
-            </div>
-            <div className={styles.labFooter}>
-              <Link className={styles.caseLink} href="/lab">Enter the Lab <span>↗</span></Link>
-            </div>
+        <section className={styles.moreWork}>
+          <div className={styles.sectionWrap}>
+            <p>Also working across</p>
+            <div><Link href="/writing">Writing &amp; editorial <span>↗</span></Link><Link href="/lab">Creative experiments <span>↗</span></Link><Link href="/resume">Full experience <span>↗</span></Link></div>
           </div>
         </section>
 

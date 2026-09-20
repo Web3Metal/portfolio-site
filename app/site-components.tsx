@@ -17,7 +17,7 @@ export function SiteHeader() {
 }
 
 export function SiteFooter() {
-  return <footer className="site-footer"><div className="wrap"><p>Shawn Porter</p><p>Seattle, WA · Growth / Community / Media / Creative Technology</p><p><Link href="/writing">Writing ↗</Link></p><p>© {new Date().getFullYear()}</p></div></footer>;
+  return <footer className="site-footer"><div className="wrap"><p>Shawn Porter</p><p>Seattle, WA · Content Strategy / Creative Production / Community</p><p><Link href="/writing">Writing ↗</Link></p><p>© {new Date().getFullYear()}</p></div></footer>;
 }
 
 export function PageIntro({ kicker, title, copy }: { kicker: string; title: string; copy: string }) {
@@ -33,5 +33,5 @@ export function CaseStudyList({ compact = false }: { compact?: boolean }) {
 }
 
 export function ContactBlock() {
-  return <section className="contact-block" id="contact"><div className="wrap"><p className="eyebrow">Have an idea with a missing system?</p><h2>Let’s make it work.</h2><a className="contact-link" href="mailto:shawnport84@gmail.com">shawnport84@gmail.com <span>↗</span></a></div></section>;
+  return <section className="contact-block" id="contact"><div className="wrap"><p className="eyebrow">Have a story, show, or audience to build?</p><h2>Let’s make something worth following.</h2><a className="contact-link" href="mailto:shawnport84@gmail.com">shawnport84@gmail.com <span>↗</span></a></div></section>;
 }

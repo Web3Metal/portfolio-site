@@ -15,8 +15,8 @@
 }
 
 .hero {
-  min-height: min(925px, calc(100vh - 76px));
-  padding: clamp(72px, 9vw, 138px) 0 52px;
+  min-height: auto;
+  padding: clamp(58px, 7vw, 96px) 0 48px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -36,20 +36,20 @@
 .heroTop p { margin: 0; }
 
 .hero h1 {
-  max-width: 1250px;
-  margin: clamp(80px, 12vw, 170px) 0 54px;
+  max-width: 1050px;
+  margin: clamp(54px, 8vw, 104px) 0 34px;
   font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(52px, 6.2vw, 96px);
+  font-size: clamp(48px, 5.4vw, 82px);
   font-weight: 400;
   letter-spacing: -.065em;
   line-height: .88;
 }
 
 .context {
-  max-width: 810px;
-  margin: 0 0 44px auto;
+  max-width: 760px;
+  margin: 0 0 32px auto;
   font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(22px, 1.9vw, 34px);
+  font-size: clamp(20px, 1.7vw, 29px);
   letter-spacing: -.02em;
   line-height: 1.18;
 }
@@ -59,7 +59,7 @@
   grid-template-columns: minmax(360px, .8fr) minmax(500px, 1.2fr);
   align-items: start;
   gap: clamp(42px, 6vw, 100px);
-  margin-bottom: 44px;
+  margin-bottom: 34px;
 }
 
 .heroContextRow .context {
@@ -82,14 +82,14 @@
 }
 
 .section {
-  padding: clamp(86px, 10vw, 150px) 0;
+  padding: clamp(62px, 7vw, 102px) 0;
   border-top: 1px solid var(--case-line);
 }
 
 .sectionLabel {
   display: grid;
-  grid-template-columns: 88px 1fr;
-  margin-bottom: clamp(54px, 7vw, 100px);
+  grid-template-columns: 1fr;
+  margin-bottom: clamp(36px, 5vw, 64px);
 }
 
 .sectionLabel span {
@@ -102,7 +102,7 @@
 .sectionLabel h2 {
   margin: 0;
   font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(40px, 4vw, 64px);
+  font-size: clamp(36px, 3.4vw, 54px);
   font-weight: 400;
   letter-spacing: -.05em;
   line-height: .92;
@@ -118,15 +118,15 @@
   max-width: 950px;
   margin: 0;
   font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(24px, 2.2vw, 34px);
+  font-size: clamp(21px, 1.8vw, 29px);
   letter-spacing: -.035em;
   line-height: 1.12;
 }
 
-.roleOverview { font-size: clamp(22px, 2vw, 30px); }
+.roleOverview { font-size: clamp(20px, 1.7vw, 27px); }
 
 .scopeList {
-  margin: 80px 0 0;
+  margin: 48px 0 0;
   padding: 0;
   list-style: none;
   border-top: 1px solid var(--case-ink);
@@ -136,7 +136,7 @@
   display: grid;
   grid-template-columns: 64px 1fr;
   gap: 24px;
-  padding: 25px 0;
+  padding: 18px 0;
   border-bottom: 1px solid var(--case-line);
 }
 
@@ -166,7 +166,7 @@
   border-bottom: 1px solid #605f59;
 }
 
-.systemNode { min-height: 290px; padding: 25px 20px; display: flex; flex-direction: column; gap: 15px; }
+.systemNode { min-height: 220px; padding: 22px 18px; display: flex; flex-direction: column; gap: 12px; }
 .systemNode small { color: var(--case-accent-on-dark); font-weight: 700; }
 .systemNode strong { margin-top: auto; font-family: Georgia, serif; font-size: clamp(24px, 2.4vw, 38px); font-weight: 400; line-height: 1.05; }
 .systemNode > span, .routeColumns span { color: #c8c5bb; font-size: 12px; line-height: 1.4; }
@@ -182,17 +182,17 @@
 }
 
 .outcomePair { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid var(--case-ink); border-bottom: 1px solid var(--case-ink); }
-.outcomePair p { min-height: 235px; margin: 0; padding: 28px 30px 28px 0; display: flex; flex-direction: column; justify-content: space-between; border-right: 1px solid var(--case-line); }
+.outcomePair p { min-height: 175px; margin: 0; padding: 24px 26px 24px 0; display: flex; flex-direction: column; justify-content: space-between; border-right: 1px solid var(--case-line); }
 .outcomePair p + p { padding-left: 30px; border-right: 0; }
-.outcomePair strong { font-family: Georgia, serif; font-size: clamp(66px, 9vw, 132px); font-weight: 400; letter-spacing: -.06em; line-height: .8; }
+.outcomePair strong { font-family: Georgia, serif; font-size: clamp(54px, 7vw, 96px); font-weight: 400; letter-spacing: -.06em; line-height: .8; }
 .outcomePair span { max-width: 420px; font-size: 14px; text-transform: uppercase; letter-spacing: .08em; }
 
-.progressFigure { margin: clamp(80px, 10vw, 140px) 0; padding: clamp(38px, 5vw, 70px); background: #fffdf7; }
+.progressFigure { margin: clamp(58px, 7vw, 96px) 0; padding: clamp(28px, 4vw, 52px); background: #fffdf7; }
 .figureHeading { padding-bottom: 24px; border-bottom: 1px solid var(--case-ink); }
 .figureHeading p { margin: 0; font-family: Georgia, serif; font-size: clamp(30px, 4vw, 54px); font-weight: 400; letter-spacing: -.035em; text-transform: none; }
 .figureHeading span { align-self: end; color: #66645e; }
 .progression { display: grid; grid-template-columns: repeat(4, 1fr); }
-.progression > div { min-height: 260px; padding: 25px 22px; display: flex; flex-direction: column; border-right: 1px solid var(--case-line); }
+.progression > div { min-height: 195px; padding: 20px 18px; display: flex; flex-direction: column; border-right: 1px solid var(--case-line); }
 .progression > div:last-child { border-right: 0; }
 .progression small { color: var(--case-accent); font-size: 10px; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; }
 .progression strong { margin-top: auto; font-family: Georgia, serif; font-size: clamp(34px, 4vw, 58px); font-weight: 400; letter-spacing: -.04em; }
@@ -200,7 +200,7 @@
 .progressFigure figcaption { color: #65635d; }
 
 .evidenceGrid { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--case-ink); }
-.evidenceGrid article { min-height: 230px; padding: 26px 28px 26px 0; display: flex; flex-direction: column; justify-content: space-between; border-right: 1px solid var(--case-line); border-bottom: 1px solid var(--case-line); }
+.evidenceGrid article { min-height: 175px; padding: 22px 24px 22px 0; display: flex; flex-direction: column; justify-content: space-between; border-right: 1px solid var(--case-line); border-bottom: 1px solid var(--case-line); }
 .evidenceGrid article:nth-child(3n+2), .evidenceGrid article:nth-child(3n+3) { padding-left: 28px; }
 .evidenceGrid article:nth-child(3n) { border-right: 0; }
 .evidenceGrid strong { font-family: Georgia, serif; font-size: clamp(35px, 4vw, 58px); font-weight: 400; letter-spacing: -.04em; line-height: .96; }
@@ -208,13 +208,13 @@
 .evidenceGrid p { max-width: 340px; margin: auto 0 0; font-family: Georgia, serif; font-size: clamp(23px, 2.5vw, 36px); letter-spacing: -.025em; line-height: 1.1; }
 
 .assetCards { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
-.assetCards article { min-height: 360px; padding: clamp(28px, 4vw, 58px); display: flex; flex-direction: column; background: #fffdf7; }
+.assetCards article { min-height: 270px; padding: clamp(24px, 3vw, 42px); display: flex; flex-direction: column; background: #fffdf7; }
 .assetCards article:last-child { background: var(--case-accent); color: #fff; }
 .assetCards article > span { font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
-.assetCards h3 { max-width: 580px; margin: auto 0 34px; font-family: Georgia, serif; font-size: clamp(35px, 4vw, 61px); font-weight: 400; letter-spacing: -.04em; line-height: 1.02; }
+.assetCards h3 { max-width: 580px; margin: auto 0 24px; font-family: Georgia, serif; font-size: clamp(31px, 3.3vw, 50px); font-weight: 400; letter-spacing: -.04em; line-height: 1.02; }
 .assetCards p { max-width: 500px; margin: 0; font-size: 13px; line-height: 1.5; }
 
-.lessonsSection { padding-bottom: clamp(120px, 14vw, 210px); }
+.lessonsSection { padding-bottom: clamp(84px, 10vw, 140px); }
 .lessonsList { max-width: 980px; margin: 0 0 0 auto; padding: 0; list-style: none; border-top: 1px solid var(--case-ink); }
 .lessonsList li { padding: 25px 0; border-bottom: 1px solid var(--case-line); font-family: Georgia, serif; font-size: clamp(22px, 2.2vw, 34px); letter-spacing: -.025em; line-height: 1.12; }
 
@@ -239,12 +239,11 @@
 
 @media (max-width: 560px) {
   .heroTop { align-items: flex-start; }
-  .hero h1 { margin-top: 90px; font-size: clamp(46px, 13vw, 64px); }
+  .hero h1 { margin-top: 54px; font-size: clamp(44px, 12vw, 60px); }
   .context { font-size: 21px; }
-  .sectionLabel { grid-template-columns: 42px 1fr; }
   .sectionLabel h2 { font-size: 42px; }
-  .proseLead p, .roleOverview { font-size: 24px; }
-  .scopeList { margin-top: 54px; }
+  .proseLead p, .roleOverview { font-size: 22px; }
+  .scopeList { margin-top: 38px; }
   .scopeList li { grid-template-columns: 38px 1fr; gap: 10px; }
   .routeColumns, .outcomePair, .assetCards { grid-template-columns: 1fr; }
   .outcomePair p { min-height: 190px; padding: 25px 0; border-right: 0; border-bottom: 1px solid var(--case-line); }
@@ -257,5 +256,5 @@
   .progression > div:last-child { border-bottom: 0; }
   .evidenceGrid { grid-template-columns: 1fr; }
   .evidenceGrid article:nth-child(n) { min-height: 180px; padding: 24px 0; border-right: 0; }
-  .assetCards article { min-height: 300px; }
+  .assetCards article { min-height: 240px; }
 }

@@ -7,10 +7,10 @@ export async function generateMetadata(): Promise<Metadata> {
   const host = incoming.get("x-forwarded-host") ?? incoming.get("host") ?? "localhost:3000";
   const protocol = incoming.get("x-forwarded-proto") ?? (host.startsWith("localhost") ? "http" : "https");
   const origin = `${protocol}://${host}`;
-  const description = "Portfolio of Shawn Porter: growth systems, community programs, creator ecosystems, media production, and creative technology.";
+  const description = "Portfolio of Shawn Porter, a content strategist and creative producer working across video, podcasts, social, editorial, live programming, and community.";
   return {
     metadataBase: new URL(origin),
-    title: { default: "Shawn Porter — Growth, Community & Creative Technology", template: "%s — Shawn Porter" },
+    title: { default: "Shawn Porter — Content Strategist & Creative Producer", template: "%s — Shawn Porter" },
     description,
     icons: { icon: "/favicon.svg", shortcut: "/favicon.svg" },
     openGraph: { title: "Shawn Porter", description, type: "website", images: [{ url: `${origin}/og.png`, width: 1200, height: 630, alt: "Shawn Porter portfolio" }] },

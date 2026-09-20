@@ -58,10 +58,9 @@ type ExperimentFeatureProps = {
   };
 };
 
-export function HomepageSectionHeader({ number, title, headingId, link }: HomepageSectionHeaderProps) {
+export function HomepageSectionHeader({ title, headingId, link }: HomepageSectionHeaderProps) {
   return (
-    <div className={`${styles.sectionHeader} ${number ? "" : styles.sectionHeaderWithoutNumber}`}>
-      {number ? <p className={styles.sectionNumber}>{number}</p> : null}
+    <div className={styles.sectionHeader}>
       <h2 id={headingId}>{title}</h2>
       {link ? <Link className={styles.sectionLink} href={link.href}>{link.label} <span>↗</span></Link> : null}
     </div>
@@ -99,7 +98,6 @@ export function EditorialMedia({ image, label, typography }: EditorialMediaProps
 }
 
 export function FeaturedCaseStudy({
-  number,
   title,
   role,
   summary,
@@ -113,7 +111,6 @@ export function FeaturedCaseStudy({
   return (
     <article className={`${styles.featuredCase} ${reverse ? styles.featuredCaseReverse : ""}`}>
       <div className={styles.featuredHeading}>
-        <p className={styles.caseNumber}>{number}</p>
         <h3><Link href={href}>{title}</Link></h3>
       </div>
       <div className={styles.featuredBody}>
@@ -149,7 +146,7 @@ export function ProcessRail({ items }: { items: readonly ProcessItem[] }) {
   );
 }
 
-export function ExperimentFeature({ number, category, status, title, copy, image }: ExperimentFeatureProps) {
+export function ExperimentFeature({ category, status, title, copy, image }: ExperimentFeatureProps) {
   return (
     <article className={styles.experimentFeature}>
       <figure>
@@ -163,7 +160,7 @@ export function ExperimentFeature({ number, category, status, title, copy, image
         />
       </figure>
       <div>
-        <p className={styles.experimentKicker}><span>{number}</span>{category} / {status}</p>
+        <p className={styles.experimentKicker}>{category} / {status}</p>
         <h3>{title}</h3>
         <p>{copy}</p>
       </div>

@@ -74,11 +74,11 @@ export function CaseStudyPage({ children }: CaseStudyPageProps) {
   );
 }
 
-export function CaseStudyHero({ index, date, title, context, tags, visual }: CaseStudyHeroProps) {
+export function CaseStudyHero({ date, title, context, tags, visual }: CaseStudyHeroProps) {
   return (
     <header className={styles.hero}>
       <div className={styles.heroTop}>
-        <p>{index} / Case Study</p>
+        <p>Case Study</p>
         <p>{date}</p>
       </div>
       <h1>{title}</h1>
@@ -97,7 +97,7 @@ export function CaseStudyHero({ index, date, title, context, tags, visual }: Cas
   );
 }
 
-export function CaseStudySection({ number, title, headingId, variant = "default", children }: CaseStudySectionProps) {
+export function CaseStudySection({ title, headingId, variant = "default", children }: CaseStudySectionProps) {
   const sectionClassName = [
     styles.section,
     variant === "system" ? styles.systemSection : "",
@@ -106,7 +106,7 @@ export function CaseStudySection({ number, title, headingId, variant = "default"
 
   return (
     <section className={sectionClassName} aria-labelledby={headingId}>
-      <div className={styles.sectionLabel}><span>{number}</span><h2 id={headingId}>{title}</h2></div>
+      <div className={styles.sectionLabel}><h2 id={headingId}>{title}</h2></div>
       {children}
     </section>
   );

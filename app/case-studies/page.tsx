@@ -8,11 +8,11 @@ export const metadata: Metadata = { title: "Case Studies" };
 
 export default function CaseStudiesPage() {
   return <><SiteHeader /><main>
-    <PageIntro kicker="Case Studies / 01–06" title="Systems built to make ideas participate." copy="Selected work across developer growth, creator ecosystems, community programs, media operations, and emerging technology." />
+    <PageIntro kicker="Case Studies" title="Systems built to make ideas participate." copy="Selected work across developer growth, creator ecosystems, community programs, media operations, and emerging technology." />
     {caseStudies.map((item) => {
       const href = `/case-studies/${item.slug}`;
       return <article className="case-detail" id={item.slug} key={item.slug}><div className="wrap">
-        <div className="case-kicker"><span>{item.number} / Case Study</span><span>{item.role}</span></div>
+        <div className="case-kicker"><span>Case Study</span><span>{item.role}</span></div>
         <h2><Link className="case-title-link" href={href}>{item.title}</Link></h2>
         <p className="case-summary">{item.summary}</p>
         <div className="tags">{item.tags.map(tag => <span key={tag}>{tag}</span>)}</div>
