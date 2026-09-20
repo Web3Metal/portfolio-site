@@ -50,7 +50,6 @@ export default function Home() {
           <div className={styles.sectionWrap}>
             <header className={styles.sectionHeader}>
               <div><p>The work</p><h2 id="selected-content">Content Creation</h2></div>
-              <p>Capabilities first, with a representative piece of work showing how each one comes to life.</p>
             </header>
             <div className={styles.reelGrid}>
               {homepageContent.map((item, index) => (
