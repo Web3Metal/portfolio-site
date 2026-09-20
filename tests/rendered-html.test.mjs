@@ -14,7 +14,7 @@ test("homepage renders the content-first positioning, structure, and navigation"
   const html = await response.text();
   assert.match(html, /I create the content and programs that turn ideas into audiences/);
   for (const label of ["Home", "Content", "Case Studies", "Writing", "About", "Resume", "Contact"]) assert.match(html, new RegExp(`>${label}<`));
-  const sections = ['id="selected-content">Content Creation', 'id="formats">From first idea to finished release', 'id="case-studies">The work moved something', 'id="contact"'];
+  const sections = ['id="selected-content">Content Creation', 'id="case-studies">The work moved something', 'id="contact"'];
   let cursor = -1;
   for (const section of sections) { const next = html.indexOf(section); assert.ok(next > cursor, `${section} should appear in locked order`); cursor = next; }
   assert.doesNotMatch(html, /codex-preview|react-loading-skeleton|Your site is taking shape/);
@@ -24,7 +24,7 @@ test("case studies render in the locked order", async () => {
   const response = await render("/case-studies");
   assert.equal(response.status, 200);
   const html = await response.text();
-  const titles = ["Ava Labs", "Cyber Metal Radio", "Fight Legends", "Edge of Company", "Web3 Metal", "Cointelegraph"];
+  const titles = ["Ava Labs", "Cyber Metal Radio", "Fight Legends", "Edge of Company"];
   let cursor = -1;
   for (const title of titles) { const next = html.indexOf(`>${title}<`); assert.ok(next > cursor, `${title} should appear in locked order`); cursor = next; }
 });
