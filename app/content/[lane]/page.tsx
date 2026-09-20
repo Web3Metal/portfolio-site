@@ -46,7 +46,11 @@ export default async function ContentLanePage({ params }: LanePageProps) {
             <div className={styles.workList}>
               {items.map((item) => (
                 <article className={`${styles.workItem} ${item.orientation === "portrait" ? styles.portrait : ""}`} key={item.slug}>
-                  <div className={styles.media}><LaneMedia item={item} /></div>
+                  {"external" in item && item.external ? (
+                    <a className={styles.media} href={item.href} target="_blank" rel="noreferrer" aria-label={`Watch ${item.title} on YouTube`}><LaneMedia item={item} /></a>
+                  ) : (
+                    <Link className={styles.media} href={item.href}><LaneMedia item={item} /></Link>
+                  )}
                   <div className={styles.copy}>
                     <p className={styles.meta}>{item.format}</p>
                     <h3>{item.title}</h3>
