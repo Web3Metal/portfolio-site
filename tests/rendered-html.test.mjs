@@ -38,6 +38,12 @@ test("every locked navigation destination renders", async () => {
   }
 });
 
+test("the retired content archive redirects to the homepage proof section", async () => {
+  const response = await render("/content");
+  assert.equal(response.status, 307);
+  assert.equal(response.headers.get("location"), "http://localhost/#selected-content");
+});
+
 test("focused content pages render their own relevant work", async () => {
   const response = await render("/content/podcast-show-overlay-design");
   assert.equal(response.status, 200);
