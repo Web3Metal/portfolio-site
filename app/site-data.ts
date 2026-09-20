@@ -30,6 +30,7 @@ export const caseStudies = [
     system: ["Weekly New Music Monday programming", "Top 15 countdown and annual specials", "Creator submission and ranking workflows", "Live broadcast, social promotion, and community operations"],
     results: ["1,765 artist submissions in 2025", "200,000+ listens", "16,000+ community interactions", "Weekly live programming"],
     tags: ["Creator ecosystem", "Programming", "Broadcast"],
+    image: "/assets/cyber-metal-radio-logo.png",
   },
   {
     slug: "fight-legends",
@@ -41,6 +42,7 @@ export const caseStudies = [
     system: ["Weekly developer update show", "Discord game nights and livestreams", "Medium articles and product storytelling", "Social campaigns supporting early-access initiatives"],
     results: ["25% increase in YouTube subscribers", "Approximately 30% increase in social engagement", "Roughly 25 to 35 development show episodes", "Estimated 75 to 140 short-form clips across the year"],
     tags: ["Gaming community", "Content systems", "Video"],
+    image: "/assets/fight-legends-logo.jpg",
   },
   {
     slug: "edge-of-company",

@@ -45,6 +45,6 @@ export default function WritingPage() {
         </div>
       </div>
     </section>
-    <ContactBlock />
+    <ContactBlock compact />
   </main><SiteFooter /></>;
 }

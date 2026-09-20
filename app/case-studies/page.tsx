@@ -8,24 +8,21 @@ export const metadata: Metadata = { title: "Case Studies" };
 
 export default function CaseStudiesPage() {
   return <><SiteHeader /><main>
-    <PageIntro kicker="Case Studies" title="Systems built to make ideas participate." copy="Selected work across developer growth, creator ecosystems, community programs, media operations, and emerging technology." />
-    {caseStudies.map((item) => {
-      const href = `/case-studies/${item.slug}`;
-      return <article className="case-detail" id={item.slug} key={item.slug}><div className="wrap">
-        <div className="case-kicker"><span>Case Study</span><span>{item.role}</span></div>
-        <h2><Link className="case-title-link" href={href}>{item.title}</Link></h2>
-        <p className="case-summary">{item.summary}</p>
-        <div className="tags">{item.tags.map(tag => <span key={tag}>{tag}</span>)}</div>
-        {"image" in item && item.image ? (
-          <Link className="case-image-link" href={href} aria-label={`View the ${item.title} case study`}>
-            <Image className="case-image" src={item.image} alt={`${item.title} work sample`} width={1920} height={1080} unoptimized />
-          </Link>
-        ) : null}
-        <div className="case-columns"><div><h3>The gap</h3><p>{item.challenge}</p></div><div><h3>The system</h3><ul>{item.system.map(point => <li key={point}>{point}</li>)}</ul></div></div>
-        <div className="result-grid">{item.results.map(result => <div key={result}>{result}</div>)}</div>
-        <Link className="case-study-link" href={href}>View case study <span aria-hidden="true">↗</span></Link>
-      </div></article>;
-    })}
-    <ContactBlock />
+    <PageIntro kicker="Case Studies" title="Projects where content, community, and growth had to work together." copy="Selected stories about the systems I built, the work I made, and the outcomes that followed." />
+    <section className="case-index" aria-label="Selected case studies"><div className="wrap case-index-grid">
+      {caseStudies.map((item) => {
+        const href = `/case-studies/${item.slug}`;
+        return <article className="case-index-card" id={item.slug} key={item.slug}>
+          <div className="case-index-meta"><span>Case study</span><span>{item.role}</span></div>
+          {"image" in item && item.image ? <Link className="case-index-image" href={href} aria-label={`View the ${item.title} case study`}><Image src={item.image} alt={`${item.title} work sample`} width={1920} height={1080} unoptimized /></Link> : null}
+          <h2><Link href={href}>{item.title}</Link></h2>
+          <p className="case-index-summary">{item.summary}</p>
+          <div className="tags">{item.tags.map(tag => <span key={tag}>{tag}</span>)}</div>
+          <div className="case-index-results">{item.results.slice(0, 3).map(result => <span key={result}>{result}</span>)}</div>
+          <Link className="case-study-link" href={href}>Read the case study <span aria-hidden="true">↗</span></Link>
+        </article>;
+      })}
+    </div></section>
+    <ContactBlock compact />
   </main><SiteFooter /></>;
 }

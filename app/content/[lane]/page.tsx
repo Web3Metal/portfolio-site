@@ -23,6 +23,37 @@ function LaneMedia({ item }: { item: (typeof featuredContent)[number] }) {
   return <Image src={item.media.src} alt={item.media.alt} width={item.media.width} height={item.media.height} sizes="(max-width: 780px) calc(100vw - 36px), 52vw" unoptimized />;
 }
 
+function GraphicDesignGallery({ items }: { items: (typeof featuredContent)[number][] }) {
+  return (
+    <>
+      <div className={styles.galleryIntro}>
+        <p>I design YouTube thumbnails and visual systems that help long-form video communicate quickly, feel recognizable, and earn the next click.</p>
+      </div>
+      <div className={styles.thumbnailGrid}>
+        {items.map((item) => (
+          <figure className={styles.thumbnailCard} key={item.slug}>
+            <div className={styles.thumbnailMedia}><LaneMedia item={item} /></div>
+            <figcaption>
+              <strong>{item.title}</strong>
+              <span>{item.shortCredit}</span>
+            </figcaption>
+          </figure>
+        ))}
+      </div>
+      <div className={styles.systemNote}>
+        <div>
+          <p className={styles.meta}>Shared visual system</p>
+          <h3>One recognizable language across different guests, places, and episodes.</h3>
+        </div>
+        <div>
+          <p>Each thumbnail balances show identity, guest recognition, location, and a clear editorial hook so the work can flex without losing its source.</p>
+          <a className={styles.projectLink} href="/case-studies/edge-of-company">Read the Edge of NFT case study <span>↗</span></a>
+        </div>
+      </div>
+    </>
+  );
+}
+
 export default async function ContentLanePage({ params }: LanePageProps) {
   const { lane: slug } = await params;
   const lane = contentLanes.find((item) => item.slug === slug);
@@ -42,33 +73,35 @@ export default async function ContentLanePage({ params }: LanePageProps) {
         </section>
         <section className={styles.work} aria-labelledby="lane-work">
           <div className={styles.wrap}>
-            <header className={styles.sectionHead}><p>Selected examples</p><h2 id="lane-work">The work behind the format.</h2></header>
-            <div className={styles.workList}>
-              {items.map((item) => (
-                <article className={`${styles.workItem} ${item.orientation === "portrait" ? styles.portrait : ""}`} key={item.slug}>
-                  {"external" in item && item.external ? (
-                    <a className={styles.media} href={item.href} target="_blank" rel="noreferrer" aria-label={`Watch ${item.title} on YouTube`}><LaneMedia item={item} /></a>
-                  ) : (
-                    <Link className={styles.media} href={item.href}><LaneMedia item={item} /></Link>
-                  )}
-                  <div className={styles.copy}>
-                    <p className={styles.meta}>{item.format}</p>
-                    <h3>{item.title}</h3>
-                    <p className={styles.summary}>{item.summary}</p>
-                    <dl><div><dt>My contribution</dt><dd>{item.contribution}</dd></div><div><dt>Impact</dt><dd>{item.impact}</dd></div></dl>
-                    <div className={styles.tags}>{item.categories.map((category) => <span key={category}>{category}</span>)}</div>
-                    <Link className={styles.projectLink} href={item.href}>View the project <span>↗</span></Link>
-                  </div>
-                </article>
-              ))}
-            </div>
+            <header className={styles.sectionHead}><p>{lane.slug === "graphic-design" ? "Visual proof" : "Selected examples"}</p><h2 id="lane-work">{lane.slug === "graphic-design" ? "YouTube thumbnails in practice." : "The work behind the format."}</h2></header>
+            {lane.slug === "graphic-design" ? <GraphicDesignGallery items={items} /> : (
+              <div className={styles.workList}>
+                {items.map((item) => (
+                  <article className={`${styles.workItem} ${item.orientation === "portrait" ? styles.portrait : ""}`} key={item.slug}>
+                    {"external" in item && item.external ? (
+                      <a className={styles.media} href={item.href} target="_blank" rel="noreferrer" aria-label={`Watch ${item.title} on YouTube`}><LaneMedia item={item} /></a>
+                    ) : (
+                      <Link className={styles.media} href={item.href}><LaneMedia item={item} /></Link>
+                    )}
+                    <div className={styles.copy}>
+                      <p className={styles.meta}>{item.format}</p>
+                      <h3>{item.title}</h3>
+                      <p className={styles.summary}>{item.summary}</p>
+                      <dl><div><dt>My contribution</dt><dd>{item.contribution}</dd></div><div><dt>Impact</dt><dd>{item.impact}</dd></div></dl>
+                      <div className={styles.tags}>{item.categories.map((category) => <span key={category}>{category}</span>)}</div>
+                      <Link className={styles.projectLink} href={item.href}>View the project <span>↗</span></Link>
+                    </div>
+                  </article>
+                ))}
+              </div>
+            )}
             <nav className={styles.laneNav} aria-label="Explore content lanes">
               <Link href="/">Home <span>↗</span></Link>
               {contentLanes.filter((otherLane) => otherLane.slug !== lane.slug).map((otherLane) => <Link key={otherLane.slug} href={`/content/${otherLane.slug}`}>{otherLane.title} <span>↗</span></Link>)}
             </nav>
           </div>
         </section>
-        <ContactBlock />
+        <ContactBlock compact />
       </main>
       <SiteFooter />
     </>

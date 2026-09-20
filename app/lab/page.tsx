@@ -28,6 +28,6 @@ export default function LabPage() { return <><SiteHeader /><main>
     <div><h2>What I’m Exploring</h2><ul>{explorationAreas.map((area) => <li key={area}>{area}</li>)}</ul></div>
     <div><h2>The Working Method</h2><p>Each project starts with a question, becomes a rough system, and gets tested through prototypes, creative use, and real feedback. The useful ideas move forward.</p></div>
   </div></section>
-  <ContactBlock />
+  <ContactBlock compact />
   </main><SiteFooter /></>;
 }
