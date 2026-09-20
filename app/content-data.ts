@@ -119,7 +119,7 @@ export const contentLanes = [
     slug: "short-form",
     title: "Short Form",
     intro: "Long-form conversations and product stories shaped into clear, platform-native cuts people can actually finish and share.",
-    items: ["dadabots-short-01", "dadabots-short-02"],
+    items: ["edge-interview-social-cut", "dadabots-short-01", "dadabots-short-02"],
   },
   {
     slug: "graphic-design",
