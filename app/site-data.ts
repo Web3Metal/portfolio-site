@@ -1,6 +1,5 @@
 export const navItems = [
   ["Home", "/"],
-  ["Content", "/content"],
   ["Case Studies", "/case-studies"],
   ["Writing", "/writing"],
   ["About", "/about"],

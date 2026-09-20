@@ -13,7 +13,8 @@ test("homepage renders the content-first positioning, structure, and navigation"
   assert.equal(response.status, 200);
   const html = await response.text();
   assert.match(html, /I create the content and programs that turn ideas into audiences/);
-  for (const label of ["Home", "Content", "Case Studies", "Writing", "About", "Resume", "Contact"]) assert.match(html, new RegExp(`>${label}<`));
+  for (const label of ["Home", "Case Studies", "Writing", "About", "Resume", "Contact"]) assert.match(html, new RegExp(`>${label}<`));
+  assert.doesNotMatch(html, />Content</);
   const sections = ['id="selected-content">Content Creation', 'id="case-studies">The work moved something', 'id="contact"'];
   let cursor = -1;
   for (const section of sections) { const next = html.indexOf(section); assert.ok(next > cursor, `${section} should appear in locked order`); cursor = next; }
@@ -30,19 +31,19 @@ test("case studies render in the locked order", async () => {
 });
 
 test("every locked navigation destination renders", async () => {
-  for (const path of ["/content", "/case-studies", "/writing", "/about", "/resume", "/contact"]) {
+  for (const path of ["/case-studies", "/writing", "/about", "/resume", "/contact"]) {
     const response = await render(path);
     assert.equal(response.status, 200, path);
     assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
   }
 });
 
-test("content portfolio renders featured work and contribution details", async () => {
-  const response = await render("/content");
+test("focused content pages render their own relevant work", async () => {
+  const response = await render("/content/podcast-show-overlay-design");
   assert.equal(response.status, 200);
   const html = await response.text();
-  for (const title of ["Fight Legends Dev Update", "Edge of NFT Social Interview", "DADABOTS Interview", "Episode packaging for the feed", "Editorial systems for creator work"]) assert.ok(html.includes(title));
-  assert.doesNotMatch(html, /A radio station built as a recurring community ritual/);
+  assert.ok(html.includes("Fight Legends Dev Update"));
+  assert.ok(html.includes("DADABOTS Interview"));
+  assert.doesNotMatch(html, /Editorial systems for creator work/);
   assert.match(html, /My contribution/);
-  assert.match(html, /Extended samples/);
 });

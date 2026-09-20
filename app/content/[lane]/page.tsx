@@ -62,7 +62,6 @@ export default async function ContentLanePage({ params }: LanePageProps) {
                 </article>
               ))}
             </div>
-            <Link className={styles.projectLink} href="/content">View all content work <span>↗</span></Link>
             <nav className={styles.laneNav} aria-label="Explore content lanes">
               <Link href="/">Home <span>↗</span></Link>
               {contentLanes.filter((otherLane) => otherLane.slug !== lane.slug).map((otherLane) => <Link key={otherLane.slug} href={`/content/${otherLane.slug}`}>{otherLane.title} <span>↗</span></Link>)}

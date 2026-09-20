@@ -39,8 +39,8 @@ export default function Home() {
             <div className="hero-bottom">
               <p className="lede">Video, podcasts, social content, editorial, live programming, and creator experiences—backed by the systems and measurement that make them useful.</p>
               <div className={styles.heroActions}>
-                <Link className="text-link" href="/content">View selected content <span>↗</span></Link>
-                <Link className={styles.secondaryLink} href="/case-studies">See the results</Link>
+                <Link className="text-link" href="/#selected-content">Content Creation Examples <span>↗</span></Link>
+                <Link className={styles.secondaryLink} href="/case-studies">Case Studies</Link>
               </div>
             </div>
           </div>
@@ -63,7 +63,6 @@ export default function Home() {
                 </article>
               ))}
             </div>
-            <div className={styles.sectionCta}><Link href="/content">Explore the content portfolio <span>↗</span></Link></div>
           </div>
         </section>
 
