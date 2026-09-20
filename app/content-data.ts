@@ -82,7 +82,7 @@ export const featuredContent = [
     external: true,
     orientation: "portrait",
     categories: ["Short Form", "Overlay", "Music"],
-    media: { type: "image", src: "/assets/web3-metal/dadabots-short-01.png", alt: "DADABOTS vertical short-form visual 01", width: 942, height: 1670 },
+    media: { type: "image", src: "/assets/web3-metal/dadabots-short-01-clean.png", alt: "DADABOTS vertical short-form visual 01", width: 942, height: 1670 },
   },
   {
     slug: "dadabots-short-02",
@@ -97,7 +97,7 @@ export const featuredContent = [
     external: true,
     orientation: "portrait",
     categories: ["Short Form", "Overlay", "Music"],
-    media: { type: "image", src: "/assets/web3-metal/dadabots-short-02.png", alt: "DADABOTS vertical short-form visual 02", width: 937, height: 1679 },
+    media: { type: "image", src: "/assets/web3-metal/dadabots-short-02-clean.png", alt: "DADABOTS vertical short-form visual 02", width: 937, height: 1679 },
   },
 ] as const;
 
