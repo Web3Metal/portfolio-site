@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { ContactBlock, SiteFooter, SiteHeader } from "../site-components";
-import { contentDisciplines, featuredContent } from "../content-data";
+import { featuredContent } from "../content-data";
 import styles from "./content.module.css";
 
 export const metadata: Metadata = {
@@ -46,13 +46,6 @@ export default function ContentPortfolio() {
                 </article>
               ))}
             </div>
-          </div>
-        </section>
-
-        <section className={styles.disciplines} aria-labelledby="disciplines">
-          <div className={styles.wrap}>
-            <header className={styles.sectionHead}><p>Formats &amp; craft</p><h2 id="disciplines">The work behind the work.</h2></header>
-            <div className={styles.disciplineGrid}>{contentDisciplines.map((item) => <article key={item.title}><h3>{item.title}</h3><p>{item.copy}</p></article>)}</div>
           </div>
         </section>
 
