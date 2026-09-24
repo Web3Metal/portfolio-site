@@ -123,7 +123,7 @@ export const featuredContent = [
     href: "/content/writing",
     orientation: "landscape",
     categories: ["Editorial", "Campaigns", "Creator work"],
-    media: { type: "image", src: "/assets/newsletter-metal-gods.webp", alt: "Web3 Metal newsletter editorial artwork", width: 1280, height: 720 },
+    media: { type: "image", src: "/assets/writing-healthcare-podcast.jpg", alt: "International Examiner healthcare podcast article", width: 1280, height: 720 },
   },
   {
     slug: "dadabots-short-01",
@@ -161,7 +161,7 @@ export const homepageContent = [
   { ...featuredContent[0], lane: "Podcast / show overlay design", laneSlug: "podcast-show-overlay-design" },
   { ...featuredContent[1], lane: "Short Form", laneSlug: "short-form" },
   { ...featuredContent[3], lane: "Graphic Design", laneSlug: "graphic-design" },
-  { ...featuredContent[4], lane: "Writing", laneSlug: "writing" },
+  { ...featuredContent[8], lane: "Writing", laneSlug: "writing" },
 ] as const;
 
 export const contentLanes = [
