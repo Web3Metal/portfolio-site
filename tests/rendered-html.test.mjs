@@ -12,10 +12,10 @@ test("homepage renders the content-first positioning, structure, and navigation"
   const response = await render();
   assert.equal(response.status, 200);
   const html = await response.text();
-  assert.match(html, /I create the content and programs that turn ideas into audiences/);
+  assert.match(html, /I help creators, teams, and mission-led organizations turn shows, interviews, and ideas into content/);
   for (const label of ["Home", "Case Studies", "Writing", "About", "Resume", "Contact"]) assert.match(html, new RegExp(`>${label}<`));
   assert.doesNotMatch(html, />Content</);
-  const sections = ['id="selected-content">Content Creation', 'id="case-studies">The work moved something', 'id="contact"'];
+  const sections = ['id="selected-content">Content Creation', 'id="case-studies">Selected outcomes', 'id="contact"'];
   let cursor = -1;
   for (const section of sections) { const next = html.indexOf(section); assert.ok(next > cursor, `${section} should appear in locked order`); cursor = next; }
   assert.doesNotMatch(html, /codex-preview|react-loading-skeleton|Your site is taking shape/);

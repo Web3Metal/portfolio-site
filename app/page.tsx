@@ -11,6 +11,12 @@ const proofPoints = [
   ["35%", "follower growth at Edge of Company"],
 ] as const;
 
+const heroSignals = [
+  ["Shows + interviews", "Concept, production, packaging"],
+  ["Editorial + social", "Stories shaped for the feed"],
+  ["Community + growth", "Programs built to bring people back"],
+] as const;
+
 function ContentMedia({ item, priority = false }: { item: (typeof homepageContent)[number]; priority?: boolean }) {
   if (item.media.type === "video") return <video controls playsInline preload={priority ? "auto" : "metadata"} poster={"poster" in item.media ? item.media.poster : undefined} aria-label={item.media.alt}><source src={item.media.src} type="video/mp4" /></video>;
   return <Image src={item.media.src} alt={item.media.alt} width={item.media.width} height={item.media.height} sizes="(max-width: 720px) calc(100vw - 36px), (max-width: 1080px) 50vw, 42vw" unoptimized priority={priority} />;
@@ -37,11 +43,14 @@ export default function Home() {
               />
             </figure>
             <div className="hero-bottom">
-              <p className="lede">Video, podcasts, social content, editorial, live programming, and creator experiences—backed by the systems and measurement that make them useful.</p>
+              <p className="lede">I help creators, teams, and mission-led organizations turn shows, interviews, and ideas into content people can understand, share, and return to.</p>
               <div className={styles.heroActions}>
                 <Link className="text-link" href="/#selected-content">Content Creation Examples <span>↗</span></Link>
                 <Link className={styles.secondaryLink} href="/case-studies">Case Studies</Link>
               </div>
+            </div>
+            <div className={styles.heroSignals} aria-label="What Shawn makes">
+              {heroSignals.map(([label, detail]) => <div key={label}><strong>{label}</strong><span>{detail}</span></div>)}
             </div>
           </div>
         </section>
@@ -50,6 +59,7 @@ export default function Home() {
           <div className={styles.sectionWrap}>
             <header className={styles.sectionHeader}>
               <div><p>The work</p><h2 id="selected-content">Content Creation</h2></div>
+              <p>Representative work across show production, short-form editing, visual packaging, and writing—each card points to a deeper body of proof.</p>
             </header>
             <div className={styles.reelGrid}>
               {homepageContent.map((item, index) => (
@@ -58,6 +68,8 @@ export default function Home() {
                   <Link className={styles.mediaLink} href={item.href} aria-label={`View ${item.lane}: ${item.title}`}><div className={styles.mediaFrame}><ContentMedia item={item} priority={index === 0} /></div></Link>
                   <div className={styles.cardCopy}>
                     <p className={styles.cardMeta}>{item.project} · {item.format}</p>
+                    <h3>{item.title}</h3>
+                    <p className={styles.cardDescriptor}>{item.summary}</p>
                     <p className={styles.shortCredit}>{item.shortCredit}</p>
                   </div>
                 </article>
@@ -69,8 +81,8 @@ export default function Home() {
         <section className={styles.caseSection} aria-labelledby="case-studies">
           <div className={styles.sectionWrap}>
             <header className={styles.sectionHeader}>
-              <div><p>The outcomes</p><h2 id="case-studies">The work moved something.</h2></div>
-              <p>Audience growth matters here as evidence that the content found its people—not as a substitute for the work itself.</p>
+              <div><p>The outcomes</p><h2 id="case-studies">Selected outcomes</h2></div>
+              <p>Evidence that the work reached people, created momentum, and gave audiences a reason to return.</p>
             </header>
             <div className={styles.proofGrid}>{proofPoints.map(([value, label]) => <article key={value}><strong>{value}</strong><span>{label}</span></article>)}</div>
             <div className={styles.caseRail}>
@@ -80,14 +92,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className={styles.moreWork}>
-          <div className={styles.sectionWrap}>
-            <p>Also working across</p>
-            <div><Link href="/writing">Writing &amp; editorial <span>↗</span></Link><Link href="/lab">Creative experiments <span>↗</span></Link><Link href="/resume">Full experience <span>↗</span></Link></div>
-          </div>
-        </section>
-
-        <ContactBlock />
+        <ContactBlock eyebrow="Have a show, story, or audience to build?" heading="Let’s shape the content and system behind it." />
       </main>
       <SiteFooter />
     </>

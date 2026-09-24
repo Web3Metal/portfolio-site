@@ -32,6 +32,6 @@ export function CaseStudyList({ compact = false }: { compact?: boolean }) {
   ))}</div>;
 }
 
-export function ContactBlock({ compact = false }: { compact?: boolean }) {
-  return <section className={`contact-block${compact ? " compact" : ""}`} id="contact"><div className="wrap"><p className="eyebrow">Have a show, story, or idea that needs a clearer shape?</p><h2>Let’s give it a form people can follow.</h2><a className="contact-link" href="mailto:shawnport84@gmail.com">shawnport84@gmail.com <span>↗</span></a></div></section>;
+export function ContactBlock({ compact = false, eyebrow = "Have a show, story, or idea that needs a clearer shape?", heading = "Let’s give it a form people can follow." }: { compact?: boolean; eyebrow?: string; heading?: string }) {
+  return <section className={`contact-block${compact ? " compact" : ""}`} id="contact"><div className="wrap"><p className="eyebrow">{eyebrow}</p><h2>{heading}</h2><a className="contact-link" href="mailto:shawnport84@gmail.com">shawnport84@gmail.com <span>↗</span></a></div></section>;
 }

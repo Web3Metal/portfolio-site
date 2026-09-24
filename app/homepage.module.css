@@ -63,6 +63,26 @@
 .heroActions :global(.text-link) { margin-top: 0; }
 .secondaryLink { color: var(--muted); font-size: 12px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
 
+.heroSignals {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  max-width: 760px;
+  margin-top: 34px;
+  border-top: 1px solid rgba(21, 26, 34, .34);
+}
+
+.heroSignals div {
+  display: grid;
+  gap: 7px;
+  padding: 13px 18px 0 0;
+}
+
+.heroSignals div + div { padding-left: 18px; border-left: 1px solid rgba(21, 26, 34, .22); }
+.heroSignals strong { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; }
+.heroSignals span { color: #5b6775; font-size: 12px; line-height: 1.35; }
+
 .reelIntro {
   position: relative;
   background: #151a22;
@@ -680,6 +700,10 @@
   .homeHero :global(.text-link) { min-height: 44px; margin-top: 10px; }
   .heroActions { align-items: flex-start; flex-direction: column; }
   .heroActions :global(.text-link) { margin-top: 0; }
+  .heroSignals { grid-template-columns: 1fr; max-width: none; margin-top: 30px; }
+  .heroSignals div,
+  .heroSignals div + div { padding: 11px 0; border-left: 0; border-bottom: 1px solid rgba(21, 26, 34, .2); }
+  .heroSignals div:last-child { border-bottom: 0; }
   .reelCopy dl div { grid-template-columns: 1fr; gap: 8px; }
   .homeSection { padding: 76px 0; }
   .sectionHeader { grid-template-columns: 36px 1fr; gap: 12px; margin-bottom: 54px; }
@@ -866,6 +890,21 @@
   text-transform: uppercase;
 }
 
+.reelCard .cardCopy h3 {
+  max-width: 620px;
+  margin: 0 0 12px;
+  font-size: clamp(24px, 2.6vw, 38px);
+  line-height: 1;
+}
+
+.cardDescriptor {
+  max-width: 620px;
+  margin: 0 0 14px;
+  color: #aeb8c4;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
 .cardCopy .shortCredit {
   margin: 0;
   color: #e3e9f0;
@@ -918,7 +957,7 @@
 
 .caseRail { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin-top: 58px; }
 .caseRail a { display: grid; grid-template-columns: minmax(0, 1fr) 24px; grid-template-rows: 1fr auto; gap: 26px 12px; min-height: 190px; padding: 24px; border: 1px solid var(--line); transition: transform .2s ease, background .2s ease; }
-.caseRail a:hover { transform: translateY(-4px); background: rgba(255, 253, 247, .65); }
+.caseRail a:hover { transform: translateY(-4px); background: rgba(245, 247, 250, .72); }
 .caseRail strong { align-self: start; font-family: Georgia, "Times New Roman", serif; font-size: clamp(30px, 3.2vw, 48px); font-weight: 400; letter-spacing: -.035em; line-height: .96; }
 .caseRail small { grid-column: 1; align-self: end; color: var(--muted); font-size: 10px; letter-spacing: .08em; text-transform: uppercase; }
 .caseRail b { grid-column: 2; grid-row: 1; justify-self: end; font-size: 20px; font-weight: 400; }
