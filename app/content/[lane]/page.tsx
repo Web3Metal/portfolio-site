@@ -104,7 +104,7 @@ export default async function ContentLanePage({ params }: LanePageProps) {
         </section>
         <section className={styles.work} aria-labelledby="lane-work">
           <div className={styles.wrap}>
-            <header className={styles.sectionHead}><p>{lane.slug === "graphic-design" ? "Visual proof" : "Selected examples"}</p><h2 id="lane-work">{lane.slug === "graphic-design" ? "YouTube thumbnails in practice." : "The work behind the format."}</h2></header>
+            <header className={styles.sectionHead}><p>{lane.slug === "graphic-design" ? "Visual proof" : lane.slug === "writing" ? "Writing proof" : "Selected examples"}</p><h2 id="lane-work">{lane.slug === "graphic-design" ? "YouTube thumbnails in practice." : lane.slug === "writing" ? "Journalism and social writing in practice." : "The work behind the format."}</h2></header>
             {lane.slug === "graphic-design" ? <GraphicDesignGallery items={items} /> : lane.slug === "writing" ? <WritingLane /> : (
               <div className={styles.workList}>
                 {items.map((item) => (
