@@ -72,8 +72,8 @@
 .writingComingSoon > p:not(.meta) { max-width:520px; margin:0; color:#c4ccd6; font-size:16px; line-height:1.6; }.subsectionHead { max-width:760px; margin:0 0 48px; }
 .subsectionHead h3, .feedCuts h3 { max-width:720px; margin:0 0 18px; font-family:Georgia, serif; font-size:clamp(36px, 4.5vw, 66px); font-weight:400; letter-spacing:-.045em; line-height:.96; }
 .subsectionHead > p:not(.meta), .feedCuts header > p:not(.meta) { max-width:620px; margin:0; color:#c4ccd6; font-size:17px; line-height:1.6; }
-.feedCuts { margin-top:clamp(90px, 13vw, 170px); padding-top:34px; border-top:1px solid #445264; }
-.feedCuts header { margin-bottom:52px; }
+.feedCuts { margin-top:clamp(64px, 8vw, 100px); padding-top:34px; border-top:1px solid #445264; }
+.feedCuts header { margin-bottom:30px; }
 .mediaPlaceholder { display:flex; min-height:300px; padding:28px; flex-direction:column; justify-content:space-between; border:1px solid #445264; background:linear-gradient(145deg, #252f3c, #10151c); }
 .mediaPlaceholder span { color:#d14b3f; font-size:10px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; }
 .mediaPlaceholder strong { max-width:380px; font-family:Georgia, serif; font-size:clamp(28px, 3vw, 46px); font-weight:400; letter-spacing:-.035em; line-height:1; }.laneNav { display: flex; flex-wrap: wrap; gap: 12px 28px; margin-top: clamp(54px, 8vw, 100px); padding-top: 22px; border-top: 1px solid #445264; }

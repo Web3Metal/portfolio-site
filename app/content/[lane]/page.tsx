@@ -54,8 +54,8 @@ function WritingLane() {
     </article>
   ))}</div>;
   return <>
-    <section className={styles.primaryShows} aria-labelledby="primary-shows"><header className={styles.subsectionHead}><p className={styles.meta}>Primary examples</p><h3 id="primary-shows">Show examples.</h3><p>Examples of recurring shows and interview formats I produced, packaged, and helped bring to life.</p></header>{renderItems(primary)}</section>
-    {feedCuts.length > 0 ? <section className={styles.feedCuts} aria-labelledby="feed-cuts"><header><p className={styles.meta}>Distribution layer</p><h3 id="feed-cuts">From the show to the feed.</h3><p>The long-form production becomes vertical, platform-native cuts that give each conversation a second life.</p></header>{renderItems(feedCuts)}</section> : null}
+    <section className={styles.primaryShows} aria-label="Show examples">{renderItems(primary)}</section>
+    {feedCuts.length > 0 ? <section className={styles.feedCuts} aria-labelledby="feed-cuts"><header><p className={styles.meta}>Distribution layer</p><h3 id="feed-cuts">From the show to the feed.</h3></header>{renderItems(feedCuts)}</section> : null}
   </>;
 }function GraphicDesignGallery({ items }: { items: (typeof featuredContent)[number][] }) {
   return (
@@ -107,7 +107,7 @@ export default async function ContentLanePage({ params }: LanePageProps) {
         </section>
         <section className={styles.work} aria-labelledby="lane-work">
           <div className={styles.wrap}>
-            <header className={styles.sectionHead}><p>{lane.slug === "graphic-design" ? "Visual proof" : lane.slug === "writing" ? "Writing proof" : lane.slug === "podcast-show-overlay-design" ? "Production proof" : "Selected examples"}</p><h2 id="lane-work">{lane.slug === "graphic-design" ? "YouTube thumbnails in practice." : lane.slug === "writing" ? "Journalism and social writing in practice." : lane.slug === "podcast-show-overlay-design" ? "Shows and video in practice." : "The work behind the format."}</h2></header>
+{lane.slug !== "podcast-show-overlay-design" ? <header className={styles.sectionHead}><p>{lane.slug === "graphic-design" ? "Visual proof" : lane.slug === "writing" ? "Writing proof" : "Selected examples"}</p><h2 id="lane-work">{lane.slug === "graphic-design" ? "YouTube thumbnails in practice." : lane.slug === "writing" ? "Journalism and social writing in practice." : "The work behind the format."}</h2></header> : null}
             {lane.slug === "graphic-design" ? <GraphicDesignGallery items={items} /> : lane.slug === "writing" ? <WritingLane /> : lane.slug === "podcast-show-overlay-design" ? <ShowsVideoLane items={items} /> : (
               <div className={styles.workList}>
                 {items.map((item) => (

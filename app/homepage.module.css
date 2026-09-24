@@ -119,8 +119,8 @@
 @media (min-width: 921px) {
   .homeHero {
     display: flex;
-    padding-top: clamp(72px, 6vw, 92px);
-    justify-content: space-between;
+    padding-top: clamp(38px, 4vw, 58px);
+    justify-content: flex-start;
   }
 
   .homeHero :global(.eyebrow) {
@@ -143,7 +143,7 @@
 
   .homeHero :global(.hero-bottom) {
     width: 100%;
-    margin-top: 52px;
+    margin-top: 32px;
     grid-template-columns: minmax(280px, 520px) auto;
     justify-content: start;
     gap: 40px;
@@ -942,11 +942,11 @@
 
 .caseSection .sectionHeader > p { color: #5b6775; }
 .proofGrid { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--ink); border-bottom: 1px solid var(--ink); }
-.proofGrid article { min-height: 130px; padding: 20px 24px 18px 0; display: flex; flex-direction: column; justify-content: space-between; border-right: 1px solid var(--line); }
+.proofGrid article { min-height: 170px; padding: 20px 24px 18px 0; display: flex; flex-direction: column; justify-content: space-between; border-right: 1px solid var(--line); }
 .proofGrid article + article { padding-left: 30px; }
 .proofGrid article:last-child { border-right: 0; }
-.proofGrid strong { font-family: Georgia, "Times New Roman", serif; font-size: clamp(52px, 6vw, 88px); font-weight: 400; letter-spacing: -.05em; line-height: .9; }
-.proofGrid span { max-width: 240px; color: #5b6775; font-size: 12px; font-weight: 700; letter-spacing: .08em; line-height: 1.45; text-transform: uppercase; }
+.proofGrid strong { display: block; font-family: Georgia, "Times New Roman", serif; font-size: clamp(52px, 6vw, 88px); font-weight: 400; letter-spacing: -.05em; line-height: .9; }
+.proofGrid span { display: block; max-width: 240px; color: #5b6775; font-size: 12px; font-weight: 700; letter-spacing: .08em; line-height: 1.45; text-transform: uppercase; }
 
 .caseRail { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin-top: 36px; }
 .caseRail a { display: grid; grid-template-columns: minmax(0, 1fr) 24px; grid-template-rows: 1fr auto; gap: 18px 12px; min-height: 145px; padding: 20px; border: 1px solid var(--line); transition: transform .2s ease, background .2s ease; }
@@ -989,7 +989,7 @@
   .proofGrid { grid-template-columns: 1fr; }
   .caseRail { grid-template-columns: 1fr; gap: 12px; }
   .proofGrid article,
-  .proofGrid article + article { min-height: 145px; padding: 22px 0; border-right: 0; border-bottom: 1px solid var(--line); }
+  .proofGrid article + article { min-height: 160px; padding: 22px 0; border-right: 0; border-bottom: 1px solid var(--line); }
   .proofGrid article:last-child { border-bottom: 0; }
   .proofGrid strong { font-size: 62px; }
   .caseRail { margin-top: 42px; }
