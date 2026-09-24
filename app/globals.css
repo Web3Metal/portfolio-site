@@ -56,7 +56,28 @@ nav a:hover, nav a:focus-visible { border-color:var(--ink); }
 .writing-band { background:var(--white); }
 .writing-grid { display:grid; grid-template-columns:1fr 1fr; gap:80px; }
 .display-copy { margin:0; font-family:Georgia, serif; font-size:clamp(28px,3.5vw,52px); line-height:1.16; letter-spacing:-.025em; }
-.contact-block { padding:clamp(100px,13vw,190px) 0; background:#24384a; color:var(--paper); }
+.writing-overview { background:var(--white); }
+.writing-page-intro { display:grid; grid-template-columns:minmax(0, 1.05fr) minmax(280px, .95fr); gap:clamp(50px, 10vw, 150px); align-items:end; margin-bottom:64px; }
+.writing-page-intro h2, .writing-clips-header h2 { max-width:720px; margin:0; font-family:Georgia, serif; font-size:clamp(40px, 5vw, 74px); font-weight:400; letter-spacing:-.05em; line-height:.98; }
+.writing-page-intro > p { max-width:560px; margin:0; color:#34404d; font-size:18px; line-height:1.6; }
+.writing-capabilities { grid-template-columns:repeat(2, minmax(0, 1fr)); margin-bottom:clamp(70px, 10vw, 140px); }
+.writing-capabilities .content-card { min-height:270px; }
+.writing-capabilities .content-card h3 { max-width:420px; }
+.writing-note { margin:20px 0 0 !important; color:var(--muted) !important; font-size:11px !important; font-weight:700; letter-spacing:.08em; line-height:1.45 !important; text-transform:uppercase; }
+.writing-feature { display:grid; grid-template-columns:1.15fr .85fr; gap:clamp(36px, 7vw, 100px); align-items:center; padding:clamp(24px, 4vw, 54px); background:var(--ink); color:var(--paper); }
+.writing-feature-media { overflow:hidden; border:1px solid #4a5868; }
+.writing-feature-media img { width:100%; aspect-ratio:16 / 9; object-fit:cover; }
+.writing-feature-copy h2 { max-width:640px; margin:0 0 24px; font-family:Georgia, serif; font-size:clamp(34px, 4vw, 62px); font-weight:400; letter-spacing:-.045em; line-height:.98; }
+.writing-feature-copy > p:not(.eyebrow):not(.writing-note) { max-width:560px; margin:0; color:#c4ccd6; font-size:17px; line-height:1.6; }
+.writing-feature-copy .writing-note { color:#aeb8c4 !important; }
+.writing-clips { margin-top:clamp(80px, 12vw, 170px); }
+.writing-clips-header { display:grid; grid-template-columns:minmax(0, 1fr) minmax(280px, .8fr); gap:50px; align-items:end; margin-bottom:45px; }
+.writing-clips-header > p { max-width:520px; margin:0; color:#34404d; font-size:16px; line-height:1.55; }
+.writing-clip-list { border-top:1px solid var(--ink); }
+.writing-clip { display:grid; grid-template-columns:minmax(0, 1fr) 220px; gap:30px; align-items:center; padding:24px 0; border-bottom:1px solid var(--line); }
+.writing-clip h3 { max-width:760px; margin:0 0 8px; font-family:Georgia, serif; font-size:clamp(22px, 2.1vw, 32px); font-weight:400; letter-spacing:-.025em; line-height:1.05; }
+.writing-clip p { margin:0; color:var(--muted); font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; }
+.writing-clip span { color:var(--accent-readable); font-size:11px; font-weight:700; letter-spacing:.1em; text-align:right; text-transform:uppercase; }.contact-block { padding:clamp(100px,13vw,190px) 0; background:#24384a; color:var(--paper); }
 .contact-block.compact { padding:clamp(80px,10vw,130px) 0; }
 .contact-block .eyebrow { color:#d14b3f; }
 .contact-block h1, .contact-block h2 { max-width:1000px; margin:0 0 45px; font-family:Georgia, serif; font-size:clamp(70px,11vw,170px); font-weight:400; letter-spacing:-.06em; line-height:.86; }
@@ -134,6 +155,10 @@ nav a:hover, nav a:focus-visible { border-color:var(--ink); }
   .mobile-nav nav a:nth-last-child(-n+2) { border-bottom:0; }
   .hero { min-height:auto; }
   .hero-bottom, .writing-grid, .lab-feature, .case-columns, .about-grid { grid-template-columns:1fr; }
+  .writing-page-intro, .writing-feature, .writing-clips-header { grid-template-columns:1fr; }
+  .writing-capabilities { grid-template-columns:1fr; }
+  .writing-clip { grid-template-columns:1fr; gap:12px; }
+  .writing-clip span { text-align:left; }
   .case-index-grid { grid-template-columns:1fr; }
   .case-row { grid-template-columns:40px 1fr 24px; }
   .case-row p { grid-column:2/4; }

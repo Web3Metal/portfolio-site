@@ -23,6 +23,37 @@ function LaneMedia({ item }: { item: (typeof featuredContent)[number] }) {
   return <Image src={item.media.src} alt={item.media.alt} width={item.media.width} height={item.media.height} sizes="(max-width: 780px) calc(100vw - 36px), 52vw" unoptimized />;
 }
 
+
+const writingCapabilities = [
+  ["Journalism", "Reported stories, profiles, and community features that make a system, issue, or lived experience legible without flattening the people inside it.", "Features · profiles · analysis · community reporting"],
+  ["Social media writing", "Short-form editorial that carries a clear point of view from the first idea to the final post—without losing the voice behind it.", "Social copy · campaign messaging · editorial framing"],
+] as const;
+
+const writingClips = [
+  ["Local healthcare podcast bridges systemic gaps in patient care for ANHPIAs", "International Examiner", "Reported feature"],
+  ["Let’s be honest. No one wants to do the budget. At best, it’s dreadfully tedious", "Seattle Weekly", "Reported essay"],
+  ["Local Muslim civil rights advocate takes national role in D.C.", "International Examiner", "Profile"],
+  ["Danny Woo Garden celebrates four decades with new exhibit", "International Examiner", "Community reporting"],
+  ["Late last month, campaign-finance-reform activists got some good news", "Seattle Weekly", "Civic reporting"],
+  ["As the Walking While Black demonstration winds down Saturday afternoon", "Seattle Weekly", "On-the-ground reporting"],
+] as const;
+
+function WritingLane() {
+  return <div className={styles.writingLane}>
+    <div className={styles.writingLaneIntro}>
+      <div><p className={styles.meta}>How I write</p><h3>Find the signal. Give it a shape people can follow.</h3></div>
+      <p>My writing background started in journalism and expanded into campaign messaging, social copy, and creator-led editorial. The format changes; the job stays consistent: understand what matters, then make it useful to someone else.</p>
+    </div>
+    <div className={styles.writingCapabilities}>{writingCapabilities.map(([title, copy, note]) => <article key={title}><p className={styles.meta}>Capability</p><h3>{title}</h3><p>{copy}</p><span>{note}</span></article>)}</div>
+    <section className={styles.writingDiscipline} aria-labelledby="journalism-heading"><header className={styles.writingDisciplineHead}><div><p className={styles.meta}>Journalism</p><h3 id="journalism-heading">Reported work in context.</h3></div><p>Stories, profiles, and community reporting that turn complex subjects into something a reader can understand and act on.</p></header>
+    <article className={styles.writingFeature}>
+      <div className={styles.writingFeatureMedia}><Image src="/assets/writing-healthcare-podcast.jpg" alt="International Examiner article about a local healthcare podcast" width={1280} height={720} unoptimized /></div>
+      <div><p className={styles.meta}>Featured sample · International Examiner</p><h3>Local healthcare podcast bridges systemic gaps in patient care for ANHPIAs</h3><p>A reported feature connecting a local story to a larger question about access, trust, and the systems people have to navigate to get care.</p><span>Reported feature · source-led interview · service journalism</span></div>
+    </article>
+    <section className={styles.writingClips} aria-labelledby="writing-clips"><header><div><p className={styles.meta}>Journalism clips</p><h3 id="writing-clips">Selected reporting</h3></div><p>A small edit of journalism and social writing. This is a portfolio selection, not a complete archive.</p></header><div className={styles.writingClipList}>{writingClips.map(([title, outlet, type]) => <article key={title}><div><h4>{title}</h4><p>{outlet}</p></div><span>{type}</span></article>)}</div></section>
+    </section>
+  </div>;
+}
 function GraphicDesignGallery({ items }: { items: (typeof featuredContent)[number][] }) {
   return (
     <>
@@ -74,7 +105,7 @@ export default async function ContentLanePage({ params }: LanePageProps) {
         <section className={styles.work} aria-labelledby="lane-work">
           <div className={styles.wrap}>
             <header className={styles.sectionHead}><p>{lane.slug === "graphic-design" ? "Visual proof" : "Selected examples"}</p><h2 id="lane-work">{lane.slug === "graphic-design" ? "YouTube thumbnails in practice." : "The work behind the format."}</h2></header>
-            {lane.slug === "graphic-design" ? <GraphicDesignGallery items={items} /> : (
+            {lane.slug === "graphic-design" ? <GraphicDesignGallery items={items} /> : lane.slug === "writing" ? <WritingLane /> : (
               <div className={styles.workList}>
                 {items.map((item) => (
                   <article className={`${styles.workItem} ${item.orientation === "portrait" ? styles.portrait : ""}`} key={item.slug}>
