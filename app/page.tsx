@@ -92,7 +92,7 @@ export default function Home() {
           </div>
         </section>
 
-        <ContactBlock eyebrow="Have a show, story, or audience to build?" heading="Let’s shape the content and system behind it." />
+        <ContactBlock compact eyebrow="Have a show, story, or audience to build?" heading="Let’s shape the content and system behind it." />
       </main>
       <SiteFooter />
     </>
