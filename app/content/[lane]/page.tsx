@@ -34,8 +34,6 @@ const writingClips = [
   ["Let’s be honest. No one wants to do the budget. At best, it’s dreadfully tedious", "Seattle Weekly", "Reported essay"],
   ["Local Muslim civil rights advocate takes national role in D.C.", "International Examiner", "Profile"],
   ["Danny Woo Garden celebrates four decades with new exhibit", "International Examiner", "Community reporting"],
-  ["Late last month, campaign-finance-reform activists got some good news", "Seattle Weekly", "Civic reporting"],
-  ["As the Walking While Black demonstration winds down Saturday afternoon", "Seattle Weekly", "On-the-ground reporting"],
 ] as const;
 
 function WritingLane() {
