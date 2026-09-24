@@ -45,7 +45,7 @@
 .progressFigure {
   margin: clamp(80px, 10vw, 140px) 0 0;
   padding: clamp(30px, 4vw, 54px);
-  background: #fffdf8;
+  background: #f5f7fa;
 }
 
 .figureHeading,
@@ -276,7 +276,7 @@
 .estimateBlock {
   margin-top: clamp(80px, 10vw, 135px);
   padding: clamp(30px, 4vw, 52px);
-  background: #fffdf8;
+  background: #f5f7fa;
 }
 
 .estimateHeading span { color: var(--case-accent); }

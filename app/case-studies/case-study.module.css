@@ -2,7 +2,7 @@
   --case-accent: #b93f37;
   --case-accent-on-dark: #ef7569;
   --case-ink: #151a22;
-  --case-paper: #f3f0e8;
+  --case-paper: #e9edf2;
   --case-line: #c6c9ce;
   background: var(--case-paper);
   color: var(--case-ink);
@@ -187,7 +187,7 @@
 .outcomePair strong { font-family: Georgia, serif; font-size: clamp(54px, 7vw, 96px); font-weight: 400; letter-spacing: -.06em; line-height: .8; }
 .outcomePair span { max-width: 420px; font-size: 14px; text-transform: uppercase; letter-spacing: .08em; }
 
-.progressFigure { margin: clamp(58px, 7vw, 96px) 0; padding: clamp(28px, 4vw, 52px); background: #fffdf8; }
+.progressFigure { margin: clamp(58px, 7vw, 96px) 0; padding: clamp(28px, 4vw, 52px); background: #f5f7fa; }
 .figureHeading { padding-bottom: 24px; border-bottom: 1px solid var(--case-ink); }
 .figureHeading p { margin: 0; font-family: Georgia, serif; font-size: clamp(30px, 4vw, 54px); font-weight: 400; letter-spacing: -.035em; text-transform: none; }
 .figureHeading span { align-self: end; color: #788696; }
@@ -208,7 +208,7 @@
 .evidenceGrid p { max-width: 340px; margin: auto 0 0; font-family: Georgia, serif; font-size: clamp(23px, 2.5vw, 36px); letter-spacing: -.025em; line-height: 1.1; }
 
 .assetCards { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
-.assetCards article { min-height: 270px; padding: clamp(24px, 3vw, 42px); display: flex; flex-direction: column; background: #fffdf8; }
+.assetCards article { min-height: 270px; padding: clamp(24px, 3vw, 42px); display: flex; flex-direction: column; background: #f5f7fa; }
 .assetCards article:last-child { background: var(--case-accent); color: #fff; }
 .assetCards article > span { font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
 .assetCards h3 { max-width: 580px; margin: auto 0 24px; font-family: Georgia, serif; font-size: clamp(31px, 3.3vw, 50px); font-weight: 400; letter-spacing: -.04em; line-height: 1.02; }

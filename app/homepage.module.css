@@ -161,7 +161,7 @@
   background:
     radial-gradient(ellipse at 104% 21%, rgba(103, 37, 31, .14), transparent 33%),
     radial-gradient(ellipse at -8% 73%, rgba(83, 52, 39, .09), transparent 29%),
-    linear-gradient(115deg, #f3f0e8, #e9edf2);
+    linear-gradient(115deg, #e9edf2, #dfe6ed);
 }
 
 .creativeLabBand {
