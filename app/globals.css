@@ -85,7 +85,7 @@ nav a:hover, nav a:focus-visible { border-color:var(--ink); }
 .contact-link { display:flex; justify-content:space-between; padding:24px 0; border-top:1px solid var(--white); border-bottom:1px solid var(--white); font-size:clamp(18px,2vw,30px); }
 .site-footer { padding:28px 0; background:var(--ink); color:#aeb8c4; font-size:11px; text-transform:uppercase; letter-spacing:.08em; }
 .site-footer .wrap { display:flex; justify-content:space-between; gap:20px; }
-.site-footer a { color:inherit; transition:color .2s ease; }
+.site-footer a { color:inherit; transition:color .2s ease; }\r\n.site-footer nav { display:flex; flex-wrap:wrap; gap:8px 18px; align-items:center; }
 .site-footer a:hover { color:var(--white); }
 .page-intro { padding:clamp(80px,10vw,150px) 0; }
 .page-intro h1 { max-width:1050px; }

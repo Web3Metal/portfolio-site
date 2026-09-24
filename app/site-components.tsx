@@ -17,9 +17,8 @@ export function SiteHeader() {
 }
 
 export function SiteFooter() {
-  return <footer className="site-footer"><div className="wrap"><p>Shawn Porter</p><p>Seattle, WA · Content Strategy / Creative Production / Community</p><p><Link href="/writing">Writing ↗</Link></p><p>© {new Date().getFullYear()}</p></div></footer>;
+  return <footer className="site-footer"><div className="wrap"><p>Shawn Porter</p><p>Seattle, WA · Content Strategy / Creative Production / Community</p><nav aria-label="Footer navigation">{navItems.map(([label, href]) => <Link key={href} href={href}>{label} ↗</Link>)}<Link href="/writing">Writing ↗</Link></nav><p>© {new Date().getFullYear()}</p></div></footer>;
 }
-
 export function PageIntro({ kicker, title, copy }: { kicker: string; title: string; copy: string }) {
   return <section className="page-intro wrap"><p className="eyebrow">{kicker}</p><h1>{title}</h1><p className="lede">{copy}</p></section>;
 }

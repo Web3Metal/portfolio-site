@@ -12,10 +12,10 @@ test("homepage renders the content-first positioning, structure, and navigation"
   const response = await render();
   assert.equal(response.status, 200);
   const html = await response.text();
-  assert.match(html, /I help creators, teams, and mission-led organizations turn shows, interviews, and ideas into content/);
-  for (const label of ["Home", "Case Studies", "Writing", "About", "Resume", "Contact"]) assert.match(html, new RegExp(`>${label}<`));
+  assert.match(html, /I produce shows, interviews, and content systems people can follow./);
+  for (const label of ["Home", "Case Studies", "AI Builder &amp; Community", "About", "Resume", "Contact"]) assert.match(html, new RegExp(`>${label}<`));
   assert.doesNotMatch(html, />Content</);
-  const sections = ['id="selected-content">Content Creation', 'id="case-studies">Selected outcomes', 'id="contact"'];
+  const sections = ['id="selected-content">Content Creation', 'id="case-studies">Selected case studies', 'id="contact"'];
   let cursor = -1;
   for (const section of sections) { const next = html.indexOf(section); assert.ok(next > cursor, `${section} should appear in locked order`); cursor = next; }
   assert.doesNotMatch(html, /codex-preview|react-loading-skeleton|Your site is taking shape/);
@@ -31,7 +31,7 @@ test("case studies render in the locked order", async () => {
 });
 
 test("every locked navigation destination renders", async () => {
-  for (const path of ["/case-studies", "/writing", "/about", "/resume", "/contact"]) {
+  for (const path of ["/case-studies", "/writing", "/ai-builder-community", "/about", "/resume", "/contact"]) {
     const response = await render(path);
     assert.equal(response.status, 200, path);
     assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);

@@ -11,11 +11,7 @@ const proofPoints = [
   ["35%", "follower growth at Edge of Company"],
 ] as const;
 
-const heroSignals = [
-  ["Shows + interviews", "Concept, production, packaging"],
-  ["Editorial + social", "Stories shaped for the feed"],
-  ["Community + growth", "Programs built to bring people back"],
-] as const;
+
 
 function ContentMedia({ item, priority = false }: { item: (typeof homepageContent)[number]; priority?: boolean }) {
   if (item.media.type === "video") return <video controls playsInline preload={priority ? "auto" : "metadata"} poster={"poster" in item.media ? item.media.poster : undefined} aria-label={item.media.alt}><source src={item.media.src} type="video/mp4" /></video>;
@@ -30,7 +26,7 @@ export default function Home() {
         <section className={styles.heroBand} id="home">
           <div className={`hero wrap ${styles.homeHero}`}>
             <p className="eyebrow">Shawn Porter / Content strategy &amp; creative production</p>
-            <h1>I create the content and programs that turn ideas into audiences.</h1>
+            <h1>I produce shows, interviews, and content systems people can follow.</h1>
             <figure className={styles.heroPortrait}>
               <Image
                 src="/assets/shawn-hero-portrait.webp"
@@ -43,15 +39,13 @@ export default function Home() {
               />
             </figure>
             <div className="hero-bottom">
-              <p className="lede">I help creators, teams, and mission-led organizations turn shows, interviews, and ideas into content people can understand, share, and return to.</p>
+              <p className="lede">From live production and editorial direction to social packaging and visual design, I build the system around the story.</p>
               <div className={styles.heroActions}>
                 <Link className="text-link" href="/#selected-content">Content Creation Examples <span>↗</span></Link>
                 <Link className={styles.secondaryLink} href="/case-studies">Case Studies</Link>
               </div>
             </div>
-            <div className={styles.heroSignals} aria-label="What Shawn makes">
-              {heroSignals.map(([label, detail]) => <div key={label}><strong>{label}</strong><span>{detail}</span></div>)}
-            </div>
+
           </div>
         </section>
 
@@ -66,12 +60,7 @@ export default function Home() {
                 <article className={`${styles.reelCard} ${index === 0 ? styles.reelLead : ""} ${item.orientation === "portrait" ? styles.reelPortrait : ""}`} key={item.slug}>
                   <h3 className={styles.laneTitle}><Link href={`/content/${item.laneSlug}`}>{item.lane}</Link></h3>
                   <Link className={styles.mediaLink} href={item.href} aria-label={`View ${item.lane}: ${item.title}`}><div className={styles.mediaFrame}><ContentMedia item={item} priority={index === 0} /></div></Link>
-                  <div className={styles.cardCopy}>
-                    <p className={styles.cardMeta}>{item.project} · {item.format}</p>
-                    <h3>{item.title}</h3>
-                    <p className={styles.cardDescriptor}>{item.summary}</p>
-                    <p className={styles.shortCredit}>{item.shortCredit}</p>
-                  </div>
+
                 </article>
               ))}
             </div>
@@ -81,8 +70,8 @@ export default function Home() {
         <section className={styles.caseSection} aria-labelledby="case-studies">
           <div className={styles.sectionWrap}>
             <header className={styles.sectionHeader}>
-              <div><p>The outcomes</p><h2 id="case-studies">Selected outcomes</h2></div>
-              <p>Evidence that the work reached people, created momentum, and gave audiences a reason to return.</p>
+              <div><p>Case studies</p><h2 id="case-studies">Selected case studies</h2></div>
+              <p>Deeper looks at the strategy, systems, and results behind selected projects.</p>
             </header>
             <div className={styles.proofGrid}>{proofPoints.map(([value, label]) => <article key={value}><strong>{value}</strong><span>{label}</span></article>)}</div>
             <div className={styles.caseRail}>

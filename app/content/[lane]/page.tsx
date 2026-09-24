@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { ContactBlock, SiteFooter, SiteHeader } from "../../site-components";
 import { contentLanes, featuredContent } from "../../content-data";
 import styles from "../content.module.css";
+import VideoPlayer from "../video-player";
 
 type LanePageProps = { params: Promise<{ lane: string }> };
 
@@ -19,15 +20,9 @@ export async function generateMetadata({ params }: LanePageProps): Promise<Metad
 }
 
 function LaneMedia({ item }: { item: (typeof featuredContent)[number] }) {
-  if (item.media.type === "video") return <video controls playsInline preload="metadata" poster={"poster" in item.media ? item.media.poster : undefined} aria-label={item.media.alt}><source src={item.media.src} type="video/mp4" /></video>;
+  if (item.media.type === "video") return <VideoPlayer controls playsInline preload="metadata" poster={"poster" in item.media ? item.media.poster : undefined} aria-label={item.media.alt}><source src={item.media.src} type="video/mp4" /></VideoPlayer>;
   return <Image src={item.media.src} alt={item.media.alt} width={item.media.width} height={item.media.height} sizes="(max-width: 780px) calc(100vw - 36px), 52vw" unoptimized />;
 }
-
-
-const writingCapabilities = [
-  ["Journalism", "Reported stories, profiles, and community features that make a system, issue, or lived experience legible without flattening the people inside it.", "Features · profiles · analysis · community reporting"],
-  ["Social media writing", "Short-form editorial that carries a clear point of view from the first idea to the final post—without losing the voice behind it.", "Social copy · campaign messaging · editorial framing"],
-] as const;
 
 const writingClips = [
   ["Local healthcare podcast bridges systemic gaps in patient care for ANHPIAs", "International Examiner", "Reported feature"],
@@ -38,21 +33,31 @@ const writingClips = [
 
 function WritingLane() {
   return <div className={styles.writingLane}>
-    <div className={styles.writingLaneIntro}>
-      <div><p className={styles.meta}>How I write</p><h3>Find the signal. Give it a shape people can follow.</h3></div>
-      <p>My writing background started in journalism and expanded into campaign messaging, social copy, and creator-led editorial. The format changes; the job stays consistent: understand what matters, then make it useful to someone else.</p>
+    <div className={styles.writingCapabilityGrid}>
+      <section className={styles.writingCapabilityColumn} aria-labelledby="journalism-heading">
+        <header className={styles.writingCapabilityHeader}><p className={styles.meta}>Capability</p><h3 id="journalism-heading">Journalism</h3><p>Reported stories, profiles, and community features that make a system, issue, or lived experience legible.</p></header>
+        <div className={styles.writingClipList}>{writingClips.map(([title, outlet, type]) => <article key={title}><div><h4>{title}</h4><p>{outlet}</p></div><span>{type}</span></article>)}</div>
+      </section>
+      <section className={styles.writingCapabilityColumn} aria-labelledby="social-writing-heading">
+        <header className={styles.writingCapabilityHeader}><p className={styles.meta}>Capability</p><h3 id="social-writing-heading">Social media writing</h3><p>Short-form editorial that carries a clear point of view from the first idea to the final post.</p></header>
+        <div className={styles.writingComingSoon}><p className={styles.meta}>Examples coming soon</p><h4>Social copy, campaign messaging, and editorial framing.</h4><p>I’m collecting a focused set of social writing examples to show how the same clarity works at feed speed.</p></div>
+      </section>
     </div>
-    <div className={styles.writingCapabilities}>{writingCapabilities.map(([title, copy, note]) => <article key={title}><p className={styles.meta}>Capability</p><h3>{title}</h3><p>{copy}</p><span>{note}</span></article>)}</div>
-    <section className={styles.writingDiscipline} aria-labelledby="journalism-heading"><header className={styles.writingDisciplineHead}><div><p className={styles.meta}>Journalism</p><h3 id="journalism-heading">Reported work in context.</h3></div><p>Stories, profiles, and community reporting that turn complex subjects into something a reader can understand and act on.</p></header>
-    <article className={styles.writingFeature}>
-      <div className={styles.writingFeatureMedia}><Image src="/assets/writing-healthcare-podcast.jpg" alt="International Examiner article about a local healthcare podcast" width={1280} height={720} unoptimized /></div>
-      <div><p className={styles.meta}>Featured sample · International Examiner</p><h3>Local healthcare podcast bridges systemic gaps in patient care for ANHPIAs</h3><p>A reported feature connecting a local story to a larger question about access, trust, and the systems people have to navigate to get care.</p><span>Reported feature · source-led interview · service journalism</span></div>
-    </article>
-    <section className={styles.writingClips} aria-labelledby="writing-clips"><header><div><p className={styles.meta}>Journalism clips</p><h3 id="writing-clips">Selected reporting</h3></div><p>A small edit of journalism and social writing. This is a portfolio selection, not a complete archive.</p></header><div className={styles.writingClipList}>{writingClips.map(([title, outlet, type]) => <article key={title}><div><h4>{title}</h4><p>{outlet}</p></div><span>{type}</span></article>)}</div></section>
-    </section>
   </div>;
-}
-function GraphicDesignGallery({ items }: { items: (typeof featuredContent)[number][] }) {
+}function ShowsVideoLane({ items }: { items: (typeof featuredContent)[number][] }) {
+  const primary = items.filter((item) => item.orientation !== "portrait");
+  const feedCuts = items.filter((item) => item.orientation === "portrait");
+  const renderItems = (list: (typeof featuredContent)[number][]) => <div className={styles.workList}>{list.map((item) => (
+    <article className={`${styles.workItem} ${item.orientation === "portrait" ? styles.portrait : ""}`} key={item.slug}>
+      {("external" in item && item.external) || item.media.type === "video" ? <div className={styles.media}><LaneMedia item={item} /></div> : <Link className={styles.media} href={item.href}><LaneMedia item={item} /></Link>}
+      <div className={styles.copy}><p className={styles.meta}>{item.format}</p><h3>{item.title}</h3><p className={styles.summary}>{item.summary}</p><dl><div><dt>My contribution</dt><dd>{item.contribution}</dd></div><div><dt>Impact</dt><dd>{item.impact}</dd></div></dl><div className={styles.tags}>{item.categories.map((category) => <span key={category}>{category}</span>)}</div><Link className={styles.projectLink} href={item.href}>View the project <span>↗</span></Link></div>
+    </article>
+  ))}</div>;
+  return <>
+    <section className={styles.primaryShows} aria-labelledby="primary-shows"><header className={styles.subsectionHead}><p className={styles.meta}>Primary examples</p><h3 id="primary-shows">Show examples.</h3><p>Examples of recurring shows and interview formats I produced, packaged, and helped bring to life.</p></header>{renderItems(primary)}</section>
+    {feedCuts.length > 0 ? <section className={styles.feedCuts} aria-labelledby="feed-cuts"><header><p className={styles.meta}>Distribution layer</p><h3 id="feed-cuts">From the show to the feed.</h3><p>The long-form production becomes vertical, platform-native cuts that give each conversation a second life.</p></header>{renderItems(feedCuts)}</section> : null}
+  </>;
+}function GraphicDesignGallery({ items }: { items: (typeof featuredContent)[number][] }) {
   return (
     <>
       <div className={styles.galleryIntro}>
@@ -102,16 +107,12 @@ export default async function ContentLanePage({ params }: LanePageProps) {
         </section>
         <section className={styles.work} aria-labelledby="lane-work">
           <div className={styles.wrap}>
-            <header className={styles.sectionHead}><p>{lane.slug === "graphic-design" ? "Visual proof" : lane.slug === "writing" ? "Writing proof" : "Selected examples"}</p><h2 id="lane-work">{lane.slug === "graphic-design" ? "YouTube thumbnails in practice." : lane.slug === "writing" ? "Journalism and social writing in practice." : "The work behind the format."}</h2></header>
-            {lane.slug === "graphic-design" ? <GraphicDesignGallery items={items} /> : lane.slug === "writing" ? <WritingLane /> : (
+            <header className={styles.sectionHead}><p>{lane.slug === "graphic-design" ? "Visual proof" : lane.slug === "writing" ? "Writing proof" : lane.slug === "podcast-show-overlay-design" ? "Production proof" : "Selected examples"}</p><h2 id="lane-work">{lane.slug === "graphic-design" ? "YouTube thumbnails in practice." : lane.slug === "writing" ? "Journalism and social writing in practice." : lane.slug === "podcast-show-overlay-design" ? "Shows and video in practice." : "The work behind the format."}</h2></header>
+            {lane.slug === "graphic-design" ? <GraphicDesignGallery items={items} /> : lane.slug === "writing" ? <WritingLane /> : lane.slug === "podcast-show-overlay-design" ? <ShowsVideoLane items={items} /> : (
               <div className={styles.workList}>
                 {items.map((item) => (
                   <article className={`${styles.workItem} ${item.orientation === "portrait" ? styles.portrait : ""}`} key={item.slug}>
-                    {"external" in item && item.external ? (
-                      <a className={styles.media} href={item.href} target="_blank" rel="noreferrer" aria-label={`Watch ${item.title} on YouTube`}><LaneMedia item={item} /></a>
-                    ) : (
-                      <Link className={styles.media} href={item.href}><LaneMedia item={item} /></Link>
-                    )}
+                    {("external" in item && item.external) || item.media.type === "video" ? <div className={styles.media}><LaneMedia item={item} /></div> : <Link className={styles.media} href={item.href}><LaneMedia item={item} /></Link>}
                     <div className={styles.copy}>
                       <p className={styles.meta}>{item.format}</p>
                       <h3>{item.title}</h3>

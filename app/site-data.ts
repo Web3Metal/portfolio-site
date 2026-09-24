@@ -1,7 +1,7 @@
 export const navItems = [
   ["Home", "/"],
   ["Case Studies", "/case-studies"],
-  ["Writing", "/writing"],
+  ["AI Builder & Community", "/ai-builder-community"],
   ["About", "/about"],
   ["Resume", "/resume"],
   ["Contact", "/contact"],
