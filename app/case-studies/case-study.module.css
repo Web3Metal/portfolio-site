@@ -16,7 +16,7 @@
 
 .hero {
   min-height: auto;
-  padding: clamp(58px, 7vw, 96px) 0 48px;
+  padding: clamp(42px, 5vw, 70px) 0 40px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -37,7 +37,7 @@
 
 .hero h1 {
   max-width: 1050px;
-  margin: clamp(54px, 8vw, 104px) 0 34px;
+  margin: clamp(30px, 4vw, 56px) 0 28px;
   font-family: Georgia, "Times New Roman", serif;
   font-size: clamp(48px, 5.4vw, 82px);
   font-weight: 400;
