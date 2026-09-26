@@ -2,10 +2,10 @@
   position: relative;
   isolation: isolate;
   overflow: hidden;
-  background: #e9edf2;
+  background: #d7dbe0;
   box-shadow:
-    inset 0 0 120px rgba(68, 37, 30, .09),
-    inset 0 -70px 110px rgba(93, 49, 38, .06);
+    inset 0 0 120px rgba(35, 39, 45, .08),
+    inset 0 -70px 110px rgba(35, 39, 45, .06);
 }
 
 .heroBand::after {
@@ -14,7 +14,7 @@
   z-index: 3;
   pointer-events: none;
   background:
-    repeating-radial-gradient(circle at 17% 23%, rgba(43, 25, 20, .12) 0 .55px, transparent .7px 4px);
+    repeating-radial-gradient(circle at 17% 23%, rgba(21, 26, 34, .08) 0 .55px, transparent .7px 4px);
   background-size: 6px 6px;
   mix-blend-mode: multiply;
   opacity: .19;
@@ -35,7 +35,7 @@
   z-index: 3;
   pointer-events: none;
   background:
-    repeating-radial-gradient(circle at 17% 23%, rgba(43, 25, 20, .12) 0 .55px, transparent .7px 4px);
+    repeating-radial-gradient(circle at 17% 23%, rgba(21, 26, 34, .08) 0 .55px, transparent .7px 4px);
   background-size: 6px 6px;
   mix-blend-mode: multiply;
   opacity: .19;
@@ -179,16 +179,16 @@
 
 .selectedWorkBand {
   background:
-    radial-gradient(ellipse at 104% 21%, rgba(103, 37, 31, .14), transparent 33%),
-    radial-gradient(ellipse at -8% 73%, rgba(83, 52, 39, .09), transparent 29%),
-    linear-gradient(115deg, #e9edf2, #dfe6ed);
+    radial-gradient(ellipse at 104% 21%, rgba(35, 39, 45, .08), transparent 33%),
+    radial-gradient(ellipse at -8% 73%, rgba(35, 39, 45, .06), transparent 29%),
+    linear-gradient(115deg, #d7dbe0, #cdd4db);
 }
 
 .creativeLabBand {
   background:
-    radial-gradient(ellipse at 104% 12%, rgba(116, 42, 34, .15), transparent 30%),
-    radial-gradient(ellipse at -6% 82%, rgba(72, 44, 35, .09), transparent 27%),
-    #e9edf2;
+    radial-gradient(ellipse at 104% 12%, rgba(35, 39, 45, .08), transparent 30%),
+    radial-gradient(ellipse at -6% 82%, rgba(35, 39, 45, .06), transparent 27%),
+    #d7dbe0;
 }
 
 .sectionHeader {
@@ -936,8 +936,8 @@
 .caseSection {
   padding: clamp(64px, 7vw, 92px) 0;
   background:
-    radial-gradient(ellipse at 105% 20%, rgba(116, 42, 34, .12), transparent 32%),
-    #e7ecf2;
+    radial-gradient(ellipse at 105% 20%, rgba(35, 39, 45, .07), transparent 32%),
+    #cfd4da;
 }
 
 .caseSection .sectionHeader > p { color: #5b6775; }
