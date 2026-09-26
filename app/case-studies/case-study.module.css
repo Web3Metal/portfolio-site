@@ -2,7 +2,7 @@
   --case-accent: #b93f37;
   --case-accent-on-dark: #ef7569;
   --case-ink: #151a22;
-  --case-paper: #e9edf2;
+  --case-paper: #d7dbe0;
   --case-line: #c6c9ce;
   background: var(--case-paper);
   color: var(--case-ink);
