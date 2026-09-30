@@ -289,7 +289,7 @@
 }
 
 .contributionPhases {
-  margin-left: min(18vw, 250px);
+  margin-left: 0;
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: clamp(24px, 3vw, 48px);
