@@ -115,7 +115,7 @@ export default function MusicTechnologyCommunityCaseStudyPage() {
       </CaseStudySection>
 
       <CaseStudySection number="04" title="Community Activity and Staying Power" headingId="activity-heading">
-        <ProseLead><p>These are measures of activity across the projects, not results attributed solely to my work.</p></ProseLead>
+        <ProseLead className={styles.activityQualifier}><p>These are measures of activity across the projects, not results attributed solely to my work.</p></ProseLead>
         <div className={styles.resultsGroup}>
           <h3>Cyber Metal Radio · Team/platform activity</h3>
           <div className={styles.metricPanel}>

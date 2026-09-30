@@ -288,6 +288,10 @@
   border-right: 0;
 }
 
+.activityQualifier.activityQualifier {
+  margin-left: 0;
+}
+
 .contributionPhases {
   margin-left: 0;
   display: grid;

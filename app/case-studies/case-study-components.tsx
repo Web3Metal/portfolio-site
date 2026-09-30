@@ -117,8 +117,8 @@ export function CaseStudySection({ title, headingId, variant = "default", childr
   );
 }
 
-export function ProseLead({ children }: { children: ReactNode }) {
-  return <div className={styles.proseLead}>{children}</div>;
+export function ProseLead({ children, className }: { children: ReactNode; className?: string }) {
+  return <div className={[styles.proseLead, className].filter(Boolean).join(" ")}>{children}</div>;
 }
 
 export function RoleContent({ overview, scope }: RoleContentProps) {
