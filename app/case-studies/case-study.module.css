@@ -67,6 +67,12 @@
   margin: 0;
 }
 
+.heroNarrative {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(24px, 2.5vw, 36px);
+}
+
 .heroVisual {
   min-width: 0;
 }

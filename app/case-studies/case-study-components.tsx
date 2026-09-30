@@ -4,6 +4,7 @@ import styles from "./case-study.module.css";
 
 type CaseStudyPageProps = {
   children: ReactNode;
+  className?: string;
 };
 
 type CaseStudyHeroProps = {
@@ -11,6 +12,7 @@ type CaseStudyHeroProps = {
   date: string;
   title: string;
   context: string;
+  narrative?: ReactNode;
   tags: readonly string[];
   visual?: ReactNode;
 };
@@ -64,17 +66,17 @@ type AssetCard = {
   caption: string;
 };
 
-export function CaseStudyPage({ children }: CaseStudyPageProps) {
+export function CaseStudyPage({ children, className }: CaseStudyPageProps) {
   return (
     <>
       <SiteHeader />
-      <main className={styles.page}>{children}</main>
+      <main className={[styles.page, className].filter(Boolean).join(" ")}>{children}</main>
       <SiteFooter />
     </>
   );
 }
 
-export function CaseStudyHero({ date, title, context, tags, visual }: CaseStudyHeroProps) {
+export function CaseStudyHero({ date, title, context, narrative, tags, visual }: CaseStudyHeroProps) {
   return (
     <header className={styles.hero}>
       <div className={styles.heroTop}>
@@ -85,7 +87,10 @@ export function CaseStudyHero({ date, title, context, tags, visual }: CaseStudyH
       {visual ? (
         <div className={styles.heroContextRow}>
           <div className={styles.heroVisual}>{visual}</div>
-          <p className={styles.context}>{context}</p>
+          <div className={styles.heroNarrative}>
+            <p className={styles.context}>{context}</p>
+            {narrative}
+          </div>
         </div>
       ) : (
         <p className={styles.context}>{context}</p>
@@ -178,9 +183,9 @@ export function ProgressionFigure({ title, eyebrow, metrics, caption }: Progress
   );
 }
 
-export function EvidenceGrid({ items }: { items: readonly EvidenceItem[] }) {
+export function EvidenceGrid({ items, className }: { items: readonly EvidenceItem[]; className?: string }) {
   return (
-    <div className={styles.evidenceGrid}>
+    <div className={[styles.evidenceGrid, className].filter(Boolean).join(" ")}>
       {items.map((item) => (
         <article key={item.text ?? item.label}>
           {item.text ? <p>{item.text}</p> : <><strong>{item.value}</strong><span>{item.label}</span></>}
