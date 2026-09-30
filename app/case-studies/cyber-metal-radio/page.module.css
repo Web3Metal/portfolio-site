@@ -231,6 +231,10 @@
   border-bottom: 1px solid var(--case-ink);
 }
 
+.resultsGroup .metricPanel {
+  border-bottom-color: var(--case-line);
+}
+
 .metricPanel article {
   min-height: 270px;
   padding: 30px;
@@ -277,8 +281,9 @@
 }
 
 .web3MetalActivity .web3MetalGrid article:nth-child(n) {
-  min-height: 150px;
-  padding: 22px 24px 22px 0;
+  min-height: 104px;
+  padding: 16px 24px 16px 0;
+  justify-content: center;
   border-right: 1px solid var(--case-line);
 }
 
@@ -333,6 +338,11 @@
   font-size: clamp(28px, 3vw, 42px);
   font-weight: 400;
   letter-spacing: -.04em;
+}
+
+.web3MetalActivity h3 {
+  margin-bottom: 14px;
+  font-size: clamp(32px, 3.2vw, 42px);
 }
 
 @media (max-width: 920px) {
@@ -409,8 +419,8 @@
   }
 
   .web3MetalActivity .web3MetalGrid article:nth-child(n) {
-    min-height: 140px;
-    padding: 22px 0;
+    min-height: 96px;
+    padding: 16px 0;
     border-right: 0;
   }
 
