@@ -1,4 +1,4 @@
-@import "tailwindcss";
+@import "tailwindcss" source("./");
 
 :root { --paper:#d7dbe0; --ink:#151a22; --muted:#68707a; --line:#c6c9ce; --accent:#d14b3f; --accent-readable:#b93f37; --acid:#d14b3f; --white:#f5f7fa; }
 * { box-sizing:border-box; }
