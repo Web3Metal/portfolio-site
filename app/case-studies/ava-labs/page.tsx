@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import {
   AssetCards,
   CaseStudyHero,
@@ -9,9 +10,9 @@ import {
   OutcomePair,
   ProgressionFigure,
   ProseLead,
-  RoleContent,
   SystemFlow,
 } from "../case-study-components";
+import styles from "./page.module.css";
 
 export const metadata: Metadata = {
   title: "Ava Labs — Developer Engagement Manager",
@@ -91,15 +92,50 @@ const assets = [
 
 export default function AvaLabsCaseStudyPage() {
   return (
-    <CaseStudyPage>
-      <CaseStudyHero index="01" date={date} title={title} context={context} tags={tags} />
-
-      <CaseStudySection number="01" title="Challenge" headingId="challenge-heading">
-        <ProseLead><p>{challenge}</p></ProseLead>
-      </CaseStudySection>
+    <CaseStudyPage className={styles.page}>
+      <CaseStudyHero
+        index="01"
+        date={date}
+        title={title}
+        context={context}
+        tags={tags}
+        narrative={(
+          <section className={styles.heroChallenge} aria-labelledby="challenge-heading">
+            <h2 id="challenge-heading">Challenge</h2>
+            <p>{challenge}</p>
+          </section>
+        )}
+        visual={(
+          <figure className={styles.elevateFigure}>
+            <div className={styles.elevateImage}>
+              <Image
+                src="/assets/ava-elevate-developer-series.png"
+                alt="Elevate Developer Series program graphic"
+                width={1014}
+                height={560}
+                sizes="(max-width: 920px) calc(100vw - 36px), 40vw"
+                priority
+              />
+            </div>
+            <figcaption>Elevate Developer Series was one of the programs I connected builders with.</figcaption>
+          </figure>
+        )}
+      />
 
       <CaseStudySection number="02" title="My Role" headingId="role-heading">
-        <RoleContent overview={roleOverview} scope={scope} />
+        <ProseLead className={styles.lead}><p>{roleOverview}</p></ProseLead>
+        <div className={styles.contributions}>
+          {[
+            { title: "Discover builders", items: [scope[0]] },
+            { title: "Qualify and connect", items: [scope[3], scope[4]] },
+            { title: "Track and report", items: [scope[1], scope[2]] },
+          ].map((group) => (
+            <article key={group.title}>
+              <h3>{group.title}</h3>
+              {group.items.map((item) => <p key={item}>{item}</p>)}
+            </article>
+          ))}
+        </div>
       </CaseStudySection>
 
       <CaseStudySection number="03" title="The System" headingId="system-heading" variant="system">
@@ -110,14 +146,26 @@ export default function AvaLabsCaseStudyPage() {
       </CaseStudySection>
 
       <CaseStudySection number="04" title="Results" headingId="results-heading">
-        <OutcomePair metrics={outcomes} />
-        <ProgressionFigure
-          title="Engagement Progression"
-          eyebrow="Aggregate figures"
-          metrics={progression}
-          caption="Approved engagement totals show the progression from outbound activity to ongoing builder conversations and follow-up."
-        />
-        <EvidenceGrid items={evidence} />
+        <div className={styles.resultsGroup}>
+          <h3>Developer engagement</h3>
+          <OutcomePair metrics={outcomes} />
+        </div>
+        <div className={styles.progression}>
+          <ProgressionFigure
+            title="Engagement Progression"
+            eyebrow="Aggregate figures"
+            metrics={progression}
+            caption="Approved engagement totals show the progression from outbound activity to ongoing builder conversations and follow-up."
+          />
+        </div>
+        <div className={styles.resultsGroup}>
+          <h3>Linked outreach</h3>
+          <EvidenceGrid items={[evidence[0], evidence[1], evidence[3]]} className={styles.metricGrid} />
+        </div>
+        <div className={styles.resultsGroup}>
+          <h3>Program performance</h3>
+          <EvidenceGrid items={[evidence[2], evidence[4], evidence[5]]} className={styles.metricGrid} />
+        </div>
       </CaseStudySection>
 
       <CaseStudySection number="05" title="Assets" headingId="assets-heading">
