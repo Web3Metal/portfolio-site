@@ -80,7 +80,7 @@ export default function FightLegendsCaseStudyPage() {
         }
       />
 
-      <CaseStudySection number="02" title="My Role" headingId="role-heading">
+      <CaseStudySection number="02" title="My Contribution" headingId="role-heading">
         <ProseLead className={styles.lead}><p>{roleOverview}</p></ProseLead>
         <div className={styles.contributions}>
           {contributions.map((contribution) => (
@@ -110,7 +110,7 @@ export default function FightLegendsCaseStudyPage() {
         </figure>
       </CaseStudySection>
 
-      <CaseStudySection number="03" title="The System" headingId="system-heading" variant="system">
+      <CaseStudySection number="03" title="How It Worked" headingId="system-heading" variant="system">
         <figure className={styles.systemFigure}>
           <div className={styles.systemHeading}>
             <p>Recurring content engine</p>
@@ -129,7 +129,7 @@ export default function FightLegendsCaseStudyPage() {
         </figure>
       </CaseStudySection>
 
-      <CaseStudySection number="04" title="Results" headingId="results-heading">
+      <CaseStudySection number="04" title="Outcomes" headingId="results-heading">
         <div className={styles.resultsGroup}>
           <h3>Team/channel outcomes</h3>
           <div className={styles.channelResults}>
@@ -161,7 +161,7 @@ export default function FightLegendsCaseStudyPage() {
         <p className={styles.supportingResult}>{supportingResult}</p>
       </CaseStudySection>
 
-      <CaseStudySection number="05" title="Assets" headingId="assets-heading">
+      <CaseStudySection number="05" title="Selected Work" headingId="assets-heading">
         <div className={styles.assetGrid}>
           <article className={styles.assetVisual}>
             <div className={styles.assetImage}>
@@ -190,7 +190,7 @@ export default function FightLegendsCaseStudyPage() {
         </div>
       </CaseStudySection>
 
-      <CaseStudySection number="06" title="Lessons" headingId="lessons-heading" variant="lessons">
+      <CaseStudySection number="06" title="What I Learned" headingId="lessons-heading" variant="lessons">
         <LessonsList lessons={[lesson]} />
       </CaseStudySection>
     </CaseStudyPage>

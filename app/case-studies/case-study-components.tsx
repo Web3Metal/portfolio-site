@@ -11,6 +11,7 @@ type CaseStudyHeroProps = {
   index: string;
   date: string;
   title: string;
+  summary?: string;
   context: string;
   narrative?: ReactNode;
   tags: readonly string[];
@@ -76,7 +77,7 @@ export function CaseStudyPage({ children, className }: CaseStudyPageProps) {
   );
 }
 
-export function CaseStudyHero({ date, title, context, narrative, tags, visual }: CaseStudyHeroProps) {
+export function CaseStudyHero({ date, title, summary, context, narrative, tags, visual }: CaseStudyHeroProps) {
   return (
     <header className={styles.hero}>
       <div className={styles.heroTop}>
@@ -88,6 +89,7 @@ export function CaseStudyHero({ date, title, context, narrative, tags, visual }:
         <div className={styles.heroContextRow}>
           <div className={styles.heroVisual}>{visual}</div>
           <div className={styles.heroNarrative}>
+            {summary ? <p className={styles.heroSummary}>{summary}</p> : null}
             <p className={styles.context}>{context}</p>
             {narrative}
           </div>

@@ -101,7 +101,7 @@ export default function EdgeOfCompanyCaseStudyPage() {
         </div>
       </CaseStudySection>
 
-      <CaseStudySection number="03" title="From Interview to Cross-Platform Content" headingId="system-heading" variant="system">
+      <CaseStudySection number="03" title="How It Worked" headingId="system-heading" variant="system">
         <figure className={styles.pipelineFigure}>
           <div className={styles.figureHeading}>
             <p>Interview production pipeline</p>
@@ -119,7 +119,7 @@ export default function EdgeOfCompanyCaseStudyPage() {
         </figure>
       </CaseStudySection>
 
-      <CaseStudySection number="04" title="Production and Packaging Examples" headingId="assets-heading">
+      <CaseStudySection number="04" title="Selected Work" headingId="assets-heading">
         <figure className={styles.videoEvidence}>
           <div className={styles.videoFrame}>
             <video
@@ -181,7 +181,7 @@ export default function EdgeOfCompanyCaseStudyPage() {
         </div>
       </CaseStudySection>
 
-      <CaseStudySection number="05" title="Channel Outcomes" headingId="results-heading">
+      <CaseStudySection number="05" title="Outcomes" headingId="results-heading">
         <p className={styles.attribution}>These are team/channel outcomes, not results attributed solely to my work.</p>
         <div className={styles.resultGroup}>
           <h3>Social-channel activity and growth</h3>

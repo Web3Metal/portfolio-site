@@ -122,7 +122,7 @@ export default function AvaLabsCaseStudyPage() {
         )}
       />
 
-      <CaseStudySection number="02" title="My Role" headingId="role-heading">
+      <CaseStudySection number="02" title="My Contribution" headingId="role-heading">
         <ProseLead className={styles.lead}><p>{roleOverview}</p></ProseLead>
         <div className={styles.contributions}>
           {[
@@ -138,14 +138,14 @@ export default function AvaLabsCaseStudyPage() {
         </div>
       </CaseStudySection>
 
-      <CaseStudySection number="03" title="The System" headingId="system-heading" variant="system">
+      <CaseStudySection number="03" title="How It Worked" headingId="system-heading" variant="system">
         <SystemFlow
           nodes={systemNodes}
           caption="Reconstructed from the approved role scope: builder discovery, qualification, program and partner routing, tracking, and performance reporting."
         />
       </CaseStudySection>
 
-      <CaseStudySection number="04" title="Results" headingId="results-heading">
+      <CaseStudySection number="04" title="Outcomes" headingId="results-heading">
         <div className={styles.resultsGroup}>
           <h3>Developer engagement</h3>
           <OutcomePair metrics={outcomes} />
@@ -168,11 +168,11 @@ export default function AvaLabsCaseStudyPage() {
         </div>
       </CaseStudySection>
 
-      <CaseStudySection number="05" title="Assets" headingId="assets-heading">
+      <CaseStudySection number="05" title="Supporting Figures" headingId="assets-heading">
         <AssetCards cards={assets} />
       </CaseStudySection>
 
-      <CaseStudySection number="06" title="Lessons" headingId="lessons-heading" variant="lessons">
+      <CaseStudySection number="06" title="Capabilities Demonstrated" headingId="lessons-heading" variant="lessons">
         <LessonsList lessons={strengths} />
       </CaseStudySection>
     </CaseStudyPage>

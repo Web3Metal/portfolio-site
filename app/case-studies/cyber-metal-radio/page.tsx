@@ -11,11 +11,12 @@ import {
 import styles from "./page.module.css";
 
 export const metadata: Metadata = {
-  title: "Building Media and Community Systems at the Intersection of Music and Technology",
+  title: "Web3 Metal & Cyber Metal Radio",
   description: "How Web3 Metal and Cyber Metal Radio connected editorial work, music discovery, and a niche creator community around Web3 and AI music.",
 };
 
-const title = "Building media and community systems at the intersection of music and technology";
+const title = "Web3 Metal & Cyber Metal Radio";
+const summary = "Building media and community systems at the intersection of music and technology";
 const stationUrl = "https://www.cybermetalradio.com/";
 const challenge = "Artists exploring Web3 and AI music had places to upload their work, but fewer spaces built around discovery, recognition, and community. Web3 Metal connected that scene through editorial work and community programming.";
 const systemCaption = "Artists submitted work through New Metal Monday, returned for the weekly Top 15 countdown, and shared the results. Listening parties and annual awards added more ways to discover music and recognize artists.";
@@ -51,6 +52,7 @@ export default function MusicTechnologyCommunityCaseStudyPage() {
         index="02"
         date="Oct 2023 – Present"
         title={title}
+        summary={summary}
         context={challenge}
         narrative={(
           <section className={styles.heroStartingCommunity} aria-labelledby="starting-community-heading">
@@ -95,7 +97,7 @@ export default function MusicTechnologyCommunityCaseStudyPage() {
         </div>
       </CaseStudySection>
 
-      <CaseStudySection number="03" title="A Rhythm for Participation" headingId="system-heading" variant="system">
+      <CaseStudySection number="03" title="How It Worked" headingId="system-heading" variant="system">
         <figure className={styles.loopFigure}>
           <div className={styles.loopHeading}>
             <p>Music discovery and participation</p>
@@ -114,7 +116,7 @@ export default function MusicTechnologyCommunityCaseStudyPage() {
         </figure>
       </CaseStudySection>
 
-      <CaseStudySection number="04" title="Community Activity and Staying Power" headingId="activity-heading">
+      <CaseStudySection number="04" title="Outcomes" headingId="activity-heading">
         <ProseLead className={styles.activityQualifier}><p>These are measures of activity across the projects, not results attributed solely to my work.</p></ProseLead>
         <div className={styles.resultsGroup}>
           <h3>Cyber Metal Radio · Team/platform activity</h3>
