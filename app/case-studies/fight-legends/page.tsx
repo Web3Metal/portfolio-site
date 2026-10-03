@@ -15,7 +15,12 @@ export const metadata: Metadata = {
 
 const title = "Fight Legends";
 const challenge = "Fight Legends was an early-stage Web3 game. The team had to make an unfinished product understandable, keep prospective players engaged between development milestones, and turn ongoing progress into content that could support community growth, awareness, and key-pass sales.";
-const myRole = "I created and ran a recurring development show that turned weekly product progress into a steady stream of content. I owned the show concept, format, visual direction, editing, and social distribution, while also supporting Discord events, AMAs, contests, and paid promotion that kept the community active between major updates.";
+const roleOverview = "I created and ran a recurring development show that turned weekly product progress into a steady stream of content.";
+const contributions = [
+  { title: "Create the show", text: "I owned the show concept, format, and visual direction." },
+  { title: "Package and distribute", text: "I owned editing and social distribution." },
+  { title: "Support community participation", text: "I also supported Discord events, AMAs, contests, and paid promotion that kept the community active between major updates." },
+];
 const system = "The weekly development show organized product updates into a clear narrative, generated short-form social content, and gave the community recognizable hosts and a predictable reason to return. AMAs, game nights, contests, and lore content extended that rhythm between milestones.";
 const supportingResult = "Built a recurring content and community rhythm around development updates, AMAs, contests, and game nights";
 const lesson = "Human-led storytelling made the unfinished game feel active, understandable, and worth following. Familiar hosts gave the project continuity, while the recurring format turned scattered development progress into a system that grew attention and engagement.";
@@ -50,39 +55,41 @@ const evidenceFrames = [
 
 export default function FightLegendsCaseStudyPage() {
   return (
-    <CaseStudyPage>
+    <CaseStudyPage className={styles.page}>
       <CaseStudyHero
         index="03"
         date="Content + community around product development"
         title={title}
         context={challenge}
         tags={tags}
+        visual={
+          <figure className={styles.heroEvidence}>
+            <div className={styles.heroImage}>
+              <Image
+                src="/assets/fight-legends/dev-update-22-poster.png"
+                alt="Fight Legends development update episode 22, showing the branded show and its two presenters"
+                width={1280}
+                height={720}
+                sizes="(max-width: 920px) calc(100vw - 36px), 40vw"
+                unoptimized
+                priority
+              />
+            </div>
+            <figcaption>Fight Legends development show · Episode 22</figcaption>
+          </figure>
+        }
       />
 
-      <figure className={styles.heroEvidence}>
-        <div className={styles.heroImage}>
-          <Image
-            src="/assets/fight-legends/hero-development.png"
-            alt="In-development Fight Legends 3D character model"
-            width={1280}
-            height={720}
-            sizes="(max-width: 900px) 100vw, 1200px"
-            unoptimized
-            priority
-          />
-        </div>
-        <figcaption>
-          <span>Production evidence</span>
-          <p>In-development character footage used as source material for recurring content.</p>
-        </figcaption>
-      </figure>
-
-      <CaseStudySection number="01" title="Challenge" headingId="challenge-heading">
-        <ProseLead><p>{challenge}</p></ProseLead>
-      </CaseStudySection>
-
       <CaseStudySection number="02" title="My Role" headingId="role-heading">
-        <ProseLead><p>{myRole}</p></ProseLead>
+        <ProseLead className={styles.lead}><p>{roleOverview}</p></ProseLead>
+        <div className={styles.contributions}>
+          {contributions.map((contribution) => (
+            <article key={contribution.title}>
+              <h3>{contribution.title}</h3>
+              <p>{contribution.text}</p>
+            </article>
+          ))}
+        </div>
 
         <figure className={styles.progressFigure}>
           <div className={styles.figureHeading}>
@@ -123,25 +130,31 @@ export default function FightLegendsCaseStudyPage() {
       </CaseStudySection>
 
       <CaseStudySection number="04" title="Results" headingId="results-heading">
-        <div className={styles.verifiedResults}>
-          <article>
-            <strong>25%</strong>
-            <span>Increase in YouTube subscribers</span>
-          </article>
-          <article>
-            <strong>Approximately 30%</strong>
-            <span>Increase in social engagement</span>
-          </article>
+        <div className={styles.resultsGroup}>
+          <h3>Team/channel outcomes</h3>
+          <div className={styles.channelResults}>
+            <article>
+              <strong>25%</strong>
+              <span>Increase in YouTube subscribers</span>
+            </article>
+            <article>
+              <strong>Approximately 30%</strong>
+              <span>Increase in social engagement</span>
+            </article>
+          </div>
         </div>
 
-        <div className={styles.estimateBlock}>
-          <div className={styles.estimateHeading}>
-            <p>Estimated production volume</p>
-            <span>Estimates</span>
-          </div>
-          <div className={styles.estimateGrid}>
-            <article><strong>Roughly 25 to 35</strong><span>development show episodes</span></article>
-            <article><strong>Estimated 75 to 140</strong><span>short-form clips across the year</span></article>
+        <div className={styles.resultsGroup}>
+          <h3>Personal production estimates</h3>
+          <div className={styles.estimateBlock}>
+            <div className={styles.estimateHeading}>
+              <p>Estimated production volume</p>
+              <span>Estimates</span>
+            </div>
+            <div className={styles.estimateGrid}>
+              <article><strong>Roughly 25 to 35</strong><span>development show episodes</span></article>
+              <article><strong>Estimated 75 to 140</strong><span>short-form clips across the year</span></article>
+            </div>
           </div>
         </div>
 
