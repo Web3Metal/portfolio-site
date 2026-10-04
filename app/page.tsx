@@ -58,7 +58,7 @@ export default function Home() {
             <div className={styles.reelGrid}>
               {homepageContent.map((item, index) => (
                 <article className={`${styles.reelCard} ${index === 0 ? styles.reelLead : ""} ${item.orientation === "portrait" ? styles.reelPortrait : ""}`} key={item.slug}>
-                  <h3 className={styles.laneTitle}><Link href={`/content/${item.laneSlug}`}>{item.lane}</Link></h3>
+                  <h3 className={styles.laneTitle}><Link href={item.laneSlug === "ai-builder-community" ? item.href : `/content/${item.laneSlug}`}>{item.lane}</Link></h3>
                   <Link className={styles.mediaLink} href={item.href} aria-label={`View ${item.lane}: ${item.title}`}><div className={styles.mediaFrame}><ContentMedia item={item} priority={index === 0} /></div></Link>
 
                 </article>

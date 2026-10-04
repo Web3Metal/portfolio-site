@@ -55,9 +55,9 @@ Developer Engagement · Community Growth · Creator Ecosystems · Content Strate
 - Helped launch Cyber Metal Radio as a separate community-led project.
 
 ### Cyber Metal Radio
-**Co-Founder and Growth Lead · Oct 2023 – Present**
+**Co-Founder | Zero-to-One Community Growth · Oct 2023 – Present**
 - Led zero-to-one marketing and growth, recruiting artists and building recurring submission, ranking, live-programming, and recognition systems.
-- Generated 1,765 artist submissions, 200,000+ listens, and 16,000+ community interactions in 2025.
+- Team/platform activity: 1,765 artist submissions in 2025, 200,000+ listens, and 16,000+ community interactions.
 - Established New Metal Monday, the weekly Top 15 countdown, and an annual awards program as recurring reasons for creators to submit, listen, share, and return.
 
 ## Earlier Experience
