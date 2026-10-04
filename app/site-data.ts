@@ -24,7 +24,7 @@ export const caseStudies = [
   {
     slug: "cyber-metal-radio",
     number: "02",
-    title: "Building media and community systems at the intersection of music and technology",
+    title: "Web3 Metal / Cyber Metal Radio",
     role: "Founder, Web3 Metal · Co-Founder, Cyber Metal Radio",
     summary: "Connected editorial work, recurring radio programming, and community around artists exploring Web3 and AI music.",
     challenge: "Artists exploring Web3 and AI music had places to upload their work, but fewer spaces built around discovery, recognition, and community.",
