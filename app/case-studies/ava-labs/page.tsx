@@ -1,14 +1,9 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import {
-  AssetCards,
   CaseStudyHero,
   CaseStudyPage,
   CaseStudySection,
-  EvidenceGrid,
-  LessonsList,
-  OutcomePair,
-  ProgressionFigure,
   ProseLead,
   SystemFlow,
 } from "../case-study-components";
@@ -32,12 +27,19 @@ const scope = [
   "Held video calls with prospects, referred projects to Business Development when appropriate, and connected builders to ecosystem partners based on needs and goals",
 ];
 
-const strengths = [
-  "Ranked among the team's strongest performers for click through rate and lead discovery",
-  "Search workflows across Sprinklr and native X to uncover quality leads",
-  "UTM tracking expertise for non native channels",
-  "Cross functional collaboration with Sprinklr operations and Business Development teams",
-  "Funnel design, reporting, and conversion copywriting",
+const capabilities = [
+  {
+    title: "Lead discovery and community listening",
+    items: ["Search workflows across Sprinklr and native X to uncover quality leads"],
+  },
+  {
+    title: "Funnel measurement and conversion optimization",
+    items: ["UTM tracking expertise for non native channels", "Funnel design, reporting, and conversion copywriting"],
+  },
+  {
+    title: "Cross-functional campaign operations",
+    items: ["Cross functional collaboration with Sprinklr operations and Business Development teams"],
+  },
 ];
 
 const tags = ["devrel", "growth", "sprinklr", "utm", "web3", "community", "content", "bd", "xspaces"];
@@ -59,36 +61,21 @@ const systemNodes = [
 const outcomes = [
   { value: "9,000+", label: "developers engaged" },
   { value: "6,900+", label: "visits to programs, resources, and events" },
+  { value: "Helped double program conversions from Q1 to Q2", label: "Program conversions", prose: true },
 ];
 
-const progression = [
-  { stage: "Outbound activity", value: "Roughly 10,000", label: "outreach posts" },
-  { stage: "Initial interactions", value: "4,400+", label: "initial interactions" },
-  { stage: "Continued conversations", value: "3,500+", label: "continued conversations" },
-  { stage: "Follow-ups", value: "600+", label: "follow-ups" },
-];
-
-const evidence = [
-  { value: "Approximately 1,700", label: "linked posts" },
-  { value: "Approximately 2,100", label: "clicks" },
-  { value: "29%", label: "improvement in clicks per message" },
-  { text: "Ranked among the strongest team performers for click-through rate and lead discovery" },
-  { text: "Helped double program conversions from Q1 to Q2" },
-  { value: "229%", label: "month-over-month increase in Elevate conversions" },
-];
-
-const assets = [
-  {
-    eyebrow: "Reconstructed workflow",
-    title: "Builder Discovery and Routing System",
-    caption: "Reconstructed workflow — identities and private communications removed.",
-  },
-  {
-    eyebrow: "Aggregate evidence",
-    title: "Engagement Progression",
-    caption: "Aggregate figures from the approved Ava Labs case-study Markdown.",
-  },
-];
+function MetricRows({ metrics }: { metrics: readonly { label: string; value: string; prose?: boolean }[] }) {
+  return (
+    <dl className={styles.metricRows}>
+      {metrics.map((metric) => (
+        <div key={metric.label}>
+          <dt>{metric.label}</dt>
+          <dd className={metric.prose ? styles.resultText : undefined}>{metric.value}</dd>
+        </div>
+      ))}
+    </dl>
+  );
+}
 
 export default function AvaLabsCaseStudyPage() {
   return (
@@ -145,35 +132,22 @@ export default function AvaLabsCaseStudyPage() {
         />
       </CaseStudySection>
 
-      <CaseStudySection number="04" title="Outcomes" headingId="results-heading">
-        <div className={styles.resultsGroup}>
-          <h3>Developer engagement</h3>
-          <OutcomePair metrics={outcomes} />
-        </div>
-        <div className={styles.progression}>
-          <ProgressionFigure
-            title="Engagement Progression"
-            eyebrow="Aggregate figures"
-            metrics={progression}
-            caption="Approved engagement totals show the progression from outbound activity to ongoing builder conversations and follow-up."
-          />
-        </div>
-        <div className={styles.resultsGroup}>
-          <h3>Linked outreach</h3>
-          <EvidenceGrid items={[evidence[0], evidence[1], evidence[3]]} className={styles.metricGrid} />
-        </div>
-        <div className={styles.resultsGroup}>
-          <h3>Program performance</h3>
-          <EvidenceGrid items={[evidence[2], evidence[4], evidence[5]]} className={styles.metricGrid} />
+      <CaseStudySection number="04" title="Outcomes & Evidence" headingId="results-heading">
+        <div className={styles.resultsSummary}>
+          <p className={styles.attribution}>Team / program outcomes</p>
+          <MetricRows metrics={outcomes} />
         </div>
       </CaseStudySection>
 
-      <CaseStudySection number="05" title="Supporting Figures" headingId="assets-heading">
-        <AssetCards cards={assets} />
-      </CaseStudySection>
-
-      <CaseStudySection number="06" title="Capabilities Demonstrated" headingId="lessons-heading" variant="lessons">
-        <LessonsList lessons={strengths} />
+      <CaseStudySection number="05" title="What This Work Demonstrates" headingId="capabilities-heading">
+        <div className={styles.capabilities}>
+          {capabilities.map((capability) => (
+            <article key={capability.title}>
+              <h3>{capability.title}</h3>
+              {capability.items.map((item) => <p key={item}>{item}</p>)}
+            </article>
+          ))}
+        </div>
       </CaseStudySection>
     </CaseStudyPage>
   );

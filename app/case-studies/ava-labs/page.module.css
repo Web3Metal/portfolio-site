@@ -105,85 +105,84 @@
   line-height: 1.5;
 }
 
-.resultsGroup + .resultsGroup {
-  margin-top: 36px;
+.resultsSummary {
+  width: min(100%, 960px);
 }
 
-.resultsGroup h3 {
-  margin: 0 0 16px;
+.attribution {
+  margin: 0 0 18px;
+  font-size: 12px;
+  line-height: 1.55;
+}
+
+.metricRows {
+  margin: 0;
+}
+
+.metricRows > div {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, .95fr);
+  align-items: baseline;
+  gap: 24px;
+  padding: 11px 0;
+}
+
+.metricRows > div:first-child {
+  padding-top: 0;
+}
+
+.metricRows > div + div {
+  border-top: 1px solid var(--case-line);
+}
+
+.metricRows dt {
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.metricRows dd {
+  margin: 0;
   font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(28px, 3vw, 42px);
-  font-weight: 400;
-  letter-spacing: -.04em;
+  font-size: clamp(24px, 2vw, 30px);
+  letter-spacing: -.02em;
+  line-height: 1.25;
+  text-align: right;
 }
 
-.progression > figure {
-  margin: 32px 0;
-  padding: clamp(20px, 2.8vw, 36px);
+.metricRows dd.resultText {
+  font-size: clamp(16px, 1.3vw, 19px);
+  letter-spacing: 0;
+  line-height: 1.45;
 }
 
-.progression > figure > div:nth-child(2) > div {
-  min-height: 150px;
-  gap: 12px;
-}
-
-.progression figcaption {
-  margin-left: 0;
-}
-
-.progression strong {
-  line-height: 1.05;
-}
-
-.metricGrid.metricGrid {
+.capabilities {
+  display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(24px, 3vw, 44px);
 }
 
-.metricGrid.metricGrid article:nth-child(n) {
-  min-height: 150px;
-  padding: 20px 24px;
-  justify-content: flex-start;
-  gap: 18px;
-  border-right: 1px solid var(--case-line);
+.capabilities article {
+  min-width: 0;
 }
 
-.metricGrid.metricGrid article:first-child {
-  padding-left: 0;
+.capabilities h3 {
+  margin: 0 0 12px;
+  color: var(--case-accent);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(19px, 1.5vw, 23px);
+  font-weight: 400;
+  letter-spacing: -.02em;
+  line-height: 1.3;
 }
 
-.metricGrid.metricGrid article:last-child {
-  padding-right: 0;
-  border-right: 0;
-}
-
-.metricGrid strong {
-  font-size: clamp(30px, 3vw, 44px);
-  overflow-wrap: anywhere;
-}
-
-.metricGrid p {
+.capabilities p {
   margin: 0;
-  font-size: clamp(23px, 2.2vw, 30px);
-  line-height: 1.2;
+  font-size: 14px;
+  line-height: 1.6;
 }
 
-.page > section[aria-labelledby="assets-heading"] article {
-  min-height: 210px;
-  padding: 24px;
-  gap: 20px;
-}
-
-.page > section[aria-labelledby="assets-heading"] h3 {
-  margin: 0;
-  font-size: clamp(28px, 3vw, 42px);
-}
-
-.page > section > ul {
-  margin-left: 0;
-}
-
-.page > section > ul > li {
-  padding: 18px 0;
+.capabilities p + p {
+  margin-top: 10px;
 }
 
 @media (max-width: 920px) {
@@ -195,18 +194,23 @@
     grid-template-columns: 1fr;
   }
 
-  .metricGrid.metricGrid {
+  .capabilities {
     grid-template-columns: 1fr;
+    gap: 24px;
   }
 
-  .metricGrid.metricGrid article:nth-child(n) {
-    min-height: auto;
-    padding: 20px 0;
-    border-right: 0;
-    gap: 12px;
+  .metricRows > div {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 16px;
   }
 
-  .progression > figure > div:nth-child(2) > div {
-    min-height: 132px;
+  .metricRows dd {
+    font-size: 21px;
+  }
+}
+
+@media (max-width: 360px) {
+  .metricRows > div {
+    grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr);
   }
 }
