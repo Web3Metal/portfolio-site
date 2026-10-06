@@ -2,7 +2,7 @@
   position: relative;
   isolation: isolate;
   overflow: hidden;
-  background: #d7dbe0;
+  background: #151a22;
   box-shadow:
     inset 0 0 120px rgba(35, 39, 45, .08),
     inset 0 -70px 110px rgba(35, 39, 45, .06);
@@ -19,6 +19,76 @@
   mix-blend-mode: multiply;
   opacity: .19;
   content: "";
+}
+
+/* Content-sized hero, independent of the older global .hero layout. */
+.compactHero {
+  position: relative;
+  z-index: 4;
+  padding: clamp(44px, 4vw, 60px) 0 76px;
+  color: var(--white);
+  pointer-events: none;
+}
+
+.heroCopy { max-width: min(700px, 62%); min-width: 0; pointer-events: auto; }
+.heroCopy :global(.eyebrow) { margin-bottom: 20px; }
+.compactHero .heroHeadline {
+  max-width: 700px;
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(46px, 4.5vw, 66px);
+  font-weight: 400;
+  letter-spacing: -.05em;
+  line-height: 1.02;
+  text-wrap: balance;
+}
+.heroLede { max-width: 570px; margin: 24px 0 0; color: #d7dbe0; font-size: 20px; line-height: 1.45; }
+.compactHeroActions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 24px; margin-top: 28px; }
+.compactHeroActions a { pointer-events: auto; }
+.compactHeroActions :global(.button) { gap: 14px; align-items: center; min-height: 44px; color: var(--ink); background: var(--paper); }
+.compactHeroActions :global(.button) span { color: var(--accent-readable); }
+.compactHeroActions :global(.text-link) { margin: 0; min-height: 44px; color: var(--white); border-color: var(--paper); font-size: 11px; }
+.compactHeroActions :global(.text-link) span { color: #f08b7e; }
+.caseSection :global(#case-studies) { scroll-margin-top: 100px; }
+.heroAtmosphere { position: absolute; inset: 0; overflow: hidden; }
+.heroAtmosphere::after { position: absolute; inset: 55% 0 0; background: linear-gradient(transparent, #151a22); pointer-events: none; content: ""; }
+.heroGradient {
+  position: absolute;
+  inset: -15% -12% -15% 0;
+  background:
+    radial-gradient(ellipse at 86% 28%, rgba(93, 119, 135, .6), transparent 42%),
+    radial-gradient(ellipse at 76% 82%, rgba(172, 83, 69, .42), transparent 40%),
+    radial-gradient(ellipse at 53% 54%, rgba(54, 75, 88, .5), transparent 45%);
+  mask-image: linear-gradient(90deg, transparent 25%, rgba(0, 0, 0, .15) 44%, #000 70%);
+  animation: heroDrift 18s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+@keyframes heroDrift {
+  from { transform: translate3d(-2%, -3%, 0) scale(1); }
+  to { transform: translate3d(4%, 4%, 0) scale(1.08); }
+}
+.gradientControl { position: absolute; right: 24px; bottom: 18px; z-index: 5; min-height: 44px; padding: 8px 12px; color: #c4ccd6; background: transparent; border: 1px solid #586575; border-radius: 4px; font: inherit; font-size: 10px; cursor: pointer; }
+@media (prefers-reduced-motion: reduce) {
+  .heroGradient { animation: none; }
+  .gradientControl { display: none; }
+}
+
+@media (max-width: 920px) {
+  .compactHero { padding: 32px 0 76px; }
+  .compactHero .heroHeadline { font-size: 38px; }
+  .heroLede { font-size: 17px; }
+}
+@media (max-width: 620px) {
+  .heroCopy { max-width: none; }
+  .heroGradient { animation: none; opacity: .65; }
+  .gradientControl { display: none; }
+}
+@media (max-width: 560px) {
+  .compactHero { padding: 26px 0 76px; }
+  .heroCopy :global(.eyebrow) { margin-bottom: 16px; font-size: 10px; }
+  .compactHero .heroHeadline { font-size: clamp(32px, 8.7vw, 38px); line-height: 1.04; }
+  .heroLede { margin-top: 18px; font-size: 16px; line-height: 1.4; }
+  .compactHeroActions { flex-direction: column; align-items: flex-start; gap: 8px; margin-top: 20px; }
 }
 
 .homeHero {
@@ -750,9 +820,8 @@
 .reelSection {
   padding: clamp(64px, 7vw, 92px) 0;
   color: var(--paper);
-  background:
-    radial-gradient(circle at 88% 10%, rgba(164, 68, 54, .22), transparent 28%),
-    #151a22;
+  border-top: 0;
+  background: #151a22;
 }
 
 .sectionWrap {

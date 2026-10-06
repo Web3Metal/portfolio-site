@@ -4,6 +4,7 @@ import styles from "./homepage.module.css";
 import { ContactBlock, SiteFooter, SiteHeader } from "./site-components";
 import { caseStudies } from "./site-data";
 import { homepageContent } from "./content-data";
+import { HeroShowPreview } from "./hero-show-preview";
 
 const caseStudyFocus = {
   "ava-labs": "Building developer activation funnels that connect outreach, programs, and follow-up.",
@@ -25,28 +26,17 @@ export default function Home() {
       <SiteHeader />
       <main>
         <section className={styles.heroBand} id="home">
-          <div className={`hero wrap ${styles.homeHero}`}>
-            <p className="eyebrow">SHAWN PORTER</p>
-            <h1>Content strategy, creative production, and community engagement.</h1>
-            <figure className={styles.heroPortrait}>
-              <Image
-                src="/assets/shawn-hero-portrait.webp"
-                alt="Portrait of Shawn Porter wearing glasses and a cap"
-                width={1254}
-                height={1254}
-                sizes="(min-width: 921px) min(48vw, 820px), 108px"
-                unoptimized
-                priority
-              />
-            </figure>
-            <div className="hero-bottom">
-              <p className="lede">I develop the content, programming, and activation systems that help ambitious projects earn attention, participation, and momentum.</p>
-              <div className={styles.heroActions}>
-                <Link className="text-link" href="/#selected-content">Content Creation Examples <span>↗</span></Link>
-                <Link className={styles.secondaryLink} href="/case-studies">Case Studies</Link>
+          <HeroShowPreview />
+          <div className={`wrap ${styles.compactHero}`}>
+            <div className={styles.heroCopy}>
+              <p className="eyebrow">SHAWN PORTER</p>
+              <h1 className={styles.heroHeadline}>Content strategy, creative production, and community engagement.</h1>
+              <p className={styles.heroLede}>I develop the content, programming, and activation systems that help ambitious projects earn attention, participation, and momentum.</p>
+              <div className={styles.compactHeroActions}>
+                <Link className="button" href="/#case-studies">View selected work <span aria-hidden="true">↗</span></Link>
+                <Link className="text-link" href="/#selected-content">Explore content portfolio <span aria-hidden="true">↗</span></Link>
               </div>
             </div>
-
           </div>
         </section>
 

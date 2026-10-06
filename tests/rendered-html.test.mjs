@@ -261,6 +261,14 @@ test("homepage renders the approved positioning and section order", async () => 
   assert.match(html, /I develop the content, programming, and activation systems that help ambitious projects earn attention, participation, and momentum\./);
   assert.doesNotMatch(html, /I turn complex projects into content, experiences/);
   assert.doesNotMatch(html, /From live production and editorial direction/);
+  const hero = html.match(/<section\b[^>]*id="home"[^>]*>([\s\S]*?)<\/section>/)?.[1];
+  assert.ok(hero, "homepage should include its compact hero");
+  assert.doesNotMatch(hero, /shawn-hero-portrait/);
+  assert.match(hero, /View selected work/);
+  assert.match(hero, /Explore content portfolio/);
+  assert.doesNotMatch(hero, /Fight Legends · Development show production|hero-show-clean-poster/);
+  assert.match(hero, /Pause background animation/);
+  assert.doesNotMatch(hero, /<video\b|Pause show preview|Play show preview/);
   const sections = ['id="selected-content">Content Creation', 'id="case-studies">Selected case studies', 'id="contact"'];
   let cursor = -1;
   for (const section of sections) {
