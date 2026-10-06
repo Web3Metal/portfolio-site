@@ -257,8 +257,9 @@ test("résumé page links to a real downloadable PDF served from the build", asy
 test("homepage renders the approved positioning and section order", async () => {
   const { response, html } = await page("/");
   assert.equal(response.status, 200);
-  assert.match(html, /Content strategist and creative producer for technical, creative, and community-driven projects\./);
-  assert.match(html, /I turn complex projects into content, experiences, and communities people can follow\./);
+  assert.match(html, /Content strategy, creative production, and community engagement\./);
+  assert.match(html, /I develop the content, programming, and activation systems that help ambitious projects earn attention, participation, and momentum\./);
+  assert.doesNotMatch(html, /I turn complex projects into content, experiences/);
   assert.doesNotMatch(html, /From live production and editorial direction/);
   const sections = ['id="selected-content">Content Creation', 'id="case-studies">Selected case studies', 'id="contact"'];
   let cursor = -1;
