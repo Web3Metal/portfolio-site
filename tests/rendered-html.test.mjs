@@ -5,6 +5,7 @@ import { fileURLToPath } from "node:url";
 import test from "node:test";
 import { navItems, caseStudies } from "../app/site-data.ts";
 import { contentLanes, featuredContent, homepageContent } from "../app/content-data.ts";
+import { fightLegendsSamples } from "../app/content/fight-legends/samples.ts";
 
 const projectRoot = resolve(fileURLToPath(new URL("..", import.meta.url)));
 const builtRoot = resolve(projectRoot, "dist/client");
@@ -145,6 +146,7 @@ const routePaths = new Set([
   ...featuredContent.map((item) => routeFromReference(item.href)),
   ...homepageContent.map((item) => routeFromReference(item.href)),
   ...contentLanes.map((lane) => `/content/${lane.slug}`),
+  ...fightLegendsSamples.map((sample) => `/content/fight-legends/${sample.slug}`),
 ]);
 routePaths.delete(null);
 
@@ -263,6 +265,45 @@ test("homepage renders the approved positioning and section order", async () => 
     cursor = next;
   }
   assert.doesNotMatch(html, /codex-preview|react-loading-skeleton|Your site is taking shape/);
+});
+
+test("Fight Legends connects narrative authorship and show production with attributed evidence", async () => {
+  const { html } = await page("/case-studies/fight-legends");
+  const headings = [...html.matchAll(/<h2\b[^>]*>(.*?)<\/h2>/g)].map((match) => match[1]);
+  assert.deepEqual(headings, ["My Contribution", "How It Worked", "Selected Work", "Outcomes &amp; Evidence", "What I Learned"]);
+  for (const copy of [
+    "Making a game in development understandable and worth following through recurring development shows, early worldbuilding, and community storytelling.",
+    "Artists conceptualized the characters",
+    "I developed and wrote the narrative material",
+    "Team/channel outcomes",
+    "Personal production estimates",
+    "Approximately 30%",
+    "Roughly 25 to 35",
+    "Estimated 75 to 140",
+    "not measured impact attributable to the narrative writing",
+  ]) assert.ok(html.includes(copy), `Fight Legends should preserve ${copy}`);
+  assert.doesNotMatch(html, /href="https:\/\/medium\.com/);
+  for (const artifact of ["/content/fight-legends/introducing-nix", "/content/fight-legends/nix-vs-ross-levine", "/content/fight-legends/story-mode", "/assets/fight-legends/dev-update-22.mp4"]) {
+    assert.ok(html.includes(artifact), `Fight Legends should link its evidence: ${artifact}`);
+  }
+});
+
+test("local Fight Legends writing samples preserve article text without platform clutter", async () => {
+  const escapeHtml = (text) => text.replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;").replaceAll("'", "&#x27;");
+  for (const sample of fightLegendsSamples) {
+    const { response, html } = await page(`/content/fight-legends/${sample.slug}`);
+    assert.equal(response.status, 200);
+    const article = html.match(/<article\b[^>]*aria-label="Archived article"[^>]*>([\s\S]*?)<\/article>/)?.[1];
+    assert.ok(article);
+    for (const block of sample.blocks) assert.ok(article.includes(escapeHtml(block.text ?? block.heading)), `preserve ${sample.slug} article block`);
+    assert.ok(html.includes("Written by Shawn Porter"));
+    assert.ok(html.includes(escapeHtml(sample.archiveNote)));
+    assert.ok(article.includes(sample.image));
+    assert.doesNotMatch(article, /Sign up|Sign in|Subscribe|Enter your email|stories in your inbox|followers|discord\.gg|medium\.com/);
+    assert.doesNotMatch(html, /href="https:\/\/medium\.com/);
+    assert.ok(html.includes('/case-studies/fight-legends#assets-heading'));
+  }
+  assert.equal((await page("/content/fight-legends/not-a-sample")).response.status, 404);
 });
 
 test("case-study index renders its current entries in order", async () => {

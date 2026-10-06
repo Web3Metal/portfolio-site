@@ -1,0 +1,18 @@
+.page { width: min(960px, calc(100% - 72px)); margin: 0 auto; padding: 48px 0 64px; color: var(--ink); }
+.back { font-size: 14px; text-decoration: underline; text-underline-offset: 4px; }
+.kicker { margin: 36px 0 18px; color: var(--accent-readable); font-size: 11px; font-weight: 700; letter-spacing: .1em; line-height: 1.5; text-transform: uppercase; }
+.page h1 { margin: 0 0 20px; font-family: Georgia, "Times New Roman", serif; font-size: clamp(38px, 5vw, 64px); font-weight: 400; letter-spacing: -.04em; line-height: 1.05; }
+.credit { font-size: 13px; line-height: 1.6; }
+.context { margin: 24px 0 36px; padding: 18px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); font-size: 14px; line-height: 1.6; }
+.context p { margin: 0; }
+.context p + p { margin-top: 10px; }
+.article { max-width: 760px; }
+.article figure { margin: 0 0 32px; }
+.article img { display: block; width: 100%; height: auto; }
+.article figcaption { margin-top: 12px; font-size: 12px; line-height: 1.5; }
+.article > p { margin: 0 0 24px; font-family: Georgia, "Times New Roman", serif; font-size: clamp(19px, 1.7vw, 22px); line-height: 1.65; }
+.article h2 { margin: 36px 0 20px; font-family: Georgia, "Times New Roman", serif; font-size: 28px; font-weight: 400; line-height: 1.2; }
+.archiveNote { max-width: 760px; margin-top: 40px; padding-top: 22px; border-top: 1px solid var(--line); }
+.archiveNote h2 { font-size: 13px; text-transform: uppercase; letter-spacing: .08em; }
+.archiveNote p { margin-bottom: 24px; font-size: 13px; line-height: 1.6; }
+@media (max-width: 640px) { .page { width: calc(100% - 36px); padding-top: 30px; } }

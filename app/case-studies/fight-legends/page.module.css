@@ -52,6 +52,39 @@
   line-height: 1.35;
 }
 
+.storyStrands,
+.writingGrid {
+  display: grid;
+  gap: 28px;
+}
+.storyStrands { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.writingGrid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.storyStrands article,
+.writingGrid article { min-width: 0; padding-top: 18px; border-top: 1px solid currentColor; }
+.storyStrands h3,
+.writingGrid h3,
+.worldContext h3 {
+  margin: 0 0 14px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 27px;
+  font-weight: 400;
+  letter-spacing: -.03em;
+  line-height: 1.15;
+}
+.storyStrands p { margin: 0; font-size: 17px; line-height: 1.55; }
+.connection { margin: 28px 0 0; color: #b6c2cf; font-size: 14px; line-height: 1.5; }
+.artifactNote { max-width: 880px; margin: 0 0 28px; font-size: 15px; line-height: 1.55; }
+.writingGrid article { display: flex; flex-direction: column; }
+.writingGrid article > span { margin-bottom: 14px; color: var(--case-accent); font-size: 11px; font-weight: 700; letter-spacing: .08em; line-height: 1.4; text-transform: uppercase; }
+.writingGrid p { margin: 0 0 20px; font-size: 16px; line-height: 1.5; }
+.writingGrid a { margin-top: auto; font-size: 13px; text-decoration: underline; text-underline-offset: 4px; }
+.worldContext { margin: 28px 0 0; padding: 20px 0; border-top: 1px solid var(--case-line); border-bottom: 1px solid var(--case-line); }
+.worldContext h3 { font-size: 22px; margin-bottom: 10px; }
+.worldContext p { margin: 0; font-size: 15px; line-height: 1.5; }
+.showSample { margin: 28px 0 0; max-width: 800px; }
+.showSample video { display: block; width: 100%; aspect-ratio: 16 / 9; background: #111; }
+.showSample figcaption { margin-top: 12px; font-size: 12px; line-height: 1.5; }
+
 .heroEvidence {
   width: 100%;
   margin: 0;
@@ -448,6 +481,7 @@
 .loreCard li span { opacity: .65; }
 
 @media (max-width: 920px) {
+  .storyStrands, .writingGrid { grid-template-columns: 1fr; }
   .contributions { grid-template-columns: 1fr; }
   .systemTrack { grid-template-columns: 1fr; }
   .systemStage { min-height: 0; flex-direction: row; align-items: start; gap: 18px; padding: 22px 18px; border-right: 0; border-bottom: 1px solid #586575; }
