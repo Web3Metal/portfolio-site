@@ -26,8 +26,8 @@ export default function Home() {
       <main>
         <section className={styles.heroBand} id="home">
           <div className={`hero wrap ${styles.homeHero}`}>
-            <p className="eyebrow">Shawn Porter / Content strategy &amp; creative production</p>
-            <h1>I produce shows, interviews, and content systems people can follow.</h1>
+            <p className="eyebrow">SHAWN PORTER</p>
+            <h1>Content strategist and creative producer for technical, creative, and community-driven projects.</h1>
             <figure className={styles.heroPortrait}>
               <Image
                 src="/assets/shawn-hero-portrait.webp"
@@ -40,7 +40,7 @@ export default function Home() {
               />
             </figure>
             <div className="hero-bottom">
-              <p className="lede">From live production and editorial direction to social packaging and visual design, I build the system around the story.</p>
+              <p className="lede">I turn complex projects into content, experiences, and communities people can follow.</p>
               <div className={styles.heroActions}>
                 <Link className="text-link" href="/#selected-content">Content Creation Examples <span>↗</span></Link>
                 <Link className={styles.secondaryLink} href="/case-studies">Case Studies</Link>
