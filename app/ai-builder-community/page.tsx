@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import styles from "./page.module.css";
 import { ContactBlock, PageIntro, SiteFooter, SiteHeader } from "../site-components";
 
@@ -29,7 +30,7 @@ export default function AiBuilderCommunityPage() {
               unoptimized
             />
           </a>
-          <p>An early beta for a single-player or co-op point-and-click detective game set to music from my upcoming album, <em>Do Androids Dream of Electric Sheep?</em> Each song is designed to function as part of the game’s world and soundtrack—exploring how an artist’s music can extend into an interactive experience rather than live separately from it.</p>
+          <p>A fast MVP build for a single-player or co-op point-and-click detective game, connecting my music with the game’s world and soundtrack—exploring how an artist’s music can extend into an interactive experience rather than live separately from it. The playable beta is an early prototype; we’re now building the full adventure from scratch.</p>
           <div className={styles.cardFooter}>
             <p><strong>Context:</strong> Winner, Camp AI Show challenge</p>
             <a className="text-link" href="https://replicant-case-01.r3plic4nt.chatgpt.site/" target="_blank" rel="noopener noreferrer">Play the beta <span aria-hidden="true">↗</span></a>
@@ -57,6 +58,7 @@ export default function AiBuilderCommunityPage() {
         </article>
       </div>
     </section>
+    <div className="wrap"><Link className="text-link" href="/gaming-interactive">Gaming &amp; Interactive work <span>↗</span></Link></div>
     <ContactBlock compact />
   </main><SiteFooter /></>;
 }

@@ -136,6 +136,7 @@ const routePaths = new Set([
   "/case-studies",
   "/writing",
   "/ai-builder-community",
+  "/gaming-interactive",
   "/about",
   "/resume",
   "/contact",
@@ -335,6 +336,18 @@ test("reclassified case-study URLs redirect to their appropriate destinations", 
       assert.equal(response.headers.get("location"), destination);
     });
   }
+});
+
+test("gaming collection curates canonical work without expanding primary navigation", async () => {
+  const { html } = await page("/gaming-interactive");
+  for (const title of ["Fight Legends", "The Last Rehearsal", "r3plic4nt.com"]) assert.ok(html.includes(title));
+  for (const href of ["/case-studies/fight-legends", "/content/fight-legends/introducing-nix", "/ai-builder-community#last-rehearsal-heading", "/ai-builder-community#artist-site-heading"]) assert.ok(html.includes(`href="${href}"`));
+  assert.ok(html.includes("fast MVP build"));
+  assert.ok(html.includes("full adventure from scratch"));
+  assert.ok(!html.includes("upcoming album"));
+  assert.ok(!navItems.some(([, href]) => href === "/gaming-interactive"));
+  for (const route of ["/", "/about", "/case-studies/fight-legends", "/ai-builder-community"]) assert.ok((await page(route)).html.includes('href="/gaming-interactive"'));
+  assert.ok(!(await page("/ai-builder-community")).html.includes("upcoming album"));
 });
 
 test("Shows & Video lane renders its relevant work", async () => {

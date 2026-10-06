@@ -67,6 +67,8 @@ export default function Home() {
           </div>
         </section>
 
+        <div className={styles.sectionWrap}><Link className="text-link" href="/gaming-interactive">Gaming &amp; Interactive work <span>↗</span></Link></div>
+
         <section className={styles.caseSection} aria-labelledby="case-studies">
           <div className={styles.sectionWrap}>
             <header className={styles.sectionHeader}>
