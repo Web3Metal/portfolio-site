@@ -268,6 +268,35 @@ test("homepage renders the approved positioning and section order", async () => 
   assert.doesNotMatch(html, /codex-preview|react-loading-skeleton|Your site is taking shape/);
 });
 
+test("homepage case-study cards guide selection by work focus without a metric strip", async () => {
+  const { html } = await page("/");
+  const section = html.match(/<section\b[^>]*aria-labelledby="case-studies"[^>]*>([\s\S]*?)<\/section>/)?.[1];
+  assert.ok(section, "homepage should include the case-study selection section");
+  assert.ok(section.includes("Choose a project by the kind of work you want to see in depth."));
+  const focuses = [
+    "Building developer activation funnels that connect outreach, programs, and follow-up.",
+    "Creating recurring artist-submission, discovery, and recognition loops for a niche community.",
+    "Helping shape a game’s world, character lore, and player-facing storytelling.",
+    "Operationalizing long-form interviews into reliable podcast, video, and social publishing.",
+  ];
+  const cards = [...section.matchAll(/<a\b[^>]*href="\/case-studies\/([^"]+)"[^>]*>([\s\S]*?)<\/a>/g)];
+  assert.equal(cards.length, 4);
+  for (const [index, item] of caseStudies.entries()) {
+    assert.equal(cards[index][1], item.slug);
+    assert.ok(cards[index][2].includes(item.title.replaceAll("&", "&amp;")));
+    assert.ok(cards[index][2].includes(item.role.replaceAll("&", "&amp;")));
+    assert.ok(cards[index][2].includes(focuses[index]));
+  }
+  assert.doesNotMatch(section, /25%|200K\+|35%/);
+  for (const [route, metric] of [
+    ["/case-studies/fight-legends", "25%"],
+    ["/case-studies/cyber-metal-radio", "200,000+"],
+    ["/case-studies/edge-of-company", "35%"],
+  ]) {
+    assert.ok((await page(route)).html.includes(metric), `${route} should retain its contextual metric`);
+  }
+});
+
 test("Fight Legends connects narrative authorship and show production with attributed evidence", async () => {
   const { html } = await page("/case-studies/fight-legends");
   const headings = [...html.matchAll(/<h2\b[^>]*>(.*?)<\/h2>/g)].map((match) => match[1]);

@@ -5,17 +5,18 @@ import { ContactBlock, SiteFooter, SiteHeader } from "./site-components";
 import { caseStudies } from "./site-data";
 import { homepageContent } from "./content-data";
 
-const proofPoints = [
-  ["25%", "YouTube subscriber growth for Fight Legends"],
-  ["200K+", "listens for Cyber Metal Radio"],
-  ["35%", "follower growth at Edge of Company"],
-] as const;
+const caseStudyFocus = {
+  "ava-labs": "Building developer activation funnels that connect outreach, programs, and follow-up.",
+  "cyber-metal-radio": "Creating recurring artist-submission, discovery, and recognition loops for a niche community.",
+  "fight-legends": "Helping shape a game’s world, character lore, and player-facing storytelling.",
+  "edge-of-company": "Operationalizing long-form interviews into reliable podcast, video, and social publishing.",
+} satisfies Record<(typeof caseStudies)[number]["slug"], string>;
 
 
 
 function ContentMedia({ item, priority = false }: { item: (typeof homepageContent)[number]; priority?: boolean }) {
   if (item.media.type === "video") return <video controls playsInline preload={priority ? "auto" : "metadata"} poster={"poster" in item.media ? item.media.poster : undefined} aria-label={item.media.alt}><source src={item.media.src} type="video/mp4" /></video>;
-  return <Image src={item.media.src} alt={item.media.alt} width={item.media.width} height={item.media.height} sizes="(max-width: 720px) calc(100vw - 36px), (max-width: 1080px) 50vw, 42vw" unoptimized priority={priority} />;
+  return <Image src={item.media.src} alt={item.media.alt} width={item.media.width} height={item.media.height} sizes="(max-width: 720px) calc(100vw - 36px), (max-width: 1080px) 50vw, 42vw" style={item.slug === "ai-builder-community" ? { objectFit: "contain" } : undefined} unoptimized priority={priority} />;
 }
 
 export default function Home() {
@@ -73,11 +74,10 @@ export default function Home() {
           <div className={styles.sectionWrap}>
             <header className={styles.sectionHeader}>
               <div><p>Case studies</p><h2 id="case-studies">Selected case studies</h2></div>
-              <p>Deeper looks at the strategy, systems, and results behind selected projects.</p>
+              <p>Choose a project by the kind of work you want to see in depth.</p>
             </header>
-            <div className={styles.proofGrid}>{proofPoints.map(([value, label]) => <article key={value}><strong>{value}</strong><span>{label}</span></article>)}</div>
             <div className={styles.caseRail}>
-              {caseStudies.slice(0, 4).map((item) => <Link href={`/case-studies/${item.slug}`} key={item.slug}><strong>{item.title}</strong><small>{item.role}</small><b aria-hidden="true">↗</b></Link>)}
+              {caseStudies.slice(0, 4).map((item) => <Link href={`/case-studies/${item.slug}`} key={item.slug}><strong>{item.title}</strong><small>{item.role}</small><p className={styles.caseFocus}>{caseStudyFocus[item.slug]}</p><b aria-hidden="true">↗</b></Link>)}
             </div>
             <div className={styles.sectionCta}><Link href="/case-studies">View all case studies <span>↗</span></Link></div>
           </div>
