@@ -10,11 +10,12 @@ export const workGroups = [
   ] },
 ] as const;
 
+// Explicitly curated: one primary item per project or asset family.
+// Different-artifact exceptions require Shawn's approval; never auto-fill gaps.
 export const galleryItems = [
   { id: "artist-site", title: "r3plic4nt.com", descriptor: "Artist site · Creative & Visual Direction", image: "/assets/r3plic4nt-site-preview.jpg", alt: "r3plic4nt artist site’s industrial visual world", width: 1440, height: 900, href: "https://r3plic4nt.com/", action: "Visit live site", external: true },
   { id: "last-rehearsal", title: "The Last Rehearsal", descriptor: "Interactive game-story prototype · Early beta", image: "/assets/last-rehearsal-beta.png", alt: "The Last Rehearsal beta rehearsal room and case invitation", width: 679, height: 293, href: "https://replicant-case-01.r3plic4nt.chatgpt.site/", action: "Play external beta", external: true },
   { id: "edge-toonstar", title: "Edge of NFT · Toonstar", descriptor: "Custom episode thumbnail", image: "/assets/edge-of-company/edge-nft-toonstar.png", alt: "Edge of NFT Toonstar episode thumbnail", width: 1280, height: 720, href: "/assets/edge-of-company/edge-nft-toonstar.png", action: "View image", external: false },
   { id: "dadabots-prodigy", title: "DADABOTS · Prodigy vs NIN", descriptor: "Short-form edit & overlay", image: "/assets/web3-metal/dadabots-short-02-clean.png", alt: "DADABOTS Prodigy versus NIN short-form preview", width: 1080, height: 1920, href: "/assets/web3-metal/dadabots-prodigy-vs-nin.mp4", action: "Watch clip", external: false },
   { id: "fight-character-edit", title: "Fight Legends · Character-development edit", descriptor: "Motion/video edit · Unimplemented character concept", image: "/assets/fight-legends/character-development-edit-poster.jpg", alt: "Artist-created character model shown in the Fight Legends development edit", width: 1810, height: 1020, href: "/assets/fight-legends/character-development-edit.mp4", video: "/assets/fight-legends/character-development-edit.mp4", action: "Watch video", external: false },
-  { id: "dadabots-atari", title: "DADABOTS · Atari vs Aphex Twin", descriptor: "Short-form edit & overlay", image: "/assets/web3-metal/dadabots-short-01-clean.png", alt: "DADABOTS Atari Teenage Riot versus Aphex Twin preview", width: 1080, height: 1920, href: "/assets/web3-metal/dadabots-atari-vs-aphex.mp4", action: "Watch clip", external: false },
 ] as const;
