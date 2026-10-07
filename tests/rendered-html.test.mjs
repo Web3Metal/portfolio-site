@@ -7,6 +7,7 @@ import { navItems, caseStudies } from "../app/site-data.ts";
 import { contentLanes, featuredContent, homepageContent } from "../app/content-data.ts";
 import { fightLegendsSamples } from "../app/content/fight-legends/samples.ts";
 import { galleryItems, workGroups } from "../app/portfolio-data.ts";
+import { waveWarzVideos } from "../app/content/wave-warz/data.ts";
 
 const projectRoot = resolve(fileURLToPath(new URL("..", import.meta.url)));
 const builtRoot = resolve(projectRoot, "dist/client");
@@ -138,6 +139,7 @@ const routePaths = new Set([
   "/writing",
   "/ai-builder-community",
   "/gaming-interactive",
+  "/content/wave-warz",
   "/about",
   "/resume",
   "/contact",
@@ -151,6 +153,34 @@ const routePaths = new Set([
   ...fightLegendsSamples.map((sample) => `/content/fight-legends/${sample.slug}`),
 ]);
 routePaths.delete(null);
+
+test("homepage Gallery has its own composition without changing full Gallery playback", async () => {
+  const { html } = await page("/");
+  assert.equal([...html.matchAll(/data-home-gallery-item=/g)].length, 6);
+  assert.match(html, /data-gallery-column="2"[\s\S]*data-home-gallery-item="last-rehearsal"[\s\S]*data-home-gallery-item="dadabots-prodigy"/);
+  const fightCard = html.match(/data-home-gallery-item="fight-character-edit"([\s\S]*?)data-gallery-column="2"/)?.[1];
+  assert.ok(fightCard);
+  assert.match(fightCard, /<video[^>]*loop=""[^>]*muted=""[^>]*playsInline=""/i);
+  assert.doesNotMatch(fightCard, /<video[^>]*controls/i);
+  assert.ok(fightCard.includes('/assets/fight-legends/character-development-edit.mp4'));
+  const fullGallery = (await page("/content")).html;
+  assert.doesNotMatch(fullGallery, /data-home-gallery-item/);
+  assert.match(fullGallery, /<video[^>]*controls=""/i);
+});
+
+test("Wave Warz is one curated collection with five on-demand recordings", async () => {
+  assert.equal(galleryItems.filter(item => item.id === "wave-warz").length, 1);
+  assert.equal(waveWarzVideos.length, 5);
+  const { html, response } = await page("/content/wave-warz");
+  assert.equal(response.status, 200);
+  assert.match(html, /I designed the OBS presentation for my camera feed/);
+  assert.match(html, /Gotta Catch ’Em All Bodies/);
+  assert.doesNotMatch(html, /<video\b|<source\b/);
+  for (const item of waveWarzVideos) {
+    assert.ok(html.includes(item.title), `collection includes ${item.title}`);
+    assert.ok(html.includes(`Play ${item.title}`), `recording loads only on request: ${item.title}`);
+  }
+});
 
 test("every intended app and portfolio destination renders HTML", async (t) => {
   for (const path of [...routePaths].sort()) {
@@ -217,7 +247,8 @@ test("local media references exist in both public source and built output", asyn
     if ("poster" in item.media) addReference(item.media.poster);
   }
   for (const item of caseStudies) addReference(item.image);
-  for (const item of galleryItems) { addReference(item.image); addReference(item.href); }
+  for (const item of galleryItems) { addReference(item.image); addReference(item.href); if ("preview" in item) addReference(item.preview); }
+  for (const item of waveWarzVideos) { addReference(`/assets/wave-warz/${item.slug}.mp4`); addReference(`/assets/wave-warz/${item.slug}-poster.jpg`); }
   for (const group of workGroups) for (const item of group.items) addReference(item.image);
 
   for (const sourcePath of [...routePaths].sort()) {

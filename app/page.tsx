@@ -3,7 +3,7 @@ import Link from "next/link";
 import styles from "./homepage.module.css";
 import { ContactBlock, SiteFooter, SiteHeader } from "./site-components";
 import { workGroups } from "./portfolio-data";
-import { GalleryGrid } from "./gallery-grid";
+import { HomepageGallery } from "./homepage-gallery";
 import portfolio from "./portfolio.module.css";
 import { HeroShowPreview } from "./hero-show-preview";
 
@@ -44,7 +44,7 @@ export default function Home() {
           <div className={portfolio.wrap}>
             <span id="selected-content" className={portfolio.anchor} />
             <header className={portfolio.heading}><h2 id="gallery">Gallery</h2><p>Selected artifacts and creative projects. See the work itself.</p></header>
-            <GalleryGrid limit={6} />
+            <HomepageGallery />
             <div className={portfolio.more}><Link href="/content">See all gallery →</Link><Link href="/gaming-interactive">Gaming &amp; Interactive collection →</Link></div>
           </div>
         </section>

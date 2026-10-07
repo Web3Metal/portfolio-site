@@ -2,9 +2,10 @@ import Image from "next/image";
 import { galleryItems } from "./portfolio-data";
 import styles from "./portfolio.module.css";
 import VideoPlayer from "./content/video-player";
+import { WaveWarzPreview } from "./wave-warz-preview";
 
 export function GalleryGrid({ limit }: { limit?: number }) {
-  return <div className={styles.galleryGrid}>{galleryItems.slice(0, limit).map(item => "video" in item ? (
+  return <div className={styles.galleryGrid}>{galleryItems.slice(0, limit).map(item => "preview" in item ? <WaveWarzPreview key={item.id} /> : "video" in item ? (
     <article className={styles.galleryCard} key={item.id}>
       <div className={styles.galleryImage}><VideoPlayer controls playsInline preload="none" poster={item.image} width={item.width} height={item.height} aria-label={item.title}><source src={item.video} type="video/mp4" /></VideoPlayer></div>
       <div className={styles.galleryCaption}><h3>{item.title}</h3><p>{item.descriptor}</p><a href={item.href}>{item.action} →</a></div>
