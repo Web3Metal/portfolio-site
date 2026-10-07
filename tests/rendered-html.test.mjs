@@ -6,6 +6,7 @@ import test from "node:test";
 import { navItems, caseStudies } from "../app/site-data.ts";
 import { contentLanes, featuredContent, homepageContent } from "../app/content-data.ts";
 import { fightLegendsSamples } from "../app/content/fight-legends/samples.ts";
+import { galleryItems, workGroups } from "../app/portfolio-data.ts";
 
 const projectRoot = resolve(fileURLToPath(new URL("..", import.meta.url)));
 const builtRoot = resolve(projectRoot, "dist/client");
@@ -216,6 +217,8 @@ test("local media references exist in both public source and built output", asyn
     if ("poster" in item.media) addReference(item.media.poster);
   }
   for (const item of caseStudies) addReference(item.image);
+  for (const item of galleryItems) { addReference(item.image); addReference(item.href); }
+  for (const group of workGroups) for (const item of group.items) addReference(item.image);
 
   for (const sourcePath of [...routePaths].sort()) {
     const { response, html } = await page(sourcePath);
@@ -257,19 +260,21 @@ test("résumé page links to a real downloadable PDF served from the build", asy
 test("homepage renders the approved positioning and section order", async () => {
   const { response, html } = await page("/");
   assert.equal(response.status, 200);
-  assert.match(html, /Content strategy, creative production, and community engagement\./);
+  assert.match(html, /Content strategy &amp; creative production\./);
   assert.match(html, /I develop the content, programming, and activation systems that help ambitious projects earn attention, participation, and momentum\./);
   assert.doesNotMatch(html, /I turn complex projects into content, experiences/);
   assert.doesNotMatch(html, /From live production and editorial direction/);
   const hero = html.match(/<section\b[^>]*id="home"[^>]*>([\s\S]*?)<\/section>/)?.[1];
   assert.ok(hero, "homepage should include its compact hero");
   assert.doesNotMatch(hero, /shawn-hero-portrait/);
-  assert.match(hero, /View selected work/);
-  assert.match(hero, /Explore content portfolio/);
+  assert.match(hero, /Explore Community Growth &amp; Activation/);
+  assert.match(hero, /View Content &amp; Creative Work/);
+  assert.match(hero, /href="\/#community-growth-activation"/);
+  assert.match(hero, /href="\/#content-creative-work"/);
   assert.doesNotMatch(hero, /Fight Legends · Development show production|hero-show-clean-poster/);
   assert.match(hero, /Pause background animation/);
   assert.doesNotMatch(hero, /<video\b|Pause show preview|Play show preview/);
-  const sections = ['id="selected-content">Content Creation', 'id="case-studies">Selected case studies', 'id="contact"'];
+  const sections = ['id="work"', 'id="gallery"', 'id="contact"'];
   let cursor = -1;
   for (const section of sections) {
     const next = html.indexOf(section);
@@ -279,25 +284,19 @@ test("homepage renders the approved positioning and section order", async () => 
   assert.doesNotMatch(html, /codex-preview|react-loading-skeleton|Your site is taking shape/);
 });
 
-test("homepage case-study cards guide selection by work focus without a metric strip", async () => {
+test("homepage Work groups lead with accomplished work and keep outcomes in case studies", async () => {
   const { html } = await page("/");
-  const section = html.match(/<section\b[^>]*aria-labelledby="case-studies"[^>]*>([\s\S]*?)<\/section>/)?.[1];
-  assert.ok(section, "homepage should include the case-study selection section");
-  assert.ok(section.includes("Choose a project by the kind of work you want to see in depth."));
-  const focuses = [
-    "Building developer activation funnels that connect outreach, programs, and follow-up.",
-    "Creating recurring artist-submission, discovery, and recognition loops for a niche community.",
-    "Helping shape a game’s world, character lore, and player-facing storytelling.",
-    "Operationalizing long-form interviews into reliable podcast, video, and social publishing.",
-  ];
+  const section = html.slice(html.indexOf('aria-labelledby="work"'), html.indexOf('aria-labelledby="gallery"'));
+  assert.ok(section.includes("Professional projects."));
   const cards = [...section.matchAll(/<a\b[^>]*href="\/case-studies\/([^"]+)"[^>]*>([\s\S]*?)<\/a>/g)];
   assert.equal(cards.length, 4);
-  for (const [index, item] of caseStudies.entries()) {
+  for (const [index, item] of workGroups.flatMap(group => [...group.items]).entries()) {
     assert.equal(cards[index][1], item.slug);
     assert.ok(cards[index][2].includes(item.title.replaceAll("&", "&amp;")));
-    assert.ok(cards[index][2].includes(item.role.replaceAll("&", "&amp;")));
-    assert.ok(cards[index][2].includes(focuses[index]));
+    assert.ok(cards[index][2].includes(item.context.replaceAll("&", "&amp;")));
+    assert.ok(cards[index][2].includes(item.image));
   }
+  for (const group of workGroups) assert.ok(section.includes(`id="${group.id}"`));
   assert.doesNotMatch(section, /25%|200K\+|35%/);
   for (const [route, metric] of [
     ["/case-studies/fight-legends", "25%"],
@@ -358,10 +357,13 @@ test("case-study index renders its current entries in order", async () => {
   }
 });
 
-test("the retired content archive redirects to the homepage proof section", async () => {
-  const response = await render("/content");
-  assert.equal(response.status, 307);
-  assert.equal(response.headers.get("location"), "http://localhost/#selected-content");
+test("Gallery is a mixed artifact collection with explicit external destinations", async () => {
+  const { response, html } = await page("/content");
+  assert.equal(response.status, 200);
+  for (const item of galleryItems) assert.ok(html.includes(item.href.replaceAll("&", "&amp;")));
+  assert.ok(html.includes("External site"));
+  assert.doesNotMatch(html, /href="\/writing"|href="\/content\/writing"/);
+  assert.deepEqual(navItems.map(([label]) => label), ["Home", "Work", "Gallery", "About", "Résumé", "Contact"]);
 });
 
 test("reclassified case-study URLs redirect to their appropriate destinations", async (t) => {
@@ -390,10 +392,11 @@ test("gaming collection curates canonical work without expanding primary navigat
   assert.ok(!(await page("/ai-builder-community")).html.includes("upcoming album"));
 });
 
-test("Shows & Video lane renders its relevant work", async () => {
-  const { response, html } = await page("/content/podcast-show-overlay-design");
-  assert.equal(response.status, 200);
-  assert.ok(html.includes("Fight Legends Dev Update"));
-  assert.ok(html.includes("DADABOTS Interview"));
-  assert.match(html, /My contribution/);
+test("legacy visual and video URLs preserve access through the unified Gallery", async () => {
+  for (const route of ["/content/podcast-show-overlay-design", "/content/short-form", "/content/graphic-design"]) {
+    const { response, html } = await page(route);
+    assert.equal(response.status, 200);
+    assert.ok(html.includes("The Last Rehearsal"));
+    assert.doesNotMatch(html, /Explore content lanes/);
+  }
 });

@@ -145,16 +145,16 @@ nav a:hover, nav a:focus-visible { border-color:var(--ink); }
 .button { display:inline-flex; padding:15px 22px; background:var(--ink); color:var(--paper); font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:.1em; }
 @media (max-width:900px) {
   .wrap { width:min(100% - 36px, 1380px); }
-  .header-inner { min-height:68px; align-items:center; padding:0; }
+  .site-header .header-inner { width:calc(100% - 36px); max-width:none; min-width:0; min-height:68px; display:grid; grid-template-columns:44px minmax(0, 1fr); align-items:center; gap:16px; padding:0; margin-inline:auto; }
   .brand { min-width:44px; min-height:44px; }
   .brand small { display:none; }
   .desktop-nav { display:none; }
-  .mobile-nav { position:relative; display:block; }
-  .mobile-nav summary { min-width:72px; min-height:44px; display:flex; align-items:center; justify-content:flex-end; cursor:pointer; font-size:11px; font-weight:700; letter-spacing:.1em; list-style:none; text-transform:uppercase; }
+  .mobile-nav { position:relative; display:block; min-width:0; width:88px; justify-self:end; margin:0; }
+  .mobile-nav summary { min-width:88px; min-height:44px; padding:0 10px; display:flex; align-items:center; justify-content:space-between; color:var(--white); border:1px solid #687888; border-radius:4px; cursor:pointer; touch-action:manipulation; font-size:11px; font-weight:700; letter-spacing:.1em; list-style:none; text-transform:uppercase; white-space:nowrap; }
   .mobile-nav summary::-webkit-details-marker { display:none; }
   .mobile-nav summary::after { content:"+"; width:18px; margin-left:10px; color:var(--accent-readable); font-size:18px; text-align:right; }
   .mobile-nav[open] summary::after { content:"−"; }
-  .mobile-nav nav { position:absolute; top:55px; right:0; width:min(310px, calc(100vw - 36px)); padding:12px 18px; display:grid; grid-template-columns:1fr 1fr; gap:0 20px; color:var(--white); background:#24384a; border:1px solid #445264; }
+  .mobile-nav nav { position:absolute; top:55px; right:0; width:min(310px, calc(100vw - 52px)); padding:12px 18px; display:grid; grid-template-columns:minmax(0, 1fr) minmax(0, 1fr); gap:0 20px; color:var(--white); background:#24384a; border:1px solid #445264; }
   .mobile-nav nav a { min-height:48px; display:flex; align-items:center; border-bottom:1px solid #445264; font-size:10px; }
   .mobile-nav nav a:nth-last-child(-n+2) { border-bottom:0; }
   .hero { min-height:auto; }

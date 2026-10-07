@@ -1,0 +1,22 @@
+// Curated public proof; detailed attribution and outcomes stay in case studies.
+export const workGroups = [
+  { id: "community-growth-activation", title: "Community Growth & Activation", items: [
+    { slug: "ava-labs", title: "Building developer activation pathways from outreach to participation.", context: "Ava Labs · Developer Engagement Manager", image: "/assets/ava-elevate-developer-series.png", alt: "Elevate Developer Series program artwork", width: 1014, height: 566 },
+    { slug: "cyber-metal-radio", title: "Creating recurring discovery and participation loops for a niche artist community.", context: "Web3 Metal / Cyber Metal Radio · Founder & Co-Founder", image: "/assets/cyber-metal-radio/station-dashboard.png", alt: "Cyber Metal Radio station and community programming interface", width: 1892, height: 917 },
+  ] },
+  { id: "content-creative-work", title: "Content Strategy & Creative Production", items: [
+    { slug: "fight-legends", title: "Turning game development into a host-led content and community rhythm.", context: "Fight Legends · Community Manager & Marketing Lead", image: "/assets/fight-legends/dev-update-22-poster.png", alt: "Fight Legends development show featuring two presenters", width: 1280, height: 720 },
+    { slug: "edge-of-company", title: "Extending long-form interviews through visual packaging and social distribution.", context: "Edge of Company · Podcast & Community Producer", image: "/assets/future-of-storytelling.jpeg", alt: "Edge of NFT Future of Storytelling episode thumbnail", width: 1280, height: 720 },
+  ] },
+] as const;
+
+export const galleryItems = [
+  { id: "artist-site", title: "r3plic4nt.com", descriptor: "Artist site · Creative & Visual Direction", image: "/assets/r3plic4nt-site-preview.jpg", alt: "r3plic4nt artist site’s industrial visual world", width: 1440, height: 900, href: "https://r3plic4nt.com/", action: "Visit live site", external: true },
+  { id: "last-rehearsal", title: "The Last Rehearsal", descriptor: "Interactive game-story prototype · Early beta", image: "/assets/last-rehearsal-beta.png", alt: "The Last Rehearsal beta rehearsal room and case invitation", width: 679, height: 293, href: "https://replicant-case-01.r3plic4nt.chatgpt.site/", action: "Play external beta", external: true },
+  { id: "edge-toonstar", title: "Edge of NFT · Toonstar", descriptor: "Custom episode thumbnail", image: "/assets/edge-of-company/edge-nft-toonstar.png", alt: "Edge of NFT Toonstar episode thumbnail", width: 1280, height: 720, href: "/assets/edge-of-company/edge-nft-toonstar.png", action: "View image", external: false },
+  { id: "edge-veecon", title: "Edge of NFT · VeeCon", descriptor: "Event-led episode packaging", image: "/assets/edge-of-company/edge-nft-veecon.png", alt: "Edge of NFT VeeCon episode thumbnail", width: 1280, height: 720, href: "/assets/edge-of-company/edge-nft-veecon.png", action: "View image", external: false },
+  { id: "fight-show", title: "Fight Legends", descriptor: "Development show · Format & visual direction", image: "/assets/fight-legends/dev-update-22-poster.png", alt: "Fight Legends episode 22 show frame with two presenters", width: 1280, height: 720, href: "/case-studies/fight-legends#assets-heading", action: "View show evidence", external: false },
+  { id: "dadabots-prodigy", title: "DADABOTS · Prodigy vs NIN", descriptor: "Short-form edit & overlay", image: "/assets/web3-metal/dadabots-short-02-clean.png", alt: "DADABOTS Prodigy versus NIN short-form preview", width: 1080, height: 1920, href: "/assets/web3-metal/dadabots-prodigy-vs-nin.mp4", action: "Watch clip", external: false },
+  { id: "edge-storytelling", title: "Edge of NFT · Future of Storytelling", descriptor: "Custom episode thumbnail", image: "/assets/future-of-storytelling.jpeg", alt: "Future of Storytelling episode artwork", width: 1280, height: 720, href: "/assets/future-of-storytelling.jpeg", action: "View image", external: false },
+  { id: "dadabots-atari", title: "DADABOTS · Atari vs Aphex Twin", descriptor: "Short-form edit & overlay", image: "/assets/web3-metal/dadabots-short-01-clean.png", alt: "DADABOTS Atari Teenage Riot versus Aphex Twin preview", width: 1080, height: 1920, href: "/assets/web3-metal/dadabots-atari-vs-aphex.mp4", action: "Watch clip", external: false },
+] as const;

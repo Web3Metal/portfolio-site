@@ -1,10 +1,9 @@
 export const navItems = [
   ["Home", "/"],
-  ["Content Creation", "/#selected-content"],
-  ["Case Studies", "/case-studies"],
-  ["AI Builder & Community", "/ai-builder-community"],
+  ["Work", "/#work"],
+  ["Gallery", "/content"],
   ["About", "/about"],
-  ["Resume", "/resume"],
+  ["Résumé", "/resume"],
   ["Contact", "/contact"],
 ] as const;
 
