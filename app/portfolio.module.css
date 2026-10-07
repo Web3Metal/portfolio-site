@@ -18,15 +18,16 @@
 .workCard:hover h4, .galleryCard:hover h3 { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 5px; }
 .gallery { padding: 64px 0 72px; color: var(--ink); background: var(--paper); }
 .gallery .heading p { color: #5b6775; }
-.galleryGrid { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); align-items: start; gap: 32px 24px; }
-.galleryCard { display: block; min-width: 0; grid-column: span 2; }
-.galleryWide { grid-column: span 3; }
-.galleryTall { grid-row: span 2; }
+.galleryGrid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); align-items: start; gap: 32px 24px; }
+.galleryCard { display: block; min-width: 0; grid-column: span 4; }
+.galleryWide { grid-column: span 6; }
+.galleryTall { grid-column: span 2; }
 .galleryImage { overflow: hidden; }
-.galleryImage img { display: block; width: 100%; height: auto; }
+.galleryImage img, .galleryImage video { display: block; width: 100%; height: auto; }
+.galleryTall .galleryCaption h3 { font-size: 20px; }
 .galleryCaption h3 { margin: 14px 0 6px; font-family: Georgia, serif; font-size: 24px; font-weight: 400; line-height: 1.1; letter-spacing: -.02em; }
 .galleryCaption p { margin: 0; color: #5b6775; font-size: 12px; line-height: 1.4; }
-.galleryCaption span { display: block; margin-top: 10px; font-size: 11px; color: var(--accent-readable); }
+.galleryCaption span, .galleryCaption > a { display: block; margin-top: 10px; font-size: 11px; color: var(--accent-readable); }
 .galleryCaption small { font-size: inherit; }
 .more { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 18px; margin-top: 32px; font-size: 12px; }
 .more a { min-height: 44px; padding: 12px 0; border-bottom: 1px solid currentColor; }
@@ -35,6 +36,7 @@
   .galleryGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .galleryCard { grid-column: span 1; }
   .galleryWide { grid-column: 1 / -1; }
+  .galleryTall { width: min(100%, 210px); justify-self: center; }
 }
 @media (max-width: 620px) {
   .wrap { width: calc(100% - 36px); }
