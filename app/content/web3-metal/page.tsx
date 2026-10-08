@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 };
 
 export default function Web3MetalCollection() {
-  return <><SiteHeader /><main className={shared.collection}><div className={shared.wrap}>
+  return <><SiteHeader /><main className={shared.collection}><div className={styles.wrap}>
     <Link className={shared.back} href="/content">← Gallery</Link>
     <header className={shared.intro}>
       <h1>Web3 Metal · Music and community publishing</h1>
