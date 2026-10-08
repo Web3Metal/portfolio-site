@@ -6,7 +6,7 @@ import { ContactBlock, SiteFooter, SiteHeader } from "../../site-components";
 import { contentLanes, featuredContent } from "../../content-data";
 import styles from "../content.module.css";
 import VideoPlayer from "../video-player";
-import GalleryPage from "../page";
+import { LegacyGalleryPage as GalleryPage } from "../../gallery-grid";
 
 type LanePageProps = { params: Promise<{ lane: string }> };
 

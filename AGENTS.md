@@ -14,6 +14,7 @@ This is primarily a professional portfolio and job-search asset. The central pos
 ## Scope and assets
 
 - Keep a contained request contained; do not redesign unrelated sections or restructure content without approval.
+- The homepage Gallery is the canonical public Gallery. Do not build a second full-Gallery index unless explicitly requested. Evaluate new representatives for the homepage first; related depth belongs in niche collections.
 - Preserve existing assets. Do not delete, replace, overwrite, or publish media-library/reference files without an explicit scoped request. Prefer adding a separately named approved derivative over destructive changes.
 - Use real portfolio artifacts when available and approved; do not substitute generic representations for real work without a reason.
 - Verify responsive behavior at desktop and mobile sizes for visual changes.

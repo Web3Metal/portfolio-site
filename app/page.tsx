@@ -45,7 +45,7 @@ export default function Home() {
             <span id="selected-content" className={portfolio.anchor} />
             <header className={portfolio.heading}><h2 id="gallery">Gallery</h2><p>Selected artifacts and creative projects. See the work itself.</p></header>
             <HomepageGallery />
-            <div className={portfolio.more}><Link href="/content">See all gallery →</Link><Link href="/gaming-interactive">Gaming &amp; Interactive collection →</Link></div>
+            <div className={portfolio.more}><Link href="/gaming-interactive">Gaming &amp; Interactive collection →</Link></div>
           </div>
         </section>
 

@@ -158,7 +158,7 @@ const routePaths = new Set([
 ]);
 routePaths.delete(null);
 
-test("homepage Gallery has its own composition without changing full Gallery playback", async () => {
+test("homepage is the canonical six-item Gallery with an Art Basel featured thumbnail", async () => {
   const { html } = await page("/");
   assert.equal([...html.matchAll(/data-home-gallery-item=/g)].length, 6);
   assert.match(html, /data-gallery-column="2"[\s\S]*data-home-gallery-item="last-rehearsal"[\s\S]*data-home-gallery-item="dadabots-prodigy"/);
@@ -167,9 +167,14 @@ test("homepage Gallery has its own composition without changing full Gallery pla
   assert.match(fightCard, /<video[^>]*loop=""[^>]*muted=""[^>]*playsInline=""/i);
   assert.doesNotMatch(fightCard, /<video[^>]*controls/i);
   assert.ok(fightCard.includes('/assets/fight-legends/character-development-edit.mp4'));
-  const fullGallery = (await page("/content")).html;
-  assert.doesNotMatch(fullGallery, /data-home-gallery-item/);
-  assert.match(fullGallery, /<video[^>]*controls=""/i);
+  assert.doesNotMatch(html, /edge-nft-toonstar\.png|See all gallery/);
+  const edge = galleryItems.find(item => item.id === "edge-art-basel");
+  assert.equal(edge.triptych.length, 3);
+  assert.ok(html.includes(edge.image));
+  for (const panel of edge.triptych.slice(1)) assert.ok(!html.includes(panel.src));
+  const retired = await render("/content");
+  assert.equal(retired.status, 307);
+  assert.equal(retired.headers.get("location"), "http://localhost/#gallery");
 });
 
 test("Wave Warz is one curated collection with five on-demand recordings", async () => {
@@ -202,7 +207,7 @@ test("Web3 Metal has one Gallery entry and manually curated on-demand artifacts"
 });
 
 test("Edge Gallery collection preserves approved visual groups and narrow credits", async () => {
-  const cards = galleryItems.filter(item => item.id === "edge-toonstar");
+  const cards = galleryItems.filter(item => item.id === "edge-art-basel");
   assert.equal(cards.length, 1);
   assert.equal(cards[0].href, "/content/edge-visuals");
   const { html, response } = await page("/content/edge-visuals");
@@ -245,7 +250,12 @@ test("every rendered internal link resolves and every fragment has a target", as
 
   for (const [label, target] of targets) {
     await t.test(label, async () => {
-      const { response, html } = await page(target.pathname);
+      let { response, html } = await page(target.pathname);
+      if (target.pathname === "/content" && response.status === 307) {
+        assert.equal(response.headers.get("location"), "http://localhost/#gallery");
+        ({ response, html } = await page("/"));
+        assert.ok(html.includes('id="gallery"'));
+      }
       assert.equal(response.status, 200, `internal link ${label} should return 200`);
       if (target.hash) {
         const ids = new Set([...html.matchAll(/\bid="([^"]+)"/g)].map((match) => match[1]));
@@ -429,13 +439,14 @@ test("case-study index renders its current entries in order", async () => {
   }
 });
 
-test("Gallery is a mixed artifact collection with explicit external destinations", async () => {
-  const { response, html } = await page("/content");
+test("canonical homepage Gallery has explicit external destinations and navigation", async () => {
+  const { response, html } = await page("/");
   assert.equal(response.status, 200);
   for (const item of galleryItems) assert.ok(html.includes(item.href.replaceAll("&", "&amp;")));
   assert.ok(html.includes("External site"));
   assert.doesNotMatch(html, /href="\/writing"|href="\/content\/writing"/);
   assert.deepEqual(navItems.map(([label]) => label), ["Home", "Work", "Gallery", "About", "Résumé", "Contact"]);
+  assert.equal(navItems.find(([label]) => label === "Gallery")[1], "/#gallery");
 });
 
 test("reclassified case-study URLs redirect to their appropriate destinations", async (t) => {

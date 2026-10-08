@@ -1,7 +1,7 @@
 export const navItems = [
   ["Home", "/"],
   ["Work", "/#work"],
-  ["Gallery", "/content"],
+  ["Gallery", "/#gallery"],
   ["About", "/about"],
   ["Résumé", "/resume"],
   ["Contact", "/contact"],
