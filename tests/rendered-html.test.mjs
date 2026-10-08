@@ -8,6 +8,7 @@ import { contentLanes, featuredContent, homepageContent } from "../app/content-d
 import { fightLegendsSamples } from "../app/content/fight-legends/samples.ts";
 import { galleryItems, workGroups } from "../app/portfolio-data.ts";
 import { waveWarzVideos } from "../app/content/wave-warz/data.ts";
+import { newsletterItem, web3MetalVideos } from "../app/content/web3-metal/data.ts";
 
 const projectRoot = resolve(fileURLToPath(new URL("..", import.meta.url)));
 const builtRoot = resolve(projectRoot, "dist/client");
@@ -140,6 +141,7 @@ const routePaths = new Set([
   "/ai-builder-community",
   "/gaming-interactive",
   "/content/wave-warz",
+  "/content/web3-metal",
   "/about",
   "/resume",
   "/contact",
@@ -180,6 +182,21 @@ test("Wave Warz is one curated collection with five on-demand recordings", async
     assert.ok(html.includes(item.title), `collection includes ${item.title}`);
     assert.ok(html.includes(`Play ${item.title}`), `recording loads only on request: ${item.title}`);
   }
+});
+
+test("Web3 Metal has one Gallery entry and manually curated on-demand artifacts", async () => {
+  const card = galleryItems.filter(item => item.id === "dadabots-prodigy");
+  assert.equal(card.length, 1);
+  assert.equal(card[0].href, "/content/web3-metal");
+  assert.equal(web3MetalVideos.length, 3);
+  const { html, response } = await page("/content/web3-metal");
+  assert.equal(response.status, 200);
+  assert.doesNotMatch(html, /<video\b|<source\b/);
+  for (const video of web3MetalVideos) assert.ok(html.includes(`Play ${video.title}`));
+  assert.ok(html.includes(newsletterItem.title));
+  assert.ok(html.includes(newsletterItem.href));
+  assert.ok(html.includes(newsletterItem.descriptor));
+  assert.doesNotMatch(html, /latest/i);
 });
 
 test("every intended app and portfolio destination renders HTML", async (t) => {
@@ -249,6 +266,8 @@ test("local media references exist in both public source and built output", asyn
   for (const item of caseStudies) addReference(item.image);
   for (const item of galleryItems) { addReference(item.image); addReference(item.href); if ("preview" in item) addReference(item.preview); }
   for (const item of waveWarzVideos) { addReference(`/assets/wave-warz/${item.slug}.mp4`); addReference(`/assets/wave-warz/${item.slug}-poster.jpg`); }
+  for (const item of web3MetalVideos) { addReference(item.src); addReference(item.poster); }
+  addReference(newsletterItem.cover);
   for (const group of workGroups) for (const item of group.items) addReference(item.image);
 
   for (const sourcePath of [...routePaths].sort()) {
