@@ -9,6 +9,7 @@ import { fightLegendsSamples } from "../app/content/fight-legends/samples.ts";
 import { galleryItems, workGroups } from "../app/portfolio-data.ts";
 import { waveWarzVideos } from "../app/content/wave-warz/data.ts";
 import { newsletterItem, web3MetalVideos } from "../app/content/web3-metal/data.ts";
+import { guestReel, artBasel, interviewPresentation, packaging, socialRollout } from "../app/content/edge-visuals/data.ts";
 
 const projectRoot = resolve(fileURLToPath(new URL("..", import.meta.url)));
 const builtRoot = resolve(projectRoot, "dist/client");
@@ -142,6 +143,7 @@ const routePaths = new Set([
   "/gaming-interactive",
   "/content/wave-warz",
   "/content/web3-metal",
+  "/content/edge-visuals",
   "/about",
   "/resume",
   "/contact",
@@ -197,6 +199,24 @@ test("Web3 Metal has one Gallery entry and manually curated on-demand artifacts"
   assert.ok(html.includes(newsletterItem.href));
   assert.ok(html.includes(newsletterItem.descriptor));
   assert.doesNotMatch(html, /latest/i);
+});
+
+test("Edge Gallery collection preserves approved visual groups and narrow credits", async () => {
+  const cards = galleryItems.filter(item => item.id === "edge-toonstar");
+  assert.equal(cards.length, 1);
+  assert.equal(cards[0].href, "/content/edge-visuals");
+  const { html, response } = await page("/content/edge-visuals");
+  assert.equal(response.status, 200);
+  assert.doesNotMatch(html, /<video\b|<source\b|\/case-studies\/edge-of-company/);
+  assert.ok(html.includes('Play All Guest Intro Reel'));
+  assert.ok(html.includes('Show overlay design'));
+  assert.ok(html.includes('Art Basel field-interview series'));
+  assert.ok(html.includes('Interview presentation → social adaptation'));
+  assert.doesNotMatch(html, /edge-nft-toonstar\.png|interview-overlay-guest\.jpg/);
+  assert.equal(interviewPresentation.length, 2);
+  assert.ok(html.indexOf('id="art-basel"') < html.indexOf('id="interview-presentation"'));
+  assert.ok(html.includes('Social rollout'));
+  for (const item of [...artBasel, ...interviewPresentation, ...packaging, ...socialRollout]) assert.ok(html.includes(item.src));
 });
 
 test("every intended app and portfolio destination renders HTML", async (t) => {
@@ -268,6 +288,8 @@ test("local media references exist in both public source and built output", asyn
   for (const item of waveWarzVideos) { addReference(`/assets/wave-warz/${item.slug}.mp4`); addReference(`/assets/wave-warz/${item.slug}-poster.jpg`); }
   for (const item of web3MetalVideos) { addReference(item.src); addReference(item.poster); }
   addReference(newsletterItem.cover);
+  for (const item of [...artBasel, ...interviewPresentation, ...packaging, ...socialRollout]) addReference(item.src);
+  addReference(guestReel.src); addReference(guestReel.poster);
   for (const group of workGroups) for (const item of group.items) addReference(item.image);
 
   for (const sourcePath of [...routePaths].sort()) {
