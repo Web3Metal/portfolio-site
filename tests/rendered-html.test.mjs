@@ -195,7 +195,9 @@ test("Web3 Metal has one Gallery entry and manually curated on-demand artifacts"
   const card = galleryItems.filter(item => item.id === "dadabots-prodigy");
   assert.equal(card.length, 1);
   assert.equal(card[0].href, "/content/web3-metal");
-  assert.equal(web3MetalVideos.length, 3);
+  assert.equal(web3MetalVideos.length, 4);
+  assert.deepEqual(web3MetalVideos.slice(0, 3).map(video => video.id), ["prodigy-vs-nin", "atari-vs-aphex", "suno-mashup"]);
+  assert.equal(web3MetalVideos[2].role, "Concept, production, filming, editing & publishing");
   const { html, response } = await page("/content/web3-metal");
   assert.equal(response.status, 200);
   assert.doesNotMatch(html, /<video\b|<source\b/);

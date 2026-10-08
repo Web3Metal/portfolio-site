@@ -1,6 +1,7 @@
 export const web3MetalVideos = [
   { id: "prodigy-vs-nin", title: "DADABOTS · Prodigy vs NIN", role: "Short-form edit · Overlay design · Publishing", src: "/assets/web3-metal/dadabots-prodigy-vs-nin.mp4", poster: "/assets/web3-metal/dadabots-short-02-clean.png", width: 1080, height: 1920 },
   { id: "atari-vs-aphex", title: "Atari Teenage Riot vs Aphex Twin", role: "Short-form edit · Overlay design · Publishing", src: "/assets/web3-metal/dadabots-atari-vs-aphex.mp4", poster: "/assets/web3-metal/dadabots-short-01-clean.png", width: 1080, height: 1920 },
+  { id: "suno-mashup", title: "Suno Mashup walkthrough", role: "Concept, production, filming, editing & publishing", src: "/assets/web3-metal/suno-mashup-walkthrough-web.mp4", poster: "/assets/web3-metal/suno-mashup-walkthrough-poster.jpg", width: 720, height: 1280 },
   { id: "music-monday", title: "Web3 Metal weekly music / release-preview video", role: "Music / release-preview video", src: "/assets/web3-metal/music-monday-web.mp4", poster: "/assets/web3-metal/music-monday-poster.jpg", width: 1280, height: 720 },
 ] as const;
 

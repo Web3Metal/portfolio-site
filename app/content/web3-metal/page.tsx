@@ -19,11 +19,11 @@ export default function Web3MetalCollection() {
       <h1>Web3 Metal · Music and community publishing</h1>
       <p>Selected video, editorial, and community-publishing artifacts from Web3 Metal.</p>
     </header>
-    <div className={styles.grid}><div className={styles.shorts}>{web3MetalVideos.slice(0, 2).map(video => <section key={video.id} aria-labelledby={video.id}>
+    <div className={styles.grid}><div className={styles.shorts}>{web3MetalVideos.slice(0, 3).map(video => <section key={video.id} aria-labelledby={video.id}>
       <div className={styles.portrait}><ArtifactVideo {...video} /></div>
       <h2 id={video.id}>{video.title}</h2><p className={styles.role}>{video.role}</p>
     </section>)}</div>
-      {web3MetalVideos.slice(2).map(video => <section key={video.id} aria-labelledby={video.id}>
+      {web3MetalVideos.slice(3).map(video => <section key={video.id} aria-labelledby={video.id}>
         <ArtifactVideo {...video} />
         <h2 id={video.id}>{video.title}</h2><p className={styles.role}>{video.role}</p>
       </section>)}
