@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import {
   CaseStudyHero,
   CaseStudyPage,
@@ -47,16 +48,6 @@ const youtubeResults = [
   { value: "193", label: "YouTube subscribers added" },
   { value: "17,800", label: "additional YouTube views" },
   { value: "49.4 hours", label: "YouTube watch time added" },
-];
-
-const assetInventory = [
-  "Branded interview recording or episode clip",
-  "Before-and-after examples of the video presentation",
-  "Short-form social clips",
-  "Podcast and YouTube publishing examples",
-  "Social campaign graphics",
-  "Outer Edge LA interview footage",
-  "Analytics screenshots supporting the growth metrics",
 ];
 
 export default function EdgeOfCompanyCaseStudyPage() {
@@ -119,64 +110,21 @@ export default function EdgeOfCompanyCaseStudyPage() {
         </figure>
       </CaseStudySection>
 
-      <CaseStudySection number="04" title="Selected Work" headingId="assets-heading">
-        <figure className={styles.videoEvidence}>
-          <div className={styles.videoFrame}>
-            <video
-              controls
-              playsInline
-              preload="metadata"
-              aria-describedby="edge-video-caption"
-            >
-              <source
-                src="/assets/interview-short-form-web.mp4"
-                type="video/mp4"
-              />
-              Your browser does not support embedded video. You can open the
-              <a href="/assets/interview-short-form-web.mp4"> short-form interview clip</a> instead.
-            </video>
-          </div>
-          <figcaption id="edge-video-caption">
-            <span>Short-form production</span>
-            <div>
-              <h3>One interview, prepared for social distribution.</h3>
-              <p>A branded vertical edit with speaker identification and platform-ready framing.</p>
-            </div>
-          </figcaption>
-        </figure>
-        <div className={styles.assetLayout}>
-          <div className={styles.assetGallery}>
-            <figure>
-              <Image
-                src="/assets/edge-of-ai-launch.jpeg"
-                alt="Edge of AI podcast launch artwork featuring Ron Levy"
-                width={680}
-                height={383}
-                sizes="(max-width: 800px) 100vw, 50vw"
-                unoptimized
-              />
-              <figcaption><span>A</span>Edge of AI launch</figcaption>
-            </figure>
-            <figure>
-              <Image
-                src="/assets/swoops-episode.jpeg"
-                alt="Edge of NFT episode artwork featuring SWOOPS and David Goldberg"
-                width={680}
-                height={383}
-                sizes="(max-width: 800px) 100vw, 50vw"
-                unoptimized
-              />
-              <figcaption><span>B</span>SWOOPS episode</figcaption>
-            </figure>
-          </div>
-
-          <div className={styles.assetInventory}>
-            <p>Approved asset scope</p>
-            <ol>
-              {assetInventory.map((asset, index) => (
-                <li key={asset}><span>{String.fromCharCode(65 + index)}</span>{asset}</li>
-              ))}
-            </ol>
+      <CaseStudySection number="04" title="Explore the visual work" headingId="assets-heading">
+        <div className={styles.collectionBridge}>
+          <Link href="/content/edge-visuals" aria-label="Browse the Edge visual collection">
+            <Image
+              src="/assets/edge-of-company/art-basel-ed-zipco-gmoney.jpg"
+              alt="Edge of NFT Art Basel thumbnail featuring Ed Zipco and Gmoney"
+              width={766}
+              height={431}
+              sizes="(max-width: 640px) 100vw, 360px"
+              unoptimized
+            />
+          </Link>
+          <div>
+            <p>Episode visual packaging, show overlays, and social adaptations.</p>
+            <Link className={styles.collectionAction} href="/content/edge-visuals">Browse the Edge visual collection →</Link>
           </div>
         </div>
       </CaseStudySection>

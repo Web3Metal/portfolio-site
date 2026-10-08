@@ -91,6 +91,38 @@
   margin: 8px 0 0;
 }
 
+.collectionBridge {
+  display: grid;
+  grid-template-columns: minmax(0, 360px) minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(20px, 3vw, 36px);
+}
+
+.collectionBridge img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.collectionBridge p {
+  max-width: 480px;
+  margin: 0 0 18px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(20px, 2vw, 26px);
+  line-height: 1.3;
+  letter-spacing: -.025em;
+}
+
+.collectionAction {
+  color: var(--case-accent);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+@media (max-width: 640px) {
+  .collectionBridge { grid-template-columns: minmax(0, 1fr); }
+}
+
 .videoEvidence {
   margin: 0 0 28px;
   display: grid;
