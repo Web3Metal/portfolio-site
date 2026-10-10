@@ -7,6 +7,19 @@ import styles from "./page.module.css";
 export const metadata: Metadata = {
   title: "Narrative Writing & Worldbuilding",
   description: "Shawn Porter’s narrative writing for interactive worlds: The Last Rehearsal, Case-Zero, and selected Fight Legends writing.",
+  openGraph: {
+    title: "Shawn Porter — Narrative Writing & Interactive Storytelling",
+    description: "Shawn Porter’s narrative writing for interactive worlds: The Last Rehearsal, Case-Zero, and selected Fight Legends writing.",
+    url: "https://www.shawnsporter.com/narrative",
+    type: "website",
+    images: [{ url: "https://www.shawnsporter.com/social-narrative.png", width: 1200, height: 630, alt: "The Last Rehearsal investigative scene — Shawn Porter’s narrative writing and interactive storytelling portfolio" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Shawn Porter — Narrative Writing & Interactive Storytelling",
+    description: "Shawn Porter’s narrative writing for interactive worlds: The Last Rehearsal, Case-Zero, and selected Fight Legends writing.",
+    images: ["https://www.shawnsporter.com/social-narrative.png"],
+  },
 };
 
 const samples = [

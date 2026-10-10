@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import styles from "./homepage.module.css";
@@ -6,6 +7,23 @@ import { workGroups } from "./portfolio-data";
 import { HomepageGallery } from "./homepage-gallery";
 import portfolio from "./portfolio.module.css";
 import { HeroShowPreview } from "./hero-show-preview";
+
+const sharingDescription = "I develop the content, programming, and activation systems that help ambitious projects earn attention, participation, and momentum.";
+export const metadata: Metadata = {
+  openGraph: {
+    title: "Shawn Porter — Content strategy & creative production",
+    description: sharingDescription,
+    url: "https://www.shawnsporter.com/",
+    type: "website",
+    images: [{ url: "https://www.shawnsporter.com/social-home.png", width: 1200, height: 630, alt: "Shawn Porter — Content strategy & creative production" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Shawn Porter — Content strategy & creative production",
+    description: sharingDescription,
+    images: ["https://www.shawnsporter.com/social-home.png"],
+  },
+};
 
 export default function Home() {
   return (

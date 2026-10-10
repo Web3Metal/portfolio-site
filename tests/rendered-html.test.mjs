@@ -78,6 +78,24 @@ async function serveBuiltAsset(request) {
 
 const pageCache = new Map();
 
+test("homepage and narrative have distinct social-sharing previews", async () => {
+  for (const [route, filename, title] of [
+    ["/", "social-home.png", "Content strategy &amp; creative production"],
+    ["/narrative", "social-narrative.png", "Narrative Writing &amp; Interactive Storytelling"],
+  ]) {
+    const { html } = await page(route);
+    assert.ok(html.includes(title));
+    assert.match(html, new RegExp(`property="og:image" content="https://www\\.shawnsporter\\.com/${filename}"`));
+    assert.match(html, new RegExp(`name="twitter:image" content="https://www\\.shawnsporter\\.com/${filename}"`));
+    assert.ok(!html.includes('/og.png'));
+    const asset = await serveBuiltAsset(new Request(`http://localhost/${filename}`));
+    assert.equal(asset.status, 200);
+    const bytes = Buffer.from(await asset.arrayBuffer());
+    assert.equal(bytes.readUInt32BE(16), 1200);
+    assert.equal(bytes.readUInt32BE(20), 630);
+  }
+});
+
 async function render(path = "/") {
   const workerUrl = new URL("../dist/server/index.js", import.meta.url);
   workerUrl.searchParams.set("test", `${process.pid}-${encodeURIComponent(path)}`);
