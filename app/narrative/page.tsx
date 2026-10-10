@@ -47,7 +47,7 @@ export default function NarrativePage() {
         <a className={styles.action} href="https://replicant-case-01.r3plic4nt.chatgpt.site/" target="_blank" rel="noopener noreferrer">Play the prototype ↗</a>
       </div>
       <div className={styles.prototypeEvidence}>
-        <figure><Image src="/assets/last-rehearsal-beta.png" width={679} height={293} alt="The Last Rehearsal rehearsal-room scene and co-op case invitation interface" sizes="(max-width: 800px) calc(100vw - 36px), 48vw" unoptimized priority /></figure>
+        <figure><Image src="/assets/last-rehearsal-investigation-scene.webp" width={1600} height={763} alt="The Last Rehearsal player character in the investigative rehearsal-room scene, with the body, terminal, and Look and Use controls" sizes="(max-width: 800px) calc(100vw - 36px), 48vw" unoptimized priority /></figure>
         <figure className={styles.caseboard}>
           <a href="/assets/last-rehearsal-caseboard.webp" target="_blank" rel="noopener noreferrer" aria-label="View the Caseboard screenshot at full size"><Image src="/assets/last-rehearsal-caseboard.webp" width={727} height={776} alt="Completed Caseboard with collected evidence, three working theories, and the result of tracing the V-17 maintenance chip" sizes="(max-width: 800px) 42vw, 220px" unoptimized /></a>
           <figcaption>Caseboard · Evidence, theory selection, and decision result.<span>Open screenshot ↗</span></figcaption>
