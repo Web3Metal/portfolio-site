@@ -140,7 +140,7 @@ const routePaths = new Set([
   "/case-studies",
   "/writing",
   "/ai-builder-community",
-  "/gaming-interactive",
+  "/narrative",
   "/content/wave-warz",
   "/content/web3-metal",
   "/content/edge-visuals",
@@ -465,15 +465,25 @@ test("reclassified case-study URLs redirect to their appropriate destinations", 
   }
 });
 
-test("gaming collection curates canonical work without expanding primary navigation", async () => {
-  const { html } = await page("/gaming-interactive");
-  for (const title of ["Fight Legends", "The Last Rehearsal", "r3plic4nt.com"]) assert.ok(html.includes(title));
-  for (const href of ["/case-studies/fight-legends", "/content/fight-legends/introducing-nix", "/ai-builder-community#last-rehearsal-heading", "/ai-builder-community#artist-site-heading"]) assert.ok(html.includes(`href="${href}"`));
-  assert.ok(html.includes("fast MVP build"));
-  assert.ok(html.includes("full adventure from scratch"));
-  assert.ok(!html.includes("upcoming album"));
-  assert.ok(!navItems.some(([, href]) => href === "/gaming-interactive"));
-  for (const route of ["/", "/about", "/case-studies/fight-legends", "/ai-builder-community"]) assert.ok((await page(route)).html.includes('href="/gaming-interactive"'));
+test("legacy gaming route redirects to narrative, linked only from homepage Work", async () => {
+  const retired = await render("/gaming-interactive");
+  assert.equal(retired.status, 308);
+  assert.equal(retired.headers.get("location"), "http://localhost/narrative");
+  assert.doesNotMatch(await retired.text(), /fast MVP build|Featured gaming and interactive work/);
+  const { html, response } = await page("/narrative");
+  assert.equal(response.status, 200);
+  for (const title of ["Fight Legends", "The Last Rehearsal", "Case-Zero"]) assert.ok(html.includes(title));
+  for (const asset of ["last-rehearsal-investigation-scene.webp", "last-rehearsal-caseboard.webp", "case-zero-scene-01.webp", "case-zero-scene-02.webp", "case-zero-scene-03.webp", "nix-article-artwork.png"]) assert.ok(html.includes(asset));
+  assert.ok(!navItems.some(([, href]) => ["/gaming-interactive", "/narrative"].includes(href)));
+  for (const route of routePaths) {
+    const rendered = (await page(route)).html;
+    assert.ok(!/href="[^"\s]*gaming-interactive[^"\s]*"/.test(rendered), `${route} links to the retired gaming collection`);
+    if (route !== "/") assert.ok(!/href="\/narrative(?:[#?"])/.test(rendered), `${route} adds an unapproved narrative link`);
+  }
+  const home = (await page("/")).html;
+  assert.equal([...home.matchAll(/href="\/narrative"/g)].length, 1);
+  assert.match(home, /Explore the case study →[\s\S]*href="\/narrative"[\s\S]*id="gallery"/);
+  assert.ok((await page("/")).html.includes('href="https://replicant-case-01.r3plic4nt.chatgpt.site/"'));
   assert.ok(!(await page("/ai-builder-community")).html.includes("upcoming album"));
 });
 

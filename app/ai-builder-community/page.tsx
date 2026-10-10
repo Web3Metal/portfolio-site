@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
 import styles from "./page.module.css";
 import { ContactBlock, PageIntro, SiteFooter, SiteHeader } from "../site-components";
 
@@ -58,7 +57,6 @@ export default function AiBuilderCommunityPage() {
         </article>
       </div>
     </section>
-    <div className="wrap"><Link className="text-link" href="/gaming-interactive">Gaming &amp; Interactive work <span>↗</span></Link></div>
     <ContactBlock compact />
   </main><SiteFooter /></>;
 }

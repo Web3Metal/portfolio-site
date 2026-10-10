@@ -184,7 +184,6 @@ export default function FightLegendsCaseStudyPage() {
 
       <CaseStudySection number="06" title="What I Learned" headingId="lessons-heading" variant="lessons">
         <LessonsList lessons={[lesson]} />
-        <Link className="text-link" href="/gaming-interactive">Gaming &amp; Interactive work <span>↗</span></Link>
       </CaseStudySection>
     </CaseStudyPage>
   );

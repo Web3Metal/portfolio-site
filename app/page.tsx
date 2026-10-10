@@ -38,6 +38,7 @@ export default function Home() {
                 <h4>{item.title}</h4><p>{item.context}</p><span>Explore the case study →</span>
               </Link>)}</div>
             </section>)}
+            <div className={portfolio.more}><Link href="/narrative">Explore Narrative Writing &amp; Interactive Storytelling →</Link></div>
           </div>
         </section>
         <section className={portfolio.gallery} aria-labelledby="gallery">
@@ -45,7 +46,6 @@ export default function Home() {
             <span id="selected-content" className={portfolio.anchor} />
             <header className={portfolio.heading}><h2 id="gallery">Gallery</h2><p>Selected artifacts and creative projects. See the work itself.</p></header>
             <HomepageGallery />
-            <div className={portfolio.more}><Link href="/gaming-interactive">Gaming &amp; Interactive collection →</Link></div>
           </div>
         </section>
 

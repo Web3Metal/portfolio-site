@@ -25,6 +25,6 @@ export function LegacyGalleryPage() {
   return <><SiteHeader /><main className={styles.gallery}><div className={styles.wrap}>
     <header className={styles.heading}><h1>Gallery</h1><p>Selected artifacts and creative projects. See the work itself.</p></header>
     <GalleryGrid />
-    <div className={styles.more}><Link href="/#work">Explore professional work →</Link><Link href="/gaming-interactive">Gaming &amp; Interactive collection →</Link></div>
+    <div className={styles.more}><Link href="/#work">Explore professional work →</Link></div>
   </div></main><SiteFooter /></>;
 }
