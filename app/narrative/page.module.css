@@ -35,6 +35,9 @@
 .samples h3 { font-size:28px; line-height:1.15; margin:0 0 8px; }
 .samples .focus { font-size:12px; color:var(--accent-readable); font-weight:700; margin-bottom:12px; }
 .samples article > p:not(.focus) { font-size:15px; }
+.sampleEvidence { width:100%; max-width:300px; margin:16px 0; }
+.sampleEvidence img { display:block; width:100%; height:auto; }
+.sampleEvidence figcaption { margin-top:8px; }
 .samples blockquote { border-left:2px solid var(--accent-readable); margin:16px 0 0; padding-left:16px; }
 .samples blockquote p { font-family:Georgia, serif; font-size:19px; line-height:1.4; margin-bottom:8px; }
 .samples cite { font-size:11px; font-style:normal; color:#34404d; }

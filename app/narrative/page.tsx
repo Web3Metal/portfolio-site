@@ -25,22 +25,30 @@ export const metadata: Metadata = {
 const samples = [
   {
     title: "Multiverse Theory", focus: "World premise and social conflict",
+    image: "/assets/fight-legends/narrative-multiverse.webp", width: 680, height: 383,
+    alt: "Fight Legends marketplace environment artwork", caption: "Project environment artwork accompanying the world-premise writing.",
     copy: "A setting document that connects resource scarcity, class, interdimensional expansion, the Rift Wars, and the forces shaping its fighters.",
     // Verified against Worldbuilding/multiverse theory.pdf; whitespace normalized only.
     excerpt: "Now, wars are fought with computer code if you are a suit and with blood and bone if you weren't born with a silver spoon in your mouth.",
   },
   {
     title: "Introducing Nix", focus: "Character origin and motivation",
+    image: "/assets/fight-legends/nix-article-artwork.png", width: 1100, height: 619,
+    alt: "Fight Legends project artwork showing Nix’s character design from three angles", caption: "Project character artwork accompanying Shawn’s Nix writing.",
     copy: "A character introduction tracing Nix’s forced experimentation, escape from the Agency, and personal reason for entering the Fight Legends conflict.",
     href: "https://medium.com/@FightLegends/introducing-nix-fight-legends-ab55663dae23",
   },
   {
     title: "Ross Levine", focus: "Real-world character adaptation",
+    image: "/assets/fight-legends/narrative-ross.webp", width: 745, height: 632,
+    alt: "Fight Legends social post pairing Ross Levine with his game-character artwork", caption: "Project social-post visual accompanying the Ross Levine writing.",
     copy: "A piece that blends a real combat athlete’s background with the future history, stakes, and rules of the Fight Legends universe.",
     href: "https://medium.com/@FightLegends/get-to-know-ross-levine-fight-legends-d07919536892",
   },
   {
     title: "Story Mode", focus: "Narrative progression and player choice",
+    image: "/assets/fight-legends/narrative-story-mode.webp", width: 900, height: 506,
+    alt: "Fight Legends PvE scene showing a fighter overlooking the futuristic city", caption: "Project PvE visual from the Story Mode article.",
     copy: "A player-facing explanation of how character context, regional progression, event choices, escalating AI behavior, and rewards were intended to work together.",
     href: "https://medium.com/@FightLegends/story-mode-fight-legends-f4242e234c0d",
   },
@@ -88,10 +96,11 @@ export default function NarrativePage() {
         <div><h2 id="writing-heading">Fight Legends: Selected Narrative Writing</h2>
           <p className={styles.writingIntro}>Authored and conceptualized for Fight Legends, these pieces connect world premise, character motivation, player progression, and the systems surrounding a developing fighting game.</p>
         </div>
-        <figure className={styles.nixEvidence}><Image src="/assets/fight-legends/nix-article-artwork.png" width={1100} height={619} alt="Fight Legends project artwork showing Nix’s character design and cybernetic limbs from three angles" sizes="(max-width: 800px) calc(100vw - 36px), 340px" unoptimized /><figcaption>Nix · Project artwork accompanying Shawn’s character writing.</figcaption></figure>
+        <figure className={styles.nixEvidence}><Image src="/assets/fight-legends/narrative-about.webp" width={680} height={382} alt="Fight Legends project overview artwork featuring Nix and the What is Fight Legends presentation" sizes="(max-width: 800px) calc(100vw - 76px), 340px" unoptimized /><figcaption>Fight Legends · Project overview artwork; artwork not by Shawn.</figcaption></figure>
       </div>
       <div className={styles.samples}>{samples.map(sample => <article key={sample.title}>
         <h3>{sample.title}</h3><p className={styles.focus}>{sample.focus}</p><p>{sample.copy}</p>
+        <figure className={styles.sampleEvidence}><Image src={sample.image} width={sample.width} height={sample.height} alt={sample.alt} sizes="(max-width: 800px) calc(100vw - 76px), 300px" unoptimized /><figcaption>{sample.caption}</figcaption></figure>
         {sample.excerpt && <blockquote><p>“{sample.excerpt}”</p><cite>Multiverse Theory · Excerpt</cite></blockquote>}
         {sample.href && <a className={styles.action} href={sample.href} target="_blank" rel="noopener noreferrer">Read on Medium ↗</a>}
       </article>)}</div>
