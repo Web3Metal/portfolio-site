@@ -1,98 +1,84 @@
-# vinext-starter
+# Shawn Porter Portfolio
 
-A clean full-stack starter running on
-[vinext](https://github.com/cloudflare/vinext), with optional Cloudflare D1 and
-Drizzle support.
+The public portfolio of Shawn Porter. It is primarily a professional portfolio and job-search asset, presenting a content strategist and creative producer whose work also spans growth, community, and systems. A clearly separated consulting or project-based path may support that identity; lead generation should not dominate the main experience.
 
-## Prerequisites
+## Stack and deployment
 
+- Next.js 16, React 19, TypeScript
+- Vinext/Vite build pipeline; CSS Modules and global CSS
+- Vercel for the public deployment
 - Node.js `>=22.13.0`
 
-## Quick Start
+`pnpm-lock.yaml` is the tracked dependency lockfile. Use pnpm to keep installs consistent. The current commands are:
 
-```bash
-npm install
-npm run dev
-npm run build
+```powershell
+pnpm install --frozen-lockfile
+pnpm dev
+pnpm run lint
+pnpm test
+pnpm run build
+pnpm review:screenshots
 ```
 
-This starter does not use `wrangler.jsonc`.
+`pnpm test` runs the package test script, which builds the site and then runs `node --experimental-strip-types --test tests/rendered-html.test.mjs`. `pnpm run build` runs `vinext build`.
 
-## Included Shape
+For visual review, start `pnpm dev` in one terminal, then run `pnpm review:screenshots` in another. The script captures the homepage, case-study index, Fight Legends detail, and Shows & Video lane at desktop and mobile viewport sizes. It requires a local Chrome, Edge, or Chromium executable; set `PORTFOLIO_BROWSER_PATH` if automatic discovery does not find it. The screenshot script defaults to `http://localhost:3010`, while the normal local `pnpm dev` preview runs at `http://localhost:3000`; set `PORTFOLIO_BASE_URL` to the URL you want to review. Screenshots are written beneath the ignored `review-artifacts/screenshots/` directory and are review artifacts, not committed visual goldens.
 
-- edit site code under `app/`
-- `.openai/hosting.json` declares optional Sites D1 and R2 bindings
-- `vite.config.ts` simulates declared bindings for local development
-- `db/schema.ts` starts intentionally empty
-- `examples/d1/` contains an optional D1 example surface
-- `drizzle.config.ts` supports local migration generation when needed
+Vercel is configured separately in `vercel.json`, whose current custom build command is `vite build`. That is not the same command string as the local package build script. Keep the Vercel production build path explicit and verify it when changing build or deployment configuration; do not assume changing one changes the other.
 
-## Workspace Auth Headers
+For local visual review, run `pnpm dev` and use the URL it prints. Inspect relevant routes at desktop and mobile widths. A local preview is not a production deployment.
 
-OpenAI workspace sites can read the current user's email from
-`oai-authenticated-user-email`.
+## Project map
 
-SIWC-authenticated workspace sites may also receive
-`oai-authenticated-user-full-name` when the user's SIWC profile has a non-empty
-`name` claim. The full-name value is percent-encoded UTF-8 and is accompanied by
-`oai-authenticated-user-full-name-encoding: percent-encoded-utf-8`.
+- `app/`: rendered routes, shared components, content data, and styles
+- `app/page.tsx`: homepage composition
+- `app/site-data.ts`: primary navigation and case-study index data
+- `app/content-data.ts`: featured content and content-lane data
+- `app/case-studies/`: case-study index and implemented detail routes
+- `content/pages/` and `content/case-studies/`: Markdown reference/editorial records; see the source-of-truth map below
+- `content/data/master-metrics.md`: metrics ledger with verification and public-use notes
+- `content/data/asset-inventory.md`: working inventory of portfolio artifacts
+- `public/assets/`: media currently served by the site
+- `Media Library/` and `assets/`: local reference/source-media collections; do not assume files belong on the public site
+- `public/Shawn-Porter-Resume.pdf`: downloadable résumé
+- `scripts/generate-resume.py`: generator for the downloadable résumé PDF
+- `tests/rendered-html.test.mjs`: built-worker route and HTML checks
+- `vite.config.ts`, `vercel.json`: local/build and Vercel configuration
 
-Treat the full name as optional and fall back to email when it is absent:
+## Canonical content sources
 
-```tsx
-import { headers } from "next/headers";
+This map reflects the current code inspected on 2026-09-29. The app does not load the Markdown files under `content/pages/` or `content/case-studies/`; treat them as reference/editorial material, not as a second live CMS.
 
-export default async function Home() {
-  const requestHeaders = await headers();
-  const email = requestHeaders.get("oai-authenticated-user-email");
-  const encodedFullName = requestHeaders.get("oai-authenticated-user-full-name");
-  const fullName =
-    encodedFullName &&
-    requestHeaders.get("oai-authenticated-user-full-name-encoding") ===
-      "percent-encoded-utf-8"
-      ? decodeURIComponent(encodedFullName)
-      : null;
+| Content | Source currently rendered or served | Related reference/source file |
+| --- | --- | --- |
+| Homepage and selected content | `app/page.tsx`, `app/content-data.ts`, `app/site-data.ts`, and homepage components | `content/pages/home.md` is not loaded at runtime |
+| Case-study index | `app/case-studies/page.tsx` and `app/site-data.ts` | `content/case-studies/*.md` are not loaded at runtime |
+| Case-study detail pages | Route components under `app/case-studies/` | Markdown study files are reference material, not proof a route is implemented |
+| Content-lane pages | `app/content/` routes and `app/content-data.ts` | No Markdown content loader is used |
+| About, Writing, Creative Lab, Contact | Their respective `app/<route>/page.tsx` files | Matching files in `content/pages/` are not loaded at runtime |
+| Résumé page | `app/resume/page.tsx` | `content/pages/resume.md` is not loaded at runtime |
+| Downloadable résumé PDF | `public/Shawn-Porter-Resume.pdf`, generated by `scripts/generate-resume.py` | The page, Markdown résumé, generator, and PDF are separate artifacts; a change may need deliberate updates to more than one |
+| Metric claims | Runtime copy/data is in the relevant app files | `content/data/master-metrics.md` is the metrics reference ledger, not an automatic content source or a substitute for evidence |
+| Media availability | References in app data/components point to files under `public/` | `content/data/asset-inventory.md` is a manually maintained working inventory, not proof a file is present or approved for publication |
 
-  const displayName = fullName ?? email;
-  // ...
-}
-```
+When a requested copy change overlaps these sources, change the runtime source for the affected route and update reference records only when appropriate. Do not copy older Markdown wording over live TypeScript or reconcile conflicting facts by guessing. If factual attribution, a metric, or the intended copy is ambiguous, preserve the discrepancy and ask Shawn.
 
-## Optional Dispatch-Owned ChatGPT Sign-In
+The reference folder contains six case-study Markdown records, but these are not a route roster. The current editorial lineup has four detail pages: Ava Labs, Cyber Metal Radio, Fight Legends, and Edge of Company. The former Web3 Metal and Cointelegraph case-study URLs redirect to Cyber Metal Radio and the résumé, respectively.
 
-Import the ready-to-use helpers from `app/chatgpt-auth.ts` when the site needs
-optional or required ChatGPT sign-in:
+## Content and asset handling
 
-- Use `getChatGPTUser()` for optional signed-in UI.
-- Use `requireChatGPTUser(returnTo)` for server-rendered pages that should send
-  anonymous visitors through Sign in with ChatGPT.
-- Use `chatGPTSignInPath(returnTo)` and `chatGPTSignOutPath(returnTo)` for
-  browser links or actions.
-- Pass a same-origin relative `returnTo` path for the destination after sign-in
-  or sign-out. The helper validates and safely encodes it.
-- Mark protected pages with `export const dynamic = "force-dynamic"` because
-  they depend on per-request identity headers.
+- Keep content strategy and hands-on creative production central to the portfolio's professional positioning. Growth, community, AI, gaming, music, and creator-community work should support that identity rather than displace it.
+- Do not invent achievements, duties, clients, metrics, dates, or outcomes. Distinguish work created, hosted, edited, directed, coordinated, managed, or otherwise contributed to. Ask when attribution is unclear.
+- Preserve approved copy unless a request requires changing it. Keep unrelated sections untouched during contained work.
+- Do not delete, replace, overwrite, or publish source/reference media as part of routine work. Use real artifacts when approved; preserve originals and request clarification before resolving ambiguous or duplicate assets.
+- The site may support consulting or project-based opportunities through a clearly separated path, but do not add or expand that path—or make lead generation the primary positioning—without a scoped request.
 
-Dispatch owns `/signin-with-chatgpt`, `/signout-with-chatgpt`, `/callback`, the
-OAuth cookies, and identity header injection. Do not implement app routes for
-those reserved paths. Routes that do not import and call the helper remain
-anonymous-compatible.
+## Review and release
 
-SIWC establishes identity only; it does not prove workspace membership. Use the
-Sites hosting platform's access policy controls for workspace-wide restrictions,
-or enforce explicit server-side membership or allowlist checks.
+For a local change, run lint and the relevant tests/build, render affected routes, check relevant links/media/downloads, and inspect visual changes at desktop and mobile sizes. Screenshots support human review; they do not establish approval by themselves.
 
-Use SIWC for account pages, user-specific dashboards, saved records, and write
-actions tied to the current ChatGPT user. Leave public content anonymous.
+Treat major redesigns, positioning or brand changes, architectural changes, large restructures, and removal of existing content as proposal-first work. Ask before implementing. Treat commit/push/deploy as a separate approval gate unless the request explicitly includes publication. Before publishing, confirm the intended branch and Vercel production configuration, then verify the live deployment.
 
-## Useful Commands
+## Current test coverage
 
-- `npm run dev`: start local development
-- `npm run build`: verify the vinext build output
-- `npm test`: build the starter and verify its rendered loading skeleton
-- `npm run db:generate`: generate Drizzle migrations after schema changes
-
-## Learn More
-
-- [vinext Documentation](https://github.com/cloudflare/vinext)
-- [Drizzle D1 Guide](https://orm.drizzle.team/docs/get-started/d1-new)
+The rendered-HTML tests build and exercise declared app routes, the four intended case-study detail pages, and redirects for the former Web3 Metal and Cointelegraph case-study URLs. They also check internal links and fragments, local media in the source and built output, route title/description metadata, the retired `/content` redirect, and the résumé PDF download. Missing intended detail routes are surfaced as test failures rather than repaired by the test. The screenshot script captures representative layouts at two viewport sizes; a person must still inspect the results for visual quality and regressions.

@@ -12,6 +12,7 @@
 
 # testing
 /coverage
+/review-artifacts/
 
 # next.js
 /.next/
@@ -54,7 +55,6 @@ next-env.d.ts
 
 # local project references and preparation artifacts
 /sources/
-/AGENTS.md
 /.pnpm-store/
 /dev-server.log
 /dev-server-error.log
