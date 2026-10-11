@@ -61,6 +61,21 @@ export default function NarrativePage() {
       <h1>Narrative writing for interactive worlds.</h1>
       <p>I write character, setting, and player-facing story systems for worlds people can investigate, inhabit, and carry with them. My work spans original interactive prototypes and authored game-world writing, with a focus on atmosphere, motivation, player discovery, and the relationship between story and play.</p>
     </header>
+    <section className={styles.writing} aria-labelledby="writing-heading">
+      <div className={styles.writingHeader}>
+        <div><p className={styles.label}>PROFESSIONAL GAME WORLDBUILDING</p><h2 id="writing-heading">Fight Legends: Worldbuilding and Narrative Writing</h2>
+          <p className={styles.writingIntro}>Authored and conceptualized for Fight Legends, these pieces connect world premise, character motivation, player progression, and the systems surrounding a developing fighting game.</p>
+        </div>
+        <figure className={styles.nixEvidence}><Image src="/assets/fight-legends/narrative-about.webp" width={680} height={382} alt="Fight Legends project overview artwork featuring Nix and the What is Fight Legends presentation" sizes="(max-width: 800px) calc(100vw - 76px), 340px" unoptimized /><figcaption>Fight Legends · Project overview artwork; artwork not by Shawn.</figcaption></figure>
+      </div>
+      <div className={styles.samples}>{samples.map(sample => <article key={sample.title}>
+        <h3>{sample.title}</h3><p className={styles.focus}>{sample.focus}</p><p>{sample.copy}</p>
+        <figure className={styles.sampleEvidence}><Image src={sample.image} width={sample.width} height={sample.height} alt={sample.alt} sizes="(max-width: 800px) calc(100vw - 76px), 300px" unoptimized /><figcaption>{sample.caption}</figcaption></figure>
+        {sample.excerpt && <blockquote><p>“{sample.excerpt}”</p><cite>Multiverse Theory · Excerpt</cite></blockquote>}
+        {sample.href && <a className={styles.action} href={sample.href} target="_blank" rel="noopener noreferrer">Read on Medium ↗</a>}
+      </article>)}</div>
+    </section>
+    <h2 className={styles.transition}>From professional game worldbuilding to original interactive stories</h2>
     <section className={styles.prototype} aria-labelledby="rehearsal-heading">
       <div><p className={styles.label}>PLAYABLE INTERACTIVE MYSTERY</p><h2 id="rehearsal-heading">The Last Rehearsal</h2>
         <p>A sci-fi detective prototype built around environmental discovery. Players inspect a crime scene, collect evidence from the body, damaged speaker, and terminal, then use a Caseboard to weigh competing theories and pursue the strongest lead.</p>
@@ -91,19 +106,10 @@ export default function NarrativePage() {
         </figure>)}
       </div>
     </section>
-    <section className={styles.writing} aria-labelledby="writing-heading">
-      <div className={styles.writingHeader}>
-        <div><h2 id="writing-heading">Fight Legends: Selected Narrative Writing</h2>
-          <p className={styles.writingIntro}>Authored and conceptualized for Fight Legends, these pieces connect world premise, character motivation, player progression, and the systems surrounding a developing fighting game.</p>
-        </div>
-        <figure className={styles.nixEvidence}><Image src="/assets/fight-legends/narrative-about.webp" width={680} height={382} alt="Fight Legends project overview artwork featuring Nix and the What is Fight Legends presentation" sizes="(max-width: 800px) calc(100vw - 76px), 340px" unoptimized /><figcaption>Fight Legends · Project overview artwork; artwork not by Shawn.</figcaption></figure>
-      </div>
-      <div className={styles.samples}>{samples.map(sample => <article key={sample.title}>
-        <h3>{sample.title}</h3><p className={styles.focus}>{sample.focus}</p><p>{sample.copy}</p>
-        <figure className={styles.sampleEvidence}><Image src={sample.image} width={sample.width} height={sample.height} alt={sample.alt} sizes="(max-width: 800px) calc(100vw - 76px), 300px" unoptimized /><figcaption>{sample.caption}</figcaption></figure>
-        {sample.excerpt && <blockquote><p>“{sample.excerpt}”</p><cite>Multiverse Theory · Excerpt</cite></blockquote>}
-        {sample.href && <a className={styles.action} href={sample.href} target="_blank" rel="noopener noreferrer">Read on Medium ↗</a>}
-      </article>)}</div>
+    <section aria-labelledby="narrative-play-heading">
+      <p className={styles.label}>NARRATIVE IN PLAY</p>
+      <h2 id="narrative-play-heading">I prototype story through play.</h2>
+      <p>On original projects, I work across story, gray-box spaces, puzzle flow, interaction implementation, and music so narrative decisions can be tested through play rather than described only on the page.</p>
     </section>
     <section className={styles.closing}><h2>Let’s build worlds with something to say.</h2><Link className={styles.action} href="/contact">Get in touch →</Link></section>
   </main><SiteFooter /></>;

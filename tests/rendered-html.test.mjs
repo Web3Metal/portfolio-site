@@ -483,6 +483,23 @@ test("reclassified case-study URLs redirect to their appropriate destinations", 
   }
 });
 
+test("narrative leads with professional worldbuilding before original interactive projects", async () => {
+  const { html } = await page("/narrative");
+  const headings = [...html.matchAll(/<h2\b[^>]*>(.*?)<\/h2>/g)].map((match) => match[1]);
+  assert.deepEqual(headings, [
+    "Fight Legends: Worldbuilding and Narrative Writing",
+    "From professional game worldbuilding to original interactive stories",
+    "The Last Rehearsal",
+    "From a compact mystery to a deeper original world",
+    "Case-Zero",
+    "I prototype story through play.",
+    "Let’s build worlds with something to say.",
+  ]);
+  assert.ok(html.includes("PROFESSIONAL GAME WORLDBUILDING"));
+  assert.ok(html.includes("NARRATIVE IN PLAY"));
+  assert.ok(html.includes("On original projects, I work across story, gray-box spaces, puzzle flow, interaction implementation, and music so narrative decisions can be tested through play rather than described only on the page."));
+});
+
 test("legacy gaming route redirects to narrative, linked only from homepage Work", async () => {
   const retired = await render("/gaming-interactive");
   assert.equal(retired.status, 308);
