@@ -409,14 +409,31 @@ test("homepage Work groups lead with accomplished work and keep outcomes in case
   }
 });
 
+test("four Work case studies consolidate challenge and contribution without changing later section order", async () => {
+  for (const [slug, laterHeadings] of [
+    ["ava-labs", ["How It Worked", "Outcomes &amp; Evidence", "What This Work Demonstrates"]],
+    ["cyber-metal-radio", ["How It Worked", "Outcomes", "What I Learned"]],
+    ["fight-legends", ["How It Worked", "Selected Work", "Outcomes &amp; Evidence", "What I Learned"]],
+    ["edge-of-company", ["How It Worked", "Explore the visual work", "Outcomes", "What I Learned"]],
+  ]) {
+    const { html } = await page(`/case-studies/${slug}`);
+    const headings = [...html.matchAll(/<h2\b[^>]*>(.*?)<\/h2>/g)].map(match => match[1]);
+    assert.deepEqual(headings, ["Challenge &amp; contribution", ...laterHeadings]);
+    const opening = html.match(/<section\b[^>]*aria-labelledby="challenge-heading"[^>]*>([\s\S]*?)<\/section>/)?.[1];
+    assert.ok(opening?.includes("I "), `${slug} identifies Shawn’s contribution`);
+    assert.ok(!opening.includes("—"), `${slug} avoids em dashes in the revised opening`);
+    assert.doesNotMatch(html, /id="role-heading"|The Starting Community/);
+  }
+});
+
 test("Fight Legends connects narrative authorship and show production with attributed evidence", async () => {
   const { html } = await page("/case-studies/fight-legends");
   const headings = [...html.matchAll(/<h2\b[^>]*>(.*?)<\/h2>/g)].map((match) => match[1]);
-  assert.deepEqual(headings, ["My Contribution", "How It Worked", "Selected Work", "Outcomes &amp; Evidence", "What I Learned"]);
+  assert.deepEqual(headings, ["Challenge &amp; contribution", "How It Worked", "Selected Work", "Outcomes &amp; Evidence", "What I Learned"]);
   for (const copy of [
     "Making a game in development understandable and worth following through recurring development shows, early worldbuilding, and community storytelling.",
     "Artists conceptualized the characters",
-    "I developed and wrote the narrative material",
+    "I developed and wrote the worldbuilding",
     "Team/channel outcomes",
     "Personal production estimates",
     "Approximately 30%",

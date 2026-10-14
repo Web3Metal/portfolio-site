@@ -4,6 +4,7 @@ import {
   CaseStudyHero,
   CaseStudyPage,
   CaseStudySection,
+  ChallengeContribution,
   EvidenceGrid,
   LessonsList,
   ProseLead,
@@ -18,7 +19,10 @@ export const metadata: Metadata = {
 const title = "Web3 Metal & Cyber Metal Radio";
 const summary = "Building media and community systems at the intersection of music and technology";
 const stationUrl = "https://www.cybermetalradio.com/";
-const challenge = "Artists exploring Web3 and AI music had places to upload their work, but fewer spaces built around discovery, recognition, and community. Web3 Metal connected that scene through editorial work and community programming.";
+const opening = [
+  "Artists exploring Web3 and AI music had places to upload work, but fewer spaces for discovery, recognition, and community. As Web3 Metal’s founder, I helped grow its Discord and developed editorial coverage, social content, and community programming, including competitions, collaborations, and creator support.",
+  "Cyber Metal Radio formed in that Discord, operating there for months before moving to its own server for independence and efficiency. It remained a distinct music-discovery project. As co-founder, I helped build its initial community by recruiting artists, promoting weekly programming, supporting submissions and chart participation, establishing rituals, and co-creating annual awards. After the team chose not to pursue further audience growth, the focus shifted to sustaining the niche community rather than maximizing expansion, over roughly the last year and a half to two years.",
+];
 const systemCaption = "Artists submitted work through New Metal Monday, returned for the weekly Top 15 countdown, and shared the results. Listening parties and annual awards added more ways to discover music and recognize artists.";
 const lesson = "A community does not always need to keep expanding to be successful. A recurring reason to submit, listen, return, and recognize one another can help a niche community stay active while preserving what makes it feel distinct.";
 
@@ -53,13 +57,7 @@ export default function MusicTechnologyCommunityCaseStudyPage() {
         date="Oct 2023 – Present"
         title={title}
         summary={summary}
-        context={challenge}
-        narrative={(
-          <section className={styles.heroStartingCommunity} aria-labelledby="starting-community-heading">
-            <h2 id="starting-community-heading">The Starting Community</h2>
-            <p>Web3 Metal connected artists and builders through editorial coverage, social content, Discord programming, competitions, collaborations, and creator support. Cyber Metal Radio formed out of the Web3 Metal Discord and operated there for months before establishing its own server for operational independence and efficiency. It remained a distinct project focused on music discovery and recurring participation.</p>
-          </section>
-        )}
+        narrative={<ChallengeContribution paragraphs={opening} />}
         tags={tags}
         visual={(
           <figure className={styles.heroEvidence}>
@@ -82,20 +80,6 @@ export default function MusicTechnologyCommunityCaseStudyPage() {
           </figure>
         )}
       />
-
-      <CaseStudySection number="02" title="My Contribution" headingId="role-heading">
-        <div className={styles.contributionPhases}>
-          <article className={styles.contributionPhase}>
-            <h3>Build the communities</h3>
-            <p>As Web3 Metal’s founder, I helped grow the Discord community and developed editorial and community programming.</p>
-            <p>As Cyber Metal Radio’s co-founder, I helped build its initial community: recruiting artists, promoting weekly programming, supporting submissions and chart participation, helping establish community rituals, and co-creating the annual awards.</p>
-          </article>
-          <article className={styles.contributionPhase}>
-            <h3>Sustain the niche</h3>
-            <p>After the team decided not to pursue further audience growth, the focus became letting the community find its stride and maintaining its niche feel. Over roughly the last year and a half to two years, the emphasis has been on sustaining the community rather than maximizing expansion.</p>
-          </article>
-        </div>
-      </CaseStudySection>
 
       <CaseStudySection number="03" title="How It Worked" headingId="system-heading" variant="system">
         <figure className={styles.loopFigure}>

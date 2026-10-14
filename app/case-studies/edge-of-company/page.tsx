@@ -5,8 +5,8 @@ import {
   CaseStudyHero,
   CaseStudyPage,
   CaseStudySection,
+  ChallengeContribution,
   LessonsList,
-  ProseLead,
 } from "../case-study-components";
 import styles from "./page.module.css";
 
@@ -15,12 +15,8 @@ export const metadata: Metadata = {
 };
 
 const title = "Edge of Company";
-const challenge = "Edge of Company had strong interview content and an established audience, but production and distribution were fragmented. The team needed a repeatable system for preparing recordings, producing branded video, publishing across platforms, and turning each episode into social content without relying on the hosts to manage every moving part.";
-const myRole = "I managed the production and distribution workflow around Edge of Company’s interview programming.";
-const contributions = [
-  { title: "Produce branded interviews", text: "I produced branded video sessions and monitored audio and visual quality." },
-  { title: "Edit and package episodes", text: "I edited episodes into social clips and coordinated supporting assets." },
-  { title: "Publish and distribute content", text: "I published across podcast and video platforms and helped keep the broader social content pipeline moving." },
+const opening = [
+  "Edge of Company had strong interviews and an established audience, but fragmented production and distribution. The team needed a repeatable workflow without relying on hosts to manage every moving part. I managed that workflow: producing branded video sessions, monitoring audio and visual quality, editing social clips, coordinating supporting assets, and publishing across podcast and video platforms. I also helped keep the broader social content pipeline moving.",
 ];
 const system = "Each interview moved through a repeatable production pipeline: branded recording, quality control, editing, clip creation, asset coordination, publishing, and social distribution. That system reduced friction for the hosts and turned each long-form conversation into a full set of cross-platform content.";
 const lesson = "A strong production system can turn one long-form interview into a coordinated stream of content across video, podcast, and social channels—without forcing the hosts to carry the operational load.";
@@ -57,7 +53,7 @@ export default function EdgeOfCompanyCaseStudyPage() {
         index="04"
         date="Production and distribution workflow"
         title={title}
-        context={challenge}
+        narrative={<ChallengeContribution paragraphs={opening} />}
         tags={tags}
         visual={(
           <figure className={styles.heroEvidence}>
@@ -79,18 +75,6 @@ export default function EdgeOfCompanyCaseStudyPage() {
           </figure>
         )}
       />
-
-      <CaseStudySection number="02" title="My Contribution" headingId="role-heading">
-        <ProseLead className={styles.lead}><p>{myRole}</p></ProseLead>
-        <div className={styles.contributions}>
-          {contributions.map((contribution) => (
-            <article key={contribution.title}>
-              <h3>{contribution.title}</h3>
-              <p>{contribution.text}</p>
-            </article>
-          ))}
-        </div>
-      </CaseStudySection>
 
       <CaseStudySection number="03" title="How It Worked" headingId="system-heading" variant="system">
         <figure className={styles.pipelineFigure}>

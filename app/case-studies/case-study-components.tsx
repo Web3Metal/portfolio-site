@@ -12,7 +12,7 @@ type CaseStudyHeroProps = {
   date: string;
   title: string;
   summary?: string;
-  context: string;
+  context?: string;
   narrative?: ReactNode;
   tags: readonly string[];
   visual?: ReactNode;
@@ -90,7 +90,7 @@ export function CaseStudyHero({ date, title, summary, context, narrative, tags, 
           <div className={styles.heroVisual}>{visual}</div>
           <div className={styles.heroNarrative}>
             {summary ? <p className={styles.heroSummary}>{summary}</p> : null}
-            <p className={styles.context}>{context}</p>
+            {context ? <p className={styles.context}>{context}</p> : null}
             {narrative}
           </div>
         </div>
@@ -117,6 +117,13 @@ export function CaseStudySection({ title, headingId, variant = "default", childr
       {children}
     </section>
   );
+}
+
+export function ChallengeContribution({ paragraphs }: { paragraphs: readonly string[] }) {
+  return <section className={styles.heroOpening} aria-labelledby="challenge-heading">
+    <h2 id="challenge-heading">Challenge &amp; contribution</h2>
+    {paragraphs.map(paragraph => <p key={paragraph}>{paragraph}</p>)}
+  </section>;
 }
 
 export function ProseLead({ children, className }: { children: ReactNode; className?: string }) {

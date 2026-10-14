@@ -5,8 +5,8 @@ import {
   CaseStudyHero,
   CaseStudyPage,
   CaseStudySection,
+  ChallengeContribution,
   LessonsList,
-  ProseLead,
 } from "../case-study-components";
 import styles from "./page.module.css";
 
@@ -16,12 +16,9 @@ export const metadata: Metadata = {
 
 const title = "Fight Legends";
 const summary = "Making a game in development understandable and worth following through recurring development shows, early worldbuilding, and community storytelling.";
-const challenge = "Fight Legends was an early-stage Web3 game. The team had to make an unfinished product understandable, keep prospective players engaged between development milestones, and turn ongoing progress into content that could support community growth, awareness, and key-pass sales.";
-const roleOverview = "I developed and wrote the game’s worldbuilding, character lore, matchup stories, and player-facing explanations of game modes. I also created and ran a recurring development show that turned weekly product progress into a steady stream of content.";
-const contributions = [
-  { title: "Develop and write the narrative", text: "Artists conceptualized the characters, with ideas and brainstorming from the team. I developed and wrote the narrative material from those inputs or from scratch while the game was in development." },
-  { title: "Create and produce the show", text: "I owned the show concept, format, and visual direction. I owned editing and social distribution." },
-  { title: "Distribute and support participation", text: "I also supported Discord events, AMAs, contests, and paid promotion that kept the community active between major updates." },
+const opening = [
+  "Fight Legends needed to make an unfinished Web3 game understandable and keep prospective players engaged between milestones, with content supporting awareness, community growth, and key-pass sales. Artists conceptualized the characters, with team brainstorming. During development, I developed and wrote the worldbuilding, character lore, matchup stories, and game-mode explanations from those inputs or from scratch.",
+  "I also created and ran a recurring development show, owning its concept, format, visual direction, editing, and social distribution to turn weekly progress into content. I supported Discord events, AMAs, contests, and paid promotion between major updates.",
 ];
 const system = "The weekly development show organized product updates into a clear narrative, generated short-form social content, and gave the community recognizable hosts and a predictable reason to return. AMAs, game nights, contests, and lore content extended that rhythm between milestones.";
 const supportingResult = "Built a recurring content and community rhythm around development updates, AMAs, contests, and game nights";
@@ -61,7 +58,7 @@ export default function FightLegendsCaseStudyPage() {
         date="Content + community around product development"
         title={title}
         summary={summary}
-        context={challenge}
+        narrative={<ChallengeContribution paragraphs={opening} />}
         tags={tags}
         visual={
           <figure className={styles.heroEvidence}>
@@ -80,19 +77,6 @@ export default function FightLegendsCaseStudyPage() {
           </figure>
         }
       />
-
-      <CaseStudySection number="02" title="My Contribution" headingId="role-heading">
-        <ProseLead className={styles.lead}><p>{roleOverview}</p></ProseLead>
-        <div className={styles.contributions}>
-          {contributions.map((contribution) => (
-            <article key={contribution.title}>
-              <h3>{contribution.title}</h3>
-              <p>{contribution.text}</p>
-            </article>
-          ))}
-        </div>
-
-      </CaseStudySection>
 
       <CaseStudySection number="03" title="How It Worked" headingId="system-heading" variant="system">
         <div className={styles.storyStrands}>

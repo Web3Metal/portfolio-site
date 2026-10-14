@@ -4,7 +4,7 @@ import {
   CaseStudyHero,
   CaseStudyPage,
   CaseStudySection,
-  ProseLead,
+  ChallengeContribution,
   SystemFlow,
 } from "../case-study-components";
 import styles from "./page.module.css";
@@ -16,15 +16,9 @@ export const metadata: Metadata = {
 const title = "Ava Labs — Developer Engagement Manager";
 const date = "Oct 2024 to Oct 2025";
 const context = "Ava Labs is the team behind Avalanche, creating high performance blockchain infrastructure, developer tools, and programs to support app and chain builders.";
-const challenge = "Avalanche wanted to increase the number of developers building long term projects in its ecosystem. The challenge wasn't simply generating awareness. It was identifying promising developers, understanding where they were in their journey, and connecting them with the right programs, events, and internal teams to help them continue building.";
-const roleOverview = "Part of a small engagement team driving developer adoption of Avalanche. Managed developer relationships from first interaction through qualified interest, program participation, and handoff to deeper technical support.";
-
-const scope = [
-  "Led day to day developer outreach on X and consistently ranked among the team's strongest performers for click through rate and lead discovery",
-  "Partnered with Sprinklr specialists to design dashboards that improved lead visibility and funnel tracking",
-  "Used UTM tagged links to measure clicks in channels Sprinklr could not reach, ensuring full funnel visibility",
-  "Qualified leads and routed them into Avalanche builder programs, including Elevate, Builders Hub, Hackathons, and Team1",
-  "Held video calls with prospects, referred projects to Business Development when appropriate, and connected builders to ecosystem partners based on needs and goals",
+const opening = [
+  "Avalanche needed to identify promising developers, understand their needs, and connect them with programs, events, and technical support that would help them build long-term projects. As part of a small engagement team, I managed relationships from first contact through qualified interest, program participation, and technical handoff.",
+  "I led daily outreach on X, held prospect calls, and routed builders to Elevate, Builders Hub, Hackathons, Team1, Business Development where appropriate, and ecosystem partners based on their goals. I partnered with Sprinklr specialists on dashboards for lead visibility and funnel tracking, using UTM-tagged links to measure channels Sprinklr could not reach. I consistently ranked among the team’s strongest performers for click-through rate and lead discovery.",
 ];
 
 const capabilities = [
@@ -86,12 +80,7 @@ export default function AvaLabsCaseStudyPage() {
         title={title}
         context={context}
         tags={tags}
-        narrative={(
-          <section className={styles.heroChallenge} aria-labelledby="challenge-heading">
-            <h2 id="challenge-heading">Challenge</h2>
-            <p>{challenge}</p>
-          </section>
-        )}
+        narrative={<ChallengeContribution paragraphs={opening} />}
         visual={(
           <figure className={styles.elevateFigure}>
             <div className={styles.elevateImage}>
@@ -108,22 +97,6 @@ export default function AvaLabsCaseStudyPage() {
           </figure>
         )}
       />
-
-      <CaseStudySection number="02" title="My Contribution" headingId="role-heading">
-        <ProseLead className={styles.lead}><p>{roleOverview}</p></ProseLead>
-        <div className={styles.contributions}>
-          {[
-            { title: "Discover builders", items: [scope[0]] },
-            { title: "Qualify and connect", items: [scope[3], scope[4]] },
-            { title: "Track and report", items: [scope[1], scope[2]] },
-          ].map((group) => (
-            <article key={group.title}>
-              <h3>{group.title}</h3>
-              {group.items.map((item) => <p key={item}>{item}</p>)}
-            </article>
-          ))}
-        </div>
-      </CaseStudySection>
 
       <CaseStudySection number="03" title="How It Worked" headingId="system-heading" variant="system">
         <SystemFlow

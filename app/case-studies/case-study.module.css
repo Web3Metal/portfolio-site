@@ -85,6 +85,11 @@
   min-width: 0;
 }
 
+.heroOpening { padding-top:18px; border-top:1px solid var(--case-line); }
+.heroOpening h2 { margin:0 0 12px; font-family:Georgia, "Times New Roman", serif; font-size:clamp(27px, 2.5vw, 38px); font-weight:400; letter-spacing:-.045em; line-height:.98; }
+.heroOpening p { margin:0; font-family:Georgia, "Times New Roman", serif; font-size:clamp(17px, 1.3vw, 21px); letter-spacing:-.025em; line-height:1.25; }
+.heroOpening p + p { margin-top:12px; }
+
 .tags { display: flex; flex-wrap: wrap; gap: 8px; }
 .tags span {
   padding: 7px 11px;
