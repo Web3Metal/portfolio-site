@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { createHash } from "node:crypto";
 import { readFile, stat } from "node:fs/promises";
 import { extname, isAbsolute, relative, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -6,6 +7,7 @@ import test from "node:test";
 import { navItems, caseStudies } from "../app/site-data.ts";
 import { contentLanes, featuredContent, homepageContent } from "../app/content-data.ts";
 import { fightLegendsSamples } from "../app/content/fight-legends/samples.ts";
+import { documents as fightDocuments, campaign as fightCampaign, community as fightCommunity, videos as fightVideos, campaignVideo as fightCampaignVideo } from "../app/content/fight-legends/collection-data.ts";
 import { galleryItems, workGroups } from "../app/portfolio-data.ts";
 import { waveWarzVideos } from "../app/content/wave-warz/data.ts";
 import { newsletterItem, web3MetalVideos } from "../app/content/web3-metal/data.ts";
@@ -162,6 +164,7 @@ const routePaths = new Set([
   "/content/wave-warz",
   "/content/web3-metal",
   "/content/edge-visuals",
+  "/content/fight-legends",
   "/about",
   "/resume",
   "/contact",
@@ -184,7 +187,9 @@ test("homepage is the canonical six-item Gallery with an Art Basel featured thum
   assert.ok(fightCard);
   assert.match(fightCard, /<video[^>]*loop=""[^>]*muted=""[^>]*playsInline=""/i);
   assert.doesNotMatch(fightCard, /<video[^>]*controls/i);
-  assert.ok(fightCard.includes('/assets/fight-legends/character-development-edit.mp4'));
+  assert.ok(fightCard.includes('/assets/fight-legends/character-development-edit-poster.jpg'));
+  assert.ok(fightCard.includes('href="/content/fight-legends"'));
+  assert.ok(fightCard.includes('View collection'));
   assert.doesNotMatch(html, /edge-nft-toonstar\.png|See all gallery/);
   const edge = galleryItems.find(item => item.id === "edge-art-basel");
   assert.equal(edge.triptych.length, 3);
@@ -320,6 +325,8 @@ test("local media references exist in both public source and built output", asyn
   addReference(newsletterItem.cover);
   for (const item of [...artBasel, ...interviewPresentation, ...packaging, ...socialRollout]) addReference(item.src);
   addReference(guestReel.src); addReference(guestReel.poster);
+  for (const item of [...fightDocuments, ...fightCampaign, ...fightCommunity, ...fightVideos, fightCampaignVideo]) addReference(item.path);
+  for (const item of [...fightVideos, fightCampaignVideo]) addReference(item.video);
   for (const group of workGroups) for (const item of group.items) addReference(item.image);
 
   for (const sourcePath of [...routePaths].sort()) {
@@ -413,7 +420,7 @@ test("four Work case studies consolidate challenge and contribution without chan
   for (const [slug, laterHeadings] of [
     ["ava-labs", ["How It Worked", "Outcomes &amp; Evidence", "What This Work Demonstrates"]],
     ["cyber-metal-radio", ["How It Worked", "Outcomes", "What I Learned"]],
-    ["fight-legends", ["How It Worked", "Selected Work", "Outcomes &amp; Evidence", "What I Learned"]],
+    ["fight-legends", ["How It Worked", "Selected Work", "Explore the visual work", "Outcomes &amp; Evidence", "What I Learned"]],
     ["edge-of-company", ["How It Worked", "Explore the visual work", "Outcomes", "What I Learned"]],
   ]) {
     const { html } = await page(`/case-studies/${slug}`);
@@ -429,7 +436,7 @@ test("four Work case studies consolidate challenge and contribution without chan
 test("Fight Legends connects narrative authorship and show production with attributed evidence", async () => {
   const { html } = await page("/case-studies/fight-legends");
   const headings = [...html.matchAll(/<h2\b[^>]*>(.*?)<\/h2>/g)].map((match) => match[1]);
-  assert.deepEqual(headings, ["Challenge &amp; contribution", "How It Worked", "Selected Work", "Outcomes &amp; Evidence", "What I Learned"]);
+  assert.deepEqual(headings, ["Challenge &amp; contribution", "How It Worked", "Selected Work", "Explore the visual work", "Outcomes &amp; Evidence", "What I Learned"]);
   for (const copy of [
     "Making a game in development understandable and worth following through recurring development shows, early worldbuilding, and community storytelling.",
     "Artists conceptualized the characters",
@@ -442,9 +449,80 @@ test("Fight Legends connects narrative authorship and show production with attri
     "not measured impact attributable to the narrative writing",
   ]) assert.ok(html.includes(copy), `Fight Legends should preserve ${copy}`);
   assert.doesNotMatch(html, /href="https:\/\/medium\.com/);
-  for (const artifact of ["/content/fight-legends/introducing-nix", "/content/fight-legends/nix-vs-ross-levine", "/content/fight-legends/story-mode", "/assets/fight-legends/dev-update-22.mp4"]) {
+  for (const artifact of ["/content/fight-legends/introducing-nix", "/content/fight-legends/nix-vs-ross-levine", "/content/fight-legends/story-mode", "/content/fight-legends"]) {
     assert.ok(html.includes(artifact), `Fight Legends should link its evidence: ${artifact}`);
   }
+});
+
+test("Fight Legends visual collection is curated with independent writing child routes and deferred videos", async () => {
+  const { html, response } = await page("/content/fight-legends");
+  assert.equal(response.status, 200);
+  assert.ok(html.includes("Fight Legends · Visual production"));
+  assert.ok(!html.includes("Collection currently being curated."));
+  const main = html.match(/<main\b[^>]*>([\s\S]*?)<\/main>/)?.[1];
+  assert.doesNotMatch(main, /<video\b/);
+  for (const heading of ["Game world and player-facing systems", "Name That Character campaign", "Community activation", "Character and development video"]) assert.ok(main.includes(heading));
+  assert.equal((main.match(/<img\b/g) ?? []).length, 22);
+  assert.equal((main.match(/aria-label="Play /g) ?? []).length, 4);
+  assert.deepEqual([fightDocuments.length, fightCampaign.length, fightCommunity.length, fightVideos.length], [6, 6, 6, 3]);
+  const communitySection = main.match(/<section[^>]*aria-labelledby="community-heading"[^>]*>([\s\S]*?)<\/section>/)?.[1];
+  assert.ok(communitySection.includes("/assets/fight-legends/narrative-ross.webp"));
+  assert.ok(!main.includes("mint-pass.webp"));
+  assert.deepEqual(fightVideos.map(item => item.slug), ["nix-unity", "cannon", "nix-combos"]);
+  const campaignSection = main.match(/<section[^>]*aria-labelledby="campaign-heading"[^>]*>([\s\S]*?)<\/section>/)?.[1];
+  assert.ok(campaignSection.includes(fightCampaignVideo.title));
+  assert.ok(campaignSection.indexOf(fightCampaignVideo.title) > campaignSection.indexOf("Winner announcement"));
+  assert.doesNotMatch(main, /Two Piece and a Soda|Dev Update #22, first part/);
+  assert.deepEqual(fightCampaign.map(item => item.slug), ["campaign-ideas", "campaign-prize", "campaign-walkthrough", "campaign-poll", "campaign-reminder", "campaign-winner"]);
+  assert.doesNotMatch(campaignSection, /campaign-teaser/);
+  assert.ok(campaignSection.includes("A six-step social campaign, shown in publication order."));
+  assert.equal((campaignSection.match(/>STEP<\/span>/g) ?? []).length, 6);
+  assert.deepEqual([...campaignSection.matchAll(/<span[^>]*>([0-9]{2})<\/span>/g)].map(match => match[1]), ["01", "02", "03", "04", "05", "06"]);
+  assert.ok(main.includes('/content/fight-legends/story-mode'));
+  assert.ok(main.includes('/content/fight-legends/introducing-nix'));
+  assert.deepEqual(fightDocuments.map(item => item.href), ["/content/fight-legends/story-mode", "/content/fight-legends/introducing-nix", "/content/fight-legends/multiverse-theory", "/content/fight-legends/get-to-know-ross-levine", "/content/fight-legends/pvp-mode", "/assets/fight-legends/fight-legends-litepaper-v2-5.pdf"]);
+  const documentSection = main.match(/<section[^>]*aria-labelledby="world-heading"[^>]*>([\s\S]*?)<\/section>/)?.[1];
+  assert.equal((documentSection.match(/Read full writing sample/g) ?? []).length, 5);
+  assert.ok(documentSection.includes("View illustrated PDF ↗"));
+  assert.equal((documentSection.match(/<article\b/g) ?? []).length, 6);
+  assert.deepEqual(fightDocuments.map(item => item.title), ["Story Mode", "Introducing Nix", "Multiverse Theory", "Get to know Ross Levine", "PvP Mode", "Litepaper"]);
+  const documentEntries = [...documentSection.matchAll(/<article\b[^>]*>([\s\S]*?)<\/article>/g)].map(match => match[1]);
+  for (const [index, entry] of documentEntries.entries()) {
+    const item = fightDocuments[index];
+    assert.ok(entry.includes(item.path));
+    assert.ok(entry.includes("Fight Legends artists/team"));
+    assert.ok(entry.indexOf("<h3") < entry.indexOf(item.topic));
+    assert.ok(entry.indexOf(item.topic) < entry.indexOf("<figure"));
+    assert.ok(entry.indexOf("</figure>") < entry.indexOf(index === 5 ? "View illustrated PDF" : "Read full writing sample"));
+    assert.equal((entry.match(new RegExp(`href="${item.href}"`, "g")) ?? []).length, 3);
+  }
+  assert.doesNotMatch(documentSection, /first-page preview|nix-vs-ross-levine/);
+  assert.ok(!main.includes('Create a Character - Mr Giddyup'));
+  const card = galleryItems.find(item => item.id === "fight-character-edit");
+  assert.equal(card.href, "/content/fight-legends");
+  assert.equal(card.action, "View collection");
+  assert.equal(card.video, "/assets/fight-legends/character-development-edit.mp4");
+  const study = (await page("/case-studies/fight-legends")).html;
+  assert.ok(study.includes("Browse the Fight Legends visual collection →"));
+  assert.ok(study.includes("name-that-character-bridge.webp"));
+  assert.doesNotMatch(study, /Progress Became Content|<video\b/);
+});
+
+test("Fight Legends articles retain illustrations and the collection opens the original illustrated Litepaper", async () => {
+  for (const [slug, image] of [["get-to-know-ross-levine", "ross-levine-article-artwork.webp"], ["pvp-mode", "pvp-mode-article-artwork.webp"]]) {
+    const { html } = await page(`/content/fight-legends/${slug}`);
+    const article = html.match(/<article\b[^>]*>([\s\S]*?)<\/article>/)?.[1];
+    assert.ok(article.includes(image));
+    assert.ok(article.includes("Fight Legends artists/team"));
+    assert.ok(html.includes("Written by Shawn Porter"));
+    assert.ok(html.includes("My contribution: concept and writing"));
+  }
+  const response = await serveBuiltAsset(new Request("http://localhost/assets/fight-legends/fight-legends-litepaper-v2-5.pdf"));
+  assert.equal(response.status, 200);
+  assert.equal(response.headers.get("content-type"), "application/pdf");
+  const bytes = Buffer.from(await response.arrayBuffer());
+  assert.equal(bytes.subarray(0, 5).toString(), "%PDF-");
+  assert.equal(createHash("sha256").update(bytes).digest("hex"), "d6e2133e6150bec1c810bd46215b8d3871b28e8c20d0238cdf57859fc3928379");
 });
 
 test("local Fight Legends writing samples preserve article text without platform clutter", async () => {
@@ -454,13 +532,22 @@ test("local Fight Legends writing samples preserve article text without platform
     assert.equal(response.status, 200);
     const article = html.match(/<article\b[^>]*aria-label="Archived article"[^>]*>([\s\S]*?)<\/article>/)?.[1];
     assert.ok(article);
-    for (const block of sample.blocks) assert.ok(article.includes(escapeHtml(block.text ?? block.heading)), `preserve ${sample.slug} article block`);
+    for (const block of sample.blocks) {
+      const text = "list" in block ? block.list : "table" in block ? [...block.table.headers, ...block.table.rows.flat()] : [block.text ?? block.heading ?? block.subheading];
+      for (const part of text) assert.ok(article.includes(escapeHtml(part)), `preserve ${sample.slug} source text: ${part}`);
+    }
+    if ("credit" in sample) assert.ok(html.includes(escapeHtml(sample.credit)));
     assert.ok(html.includes("Written by Shawn Porter"));
+    assert.ok(html.includes("My contribution:"));
+    assert.doesNotMatch(html, /Individual authorship not specified|does not identify an individual document author/);
     assert.ok(html.includes(escapeHtml(sample.archiveNote)));
-    assert.ok(article.includes(sample.image));
-    assert.doesNotMatch(article, /Sign up|Sign in|Subscribe|Enter your email|stories in your inbox|followers|discord\.gg|medium\.com/);
+    if ("image" in sample) assert.ok(article.includes(sample.image));
+    assert.doesNotMatch(article, /Sign up|Sign in|Subscribe|Enter your email|stories in your inbox|followers|medium\.com/);
     assert.doesNotMatch(html, /href="https:\/\/medium\.com/);
-    assert.ok(html.includes('/case-studies/fight-legends#assets-heading'));
+    const renderedMain = html.match(/<main\b[^>]*>([\s\S]*?)<\/main>/)?.[1];
+    assert.equal((renderedMain.match(/← Back to Fight Legends visual collection/g) ?? []).length, 2);
+    assert.ok(html.includes('href="/content/fight-legends"'));
+    assert.ok(!html.includes('/case-studies/fight-legends#assets-heading'));
   }
   assert.equal((await page("/content/fight-legends/not-a-sample")).response.status, 404);
 });

@@ -32,24 +32,6 @@ const writingSamples = [
   { title: "Story Mode", format: "Player-facing game explanation", description: "An explanation of the planned story mode, connecting character discovery with progression and gameplay.", href: "/content/fight-legends/story-mode" },
 ];
 
-const evidenceFrames = [
-  {
-    src: "/assets/fight-legends/progress-01.png",
-    alt: "Early gray 3D character model from Fight Legends development footage",
-    label: "Development progress",
-  },
-  {
-    src: "/assets/fight-legends/progress-02.png",
-    alt: "More detailed 3D character model from Fight Legends development footage",
-    label: "Product milestone",
-  },
-  {
-    src: "/assets/fight-legends/character-creation.png",
-    alt: "Fight Legends character-creation interface",
-    label: "Community-facing content",
-  },
-];
-
 export default function FightLegendsCaseStudyPage() {
   return (
     <CaseStudyPage className={styles.page}>
@@ -108,29 +90,18 @@ export default function FightLegendsCaseStudyPage() {
           <h3>Worldbuilding context</h3>
           <p>Fagan City · The Rifts · Rift Wars · The Agency</p>
         </article>
-        <figure className={styles.progressFigure}>
-          <div className={styles.figureHeading}>
-            <p>Progress Became Content</p>
-            <span>Source footage</span>
+      </CaseStudySection>
+
+      <CaseStudySection number="04" title="Explore the visual work" headingId="visual-work-heading">
+        <div className={styles.collectionBridge}>
+          <Link href="/content/fight-legends" aria-label="Browse the Fight Legends visual collection">
+            <Image src="/assets/fight-legends/name-that-character-bridge.webp" alt="Fight Legends Name That Character-style presentation with layered grayscale character panels" width={900} height={479} sizes="(max-width: 640px) 100vw, 360px" unoptimized />
+          </Link>
+          <div>
+            <p>Character development, livestream presentation, and community-facing game content.</p>
+            <Link className={styles.collectionAction} href="/content/fight-legends">Browse the Fight Legends visual collection →</Link>
           </div>
-          <div className={styles.frameGrid}>
-            {evidenceFrames.map((frame, index) => (
-              <div className={styles.frame} key={frame.src}>
-                <div className={styles.frameImage}>
-                  <Image src={frame.src} alt={frame.alt} width={1280} height={720} sizes="(max-width: 800px) 100vw, 33vw" unoptimized />
-                </div>
-                <p><span>{String.fromCharCode(65 + index)}</span>{frame.label}</p>
-              </div>
-            ))}
-          </div>
-          <figcaption>Visible development progress became material for recurring, human-led storytelling.</figcaption>
-        </figure>
-        <figure className={styles.showSample}>
-          <video controls playsInline preload="none" poster="/assets/fight-legends/dev-update-22-poster.png" aria-label="Fight Legends development show episode 22">
-            <source src="/assets/fight-legends/dev-update-22.mp4" type="video/mp4" />
-          </video>
-          <figcaption>Development show · Episode 22. Evidence of show format, visual direction, and production; the program features two presenters.</figcaption>
-        </figure>
+        </div>
       </CaseStudySection>
 
       <CaseStudySection number="05" title="Outcomes & Evidence" headingId="results-heading">
