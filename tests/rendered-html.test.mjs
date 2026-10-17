@@ -457,15 +457,32 @@ test("Fight Legends connects narrative authorship and show production with attri
 test("Fight Legends visual collection is curated with independent writing child routes and deferred videos", async () => {
   const { html, response } = await page("/content/fight-legends");
   assert.equal(response.status, 200);
-  assert.ok(html.includes("Fight Legends · Visual production"));
+  assert.ok(html.includes("Fight Legends · Game content &amp; community"));
+  assert.ok(html.includes("As Community Manager &amp; Marketing Lead, I hosted and produced recurring Fight Legends development updates, turning in-progress game work into clear audience-facing conversations and social content. I also wrote player-facing material, developed campaign concepts, prepared art briefs and creative review with the lead graphic designer, and managed publishing and community participation."));
+  assert.match(html, /<h2[^>]*>Hosted development updates<\/h2><p[^>]*>Recurring conversations that made new character work, gameplay systems, and in-progress builds understandable as Fight Legends developed\.<\/p>/);
+  assert.doesNotMatch(html, /edited and packaged supplied developer and artist footage into short social updates/);
+  assert.ok(html.includes("Community Manager &amp; Marketing Lead"));
+  assert.ok(html.includes("Artwork, game captures, and character concepts shown throughout were created by the Fight Legends team unless otherwise noted."));
   assert.ok(!html.includes("Collection currently being curated."));
   const main = html.match(/<main\b[^>]*>([\s\S]*?)<\/main>/)?.[1];
   assert.doesNotMatch(main, /<video\b/);
-  for (const heading of ["Game world and player-facing systems", "Name That Character campaign", "Community activation", "Character and development video"]) assert.ok(main.includes(heading));
+  assert.deepEqual([...main.matchAll(/<h2\b[^>]*>(.*?)<\/h2>/g)].map(match => match[1]), ["Hosted development updates", "Game world and player-facing systems", "Name That Character campaign", "Community activation"]);
+  assert.equal((main.match(/<strong>My role:<\/strong>/g) ?? []).length, 4);
+  for (const [headingId, roleCopy] of [
+    ["video-heading", "hosted and produced recurring development updates with the developer; prepared supplied gameplay and character-progress footage for each recording, guided the on-camera conversation, then edited 30–60 minute episodes into short social clips and published them."],
+    ["world-heading", "wrote the articles and player-facing material. Accompanying artwork and game imagery are credited to the Fight Legends team."],
+    ["campaign-heading", "conceived the participation campaign, wrote the copy, developed art briefs and provided creative review with the design team, edited the character-development video, and managed publishing and community response."],
+    ["community-heading", "planned and published community content, wrote copy, and collaborated with the lead graphic designer on art briefs and creative review for supporting visuals."],
+  ]) {
+    const section = main.match(new RegExp(`<section[^>]*aria-labelledby="${headingId}"[^>]*>([\\s\\S]*?)<\\/section>`))?.[1];
+    assert.ok(section.includes(`<strong>My role:</strong> ${roleCopy}`));
+    assert.ok(section.indexOf("My role:") < section.search(/<(?:div|ol)\b/));
+  }
   assert.equal((main.match(/<img\b/g) ?? []).length, 22);
   assert.equal((main.match(/aria-label="Play /g) ?? []).length, 4);
   assert.deepEqual([fightDocuments.length, fightCampaign.length, fightCommunity.length, fightVideos.length], [6, 6, 6, 3]);
   const communitySection = main.match(/<section[^>]*aria-labelledby="community-heading"[^>]*>([\s\S]*?)<\/section>/)?.[1];
+  assert.match(communitySection, /<h2[^>]*>Community activation<\/h2><p[^>]*>Development updates, participation hooks, and platform-native posts used to keep the community engaged between milestones\.<\/p>/);
   assert.ok(communitySection.includes("/assets/fight-legends/narrative-ross.webp"));
   assert.ok(!main.includes("mint-pass.webp"));
   assert.deepEqual(fightVideos.map(item => item.slug), ["nix-unity", "cannon", "nix-combos"]);
@@ -491,9 +508,10 @@ test("Fight Legends visual collection is curated with independent writing child 
     const item = fightDocuments[index];
     assert.ok(entry.includes(item.path));
     assert.ok(entry.includes("Fight Legends artists/team"));
+    assert.ok(entry.indexOf("<img") < entry.indexOf("<h3"));
     assert.ok(entry.indexOf("<h3") < entry.indexOf(item.topic));
-    assert.ok(entry.indexOf(item.topic) < entry.indexOf("<figure"));
-    assert.ok(entry.indexOf("</figure>") < entry.indexOf(index === 5 ? "View illustrated PDF" : "Read full writing sample"));
+    assert.ok(entry.indexOf(item.topic) < entry.indexOf(item.caption));
+    assert.ok(entry.indexOf(item.caption) < entry.indexOf(index === 5 ? "View illustrated PDF" : "Read full writing sample"));
     assert.equal((entry.match(new RegExp(`href="${item.href}"`, "g")) ?? []).length, 3);
   }
   assert.doesNotMatch(documentSection, /first-page preview|nix-vs-ross-levine/);
