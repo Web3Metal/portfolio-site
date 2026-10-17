@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate Shawn Porter's public two-page resume PDF.
+"""Generate Shawn Porter's public one-page resume PDF.
 
 Run from anywhere with the repository's Python environment:
     python scripts/generate-resume.py
@@ -21,7 +21,6 @@ from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.pdfgen.canvas import Canvas
 from reportlab.platypus import (
     KeepTogether,
-    PageBreak,
     Paragraph,
     SimpleDocTemplate,
     Spacer,
@@ -109,11 +108,11 @@ FOUNDER_PROJECTS = [
     ),
     (
         "CYBER METAL RADIO",
-        "Co-Founder and Growth Lead",
+        "Co-Founder | Zero-to-One Community Growth",
         "Oct 2023 – Present",
         [
             "Led zero-to-one marketing and growth, recruiting artists and building recurring submission, ranking, live-programming, and recognition systems.",
-            "Generated 1,765 artist submissions, 200,000+ listens, and 16,000+ community interactions in 2025.",
+            "Team/platform activity: 1,765 artist submissions in 2025, 200,000+ listens, and 16,000+ community interactions.",
             "Established New Metal Monday, the weekly Top 15 countdown, and an annual awards program as recurring reasons for creators to submit, listen, share, and return.",
         ],
     ),
@@ -159,33 +158,33 @@ def build_styles() -> dict[str, ParagraphStyle]:
         ),
         "contact": ParagraphStyle(
             "Contact", parent=base["Normal"], fontName="ResumeSans", fontSize=7.3,
-            leading=9.2, textColor=MUTED, alignment=TA_CENTER, spaceAfter=7,
+            leading=9.2, textColor=MUTED, alignment=TA_CENTER, spaceAfter=5,
         ),
         "section": ParagraphStyle(
             "Section", parent=base["Normal"], fontName="ResumeSans-Bold", fontSize=9.4,
-            leading=11, textColor=RUST, spaceBefore=10, spaceAfter=4,
+            leading=11, textColor=RUST, spaceBefore=4, spaceAfter=2,
             borderWidth=0, borderPadding=0,
         ),
         "body": ParagraphStyle(
             "Body", parent=base["Normal"], fontName="ResumeSans", fontSize=8.1,
-            leading=10.2, textColor=INK, alignment=TA_LEFT, spaceAfter=3,
+            leading=10.2, textColor=INK, alignment=TA_LEFT, spaceAfter=1.5,
         ),
         "skills": ParagraphStyle(
             "Skills", parent=base["Normal"], fontName="ResumeSans", fontSize=7.7,
-            leading=9.6, textColor=INK, spaceAfter=3,
+            leading=9.6, textColor=INK, spaceAfter=2,
         ),
         "role": ParagraphStyle(
             "Role", parent=base["Normal"], fontName="ResumeSans", fontSize=8.2,
-            leading=10.2, textColor=INK, spaceBefore=6, spaceAfter=2,
+            leading=10.2, textColor=INK, spaceBefore=3, spaceAfter=1,
         ),
         "bullet": ParagraphStyle(
             "Bullet", parent=base["Normal"], fontName="ResumeSans", fontSize=7.6,
             leading=9.5, textColor=INK, leftIndent=9, firstLineIndent=-7,
-            spaceAfter=2,
+            spaceAfter=1,
         ),
         "small": ParagraphStyle(
             "Small", parent=base["Normal"], fontName="ResumeSans", fontSize=7.8,
-            leading=9.8, textColor=INK, spaceAfter=2,
+            leading=9.8, textColor=INK, spaceAfter=1,
         ),
     }
 
@@ -194,7 +193,7 @@ def section_title(story: list, text: str, styles: dict[str, ParagraphStyle]) -> 
     story.append(Paragraph(escape(text.upper()), styles["section"]))
     story.append(Paragraph("_" * 154, ParagraphStyle(
         "Rule", parent=styles["body"], fontName="ResumeSans", fontSize=2.2,
-        leading=2.2, textColor=RULE, spaceAfter=2,
+        leading=2.2, textColor=RULE, spaceAfter=1,
     )))
 
 
@@ -221,7 +220,7 @@ def decorate_page(canvas, doc) -> None:
     canvas.setFont("ResumeSans", 6)
     canvas.setFillColor(MUTED)
     canvas.drawString(0.52 * inch, 0.27 * inch, "SHAWN PORTER")
-    canvas.drawRightString(letter[0] - 0.52 * inch, 0.27 * inch, f"PAGE {doc.page} OF 2")
+    canvas.drawRightString(letter[0] - 0.52 * inch, 0.27 * inch, f"PAGE {doc.page} OF 1")
     canvas.restoreState()
 
 
@@ -243,8 +242,8 @@ def build_pdf() -> None:
         pagesize=letter,
         leftMargin=0.52 * inch,
         rightMargin=0.52 * inch,
-        topMargin=0.45 * inch,
-        bottomMargin=0.46 * inch,
+        topMargin=0.32 * inch,
+        bottomMargin=0.32 * inch,
         title="Shawn Porter Resume",
         author="Shawn Porter",
         subject="Growth, Community and Content Strategy",
@@ -270,7 +269,6 @@ def build_pdf() -> None:
     for role in PROFESSIONAL_EXPERIENCE:
         add_role(story, role, styles)
 
-    story.append(PageBreak())
     section_title(story, "Founder-Led Projects", styles)
     for role in FOUNDER_PROJECTS:
         add_role(story, role, styles)
@@ -280,9 +278,14 @@ def build_pdf() -> None:
     story.append(Paragraph("<b>UNIVERSITY OF WASHINGTON</b>", styles["small"]))
     story.append(Paragraph("Bachelor of Arts — Journalism &amp; Political Science", styles["small"]))
     section_title(story, "Selected Recognition", styles)
-    for item in RECOGNITION:
-        story.append(bullet(item, styles))
-    story.append(Spacer(1, 6))
+    recognition_style = ParagraphStyle(
+        "Recognition", parent=styles["small"], spaceAfter=0,
+    )
+    recognition_lines = [
+        " &nbsp;•&nbsp; ".join(escape(item) for item in RECOGNITION[:3]),
+        " &nbsp;•&nbsp; ".join(escape(item) for item in RECOGNITION[3:]),
+    ]
+    story.append(Paragraph("<br/>".join(recognition_lines), recognition_style))
 
     doc.build(
         story,
@@ -292,13 +295,13 @@ def build_pdf() -> None:
     )
 
     reader = PdfReader(str(OUTPUT), strict=True)
-    if len(reader.pages) != 2:
-        raise RuntimeError(f"Expected exactly 2 pages, generated {len(reader.pages)}")
+    if len(reader.pages) != 1:
+        raise RuntimeError(f"Expected exactly 1 page, generated {len(reader.pages)}")
     extracted = "\n".join(page.extract_text() or "" for page in reader.pages)
     for required in ("AVA LABS", "WEB3 METAL", "CYBER METAL RADIO", "UNIVERSITY OF WASHINGTON"):
         if required not in extracted:
             raise RuntimeError(f"Generated PDF is missing expected text: {required}")
-    print(f"Generated {OUTPUT} ({OUTPUT.stat().st_size:,} bytes, 2 pages)")
+    print(f"Generated {OUTPUT} ({OUTPUT.stat().st_size:,} bytes, 1 page)")
 
 
 if __name__ == "__main__":

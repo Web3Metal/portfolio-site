@@ -1,0 +1,54 @@
+.work { padding: 64px 0 72px; background: var(--ink); color: var(--paper); }
+.wrap { width: min(1380px, calc(100% - 72px)); margin: 0 auto; }
+.heading { display: flex; align-items: end; justify-content: space-between; gap: 28px; margin-bottom: 34px; }
+.heading h1, .heading h2 { margin: 0; font-family: Georgia, serif; font-size: clamp(48px, 6vw, 80px); font-weight: 400; letter-spacing: -.045em; line-height: 1; }
+.heading p { max-width: 420px; margin: 0; font-size: 17px; line-height: 1.5; color: #aeb8c4; }
+.group { scroll-margin-top: 100px; }
+.group + .group { margin-top: 44px; }
+.group > h3 { margin: 0 0 20px; color: #f08b7e; font-size: 13px; letter-spacing: .06em; }
+.workGrid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px; }
+.workCard { display: block; min-width: 0; }
+.workImage { width: 84%; overflow: hidden; aspect-ratio: 2 / 1; background: var(--ink); }
+.workImage img { display: block; width: 100%; height: 100%; object-fit: cover; }
+/* Crop the saved source-page border and attribution strip, not the original file. */
+.workCard[href="/case-studies/ava-labs"] .workImage img { transform: scale(1.04); object-position: center 32%; }
+.workCard[href="/case-studies/fight-legends"] .workImage img { object-position: center 20%; }
+.workCard h4 { margin: 14px 0 8px; max-width: 580px; font-family: Georgia, serif; font-size: clamp(25px, 2.4vw, 35px); font-weight: 400; letter-spacing: -.025em; line-height: 1.12; }
+.workCard p { margin: 0; color: #aeb8c4; font-size: 12px; line-height: 1.5; }
+.workCard span { display: inline-block; margin-top: 10px; font-size: 11px; color: #f08b7e; }
+.workCard:hover h4, .galleryCard:hover h3 { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 5px; }
+.gallery { padding: 64px 0 72px; color: var(--ink); background: var(--paper); }
+.gallery .heading p { color: #5b6775; }
+.galleryGrid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); align-items: start; gap: 32px 24px; }
+.galleryCard { display: block; min-width: 0; grid-column: span 4; }
+.galleryWide { grid-column: span 6; }
+.galleryTall { grid-column: span 2; }
+.galleryImage { overflow: hidden; }
+.galleryTriptych { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; padding: 8px; background: var(--ink); }
+.galleryTriptych img { display: block; width: 100%; height: auto; }
+.galleryImage img, .galleryImage video { display: block; width: 100%; height: auto; }
+.galleryTall .galleryCaption h3 { font-size: 20px; }
+.galleryCaption h3 { margin: 14px 0 6px; font-family: Georgia, serif; font-size: 24px; font-weight: 400; line-height: 1.1; letter-spacing: -.02em; }
+.galleryCaption p { margin: 0; color: #5b6775; font-size: 12px; line-height: 1.4; }
+.galleryCaption span, .galleryCaption > a { display: block; margin-top: 10px; font-size: 11px; color: var(--accent-readable); }
+.galleryCaption small { font-size: inherit; }
+.more { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 18px; margin-top: 32px; font-size: 12px; }
+.more a { min-height: 44px; padding: 12px 0; border-bottom: 1px solid currentColor; }
+.anchor { display: block; scroll-margin-top: 100px; }
+@media (max-width: 1000px) {
+  .galleryGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .galleryCard { grid-column: span 1; }
+  .galleryWide { grid-column: 1 / -1; }
+  .galleryTall { width: min(100%, 210px); justify-self: center; }
+}
+@media (max-width: 620px) {
+  .wrap { width: calc(100% - 36px); }
+  .work, .gallery { padding: 44px 0 48px; }
+  .heading { display: block; margin-bottom: 28px; }
+  .heading p { margin-top: 16px; font-size: 15px; }
+  .workGrid, .galleryGrid { grid-template-columns: 1fr; gap: 30px; }
+  .galleryCard { grid-column: 1; grid-row: auto; }
+  .group + .group { margin-top: 36px; }
+  .workCard h4 { font-size: 27px; }
+  .workImage { width: 100%; }
+}

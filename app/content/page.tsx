@@ -1,5 +1,5 @@
 import { redirect } from "next/navigation";
 
-export default function ContentRedirect() {
-  redirect("/#selected-content");
+export default function GalleryPage() {
+  redirect("/#gallery");
 }
