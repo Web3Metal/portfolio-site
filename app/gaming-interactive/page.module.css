@@ -1,0 +1,20 @@
+.page { padding-block: clamp(36px, 5vw, 64px); }
+.intro { max-width: 960px; margin-bottom: 40px; }
+.intro h1 { margin: 0 0 24px; font-family: Georgia, serif; font-weight: 400; font-size: clamp(42px, 5vw, 76px); line-height: 1; letter-spacing: -.045em; }
+.intro p { line-height: 1.6; }
+.promise { font-size: clamp(18px, 1.7vw, 24px); }
+.projects { border-top: 1px solid var(--line); }
+.project { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: clamp(28px, 4vw, 60px); padding-block: 36px; border-bottom: 1px solid var(--line); align-items: start; }
+.project > * { min-width: 0; }
+.project figure { margin: 0; }
+.project img { width: 100%; height: auto; }
+.project figcaption { margin-top: 12px; font-size: 12px; line-height: 1.5; color: #34404d; }
+.format { margin: 0 0 12px; color: var(--accent-readable); font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .09em; line-height: 1.6; }
+.project h2 { margin: 0 0 16px; font-family: Georgia, serif; font-size: clamp(30px, 3vw, 44px); font-weight: 400; letter-spacing: -.035em; line-height: 1.08; overflow-wrap: anywhere; }
+.project p:not(.format) { margin: 0 0 16px; line-height: 1.6; }
+.credit { color: #34404d; font-size: 15px; }
+.links, .closing { display: flex; flex-wrap: wrap; gap: 12px 24px; }
+.links a, .closing a { display: inline-flex; align-items: center; gap: 10px; min-height: 44px; border-bottom: 1px solid var(--ink); font-size: 13px; font-weight: 700; }
+.links span, .closing span { color: var(--accent-readable); }
+.closing { padding-top: 28px; }
+@media (max-width: 800px) { .project { grid-template-columns: 1fr; gap: 24px; padding-block: 28px; } .intro { margin-bottom: 28px; } }

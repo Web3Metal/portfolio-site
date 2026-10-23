@@ -1,0 +1,29 @@
+.composition { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; align-items: start; }
+.column { display: flex; flex-direction: column; gap: 30px; min-width: 0; }
+.item, .portrait { min-width: 0; }
+.portrait { width: min(100%, 240px); }
+.preview { position: relative; background: var(--ink); }
+.previewLink { display: block; }
+.caption { display: block; text-decoration: none; }
+.preview video { display: block; width: 100%; height: auto; }
+.controls { position: absolute; bottom: 12px; right: 12px; display: flex; gap: 8px; }
+.controls button { min-height: 44px; padding: 8px 12px; color: #fff; border: 1px solid #aeb8c4; background: rgba(12,17,24,.88); cursor: pointer; font-size: 11px; }
+.controls button:focus-visible, .previewLink:focus-visible { outline: 3px solid var(--accent-readable); outline-offset: -3px; }
+@media (min-width: 1001px) {
+  /* Expand left into the space beside the portrait; retain the landscape frame. */
+  [data-gallery-column="3"] > [data-home-gallery-item="wave-warz"] {
+    width: calc(200% - 240px);
+    margin-left: calc(240px - 100%);
+  }
+}
+@media (max-width: 1000px) and (min-width: 621px) {
+  .composition { gap: 20px; }
+  .controls { right: 8px; bottom: 8px; gap: 4px; }
+  .controls button { padding: 6px 8px; }
+}
+@media (max-width: 620px) {
+  .composition { display: flex; flex-direction: column; gap: 30px; }
+  .column { display: contents; }
+  .item { width: 100%; }
+  .portrait { align-self: center; width: min(100%, 210px); }
+}

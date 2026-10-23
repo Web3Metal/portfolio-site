@@ -1,9 +1,9 @@
 export const navItems = [
   ["Home", "/"],
-  ["Case Studies", "/case-studies"],
-  ["AI Builder & Community", "/ai-builder-community"],
+  ["Work", "/#work"],
+  ["Gallery", "/#gallery"],
   ["About", "/about"],
-  ["Resume", "/resume"],
+  ["Résumé", "/resume"],
   ["Contact", "/contact"],
 ] as const;
 
@@ -23,13 +23,13 @@ export const caseStudies = [
   {
     slug: "cyber-metal-radio",
     number: "02",
-    title: "Cyber Metal Radio",
-    role: "Co-founder & Growth Lead",
-    summary: "Turned a community broadcast into a recurring creator ecosystem with submissions, rankings, live programming, and participation loops.",
-    challenge: "Independent AI-music creators needed more than a playlist: they needed recurring reasons to submit, listen, return, and recognize one another.",
-    system: ["Weekly New Music Monday programming", "Top 15 countdown and annual specials", "Creator submission and ranking workflows", "Live broadcast, social promotion, and community operations"],
-    results: ["1,765 artist submissions in 2025", "200,000+ listens", "16,000+ community interactions", "Weekly live programming"],
-    tags: ["Creator ecosystem", "Programming", "Broadcast"],
+    title: "Web3 Metal / Cyber Metal Radio",
+    role: "Founder, Web3 Metal · Co-Founder, Cyber Metal Radio",
+    summary: "Connected editorial work, recurring radio programming, and community around artists exploring Web3 and AI music.",
+    challenge: "Artists exploring Web3 and AI music had places to upload their work, but fewer spaces built around discovery, recognition, and community.",
+    system: ["Web3 Metal editorial work and Discord community", "Cyber Metal Radio formed within that Discord", "New Metal Monday and weekly Top 15 programming", "A separate radio server for operational independence and efficiency"],
+    results: ["Web3 Metal Discord: 192 members", "Cyber Metal Radio: 1,765 artist submissions in 2025", "200,000+ listens and 16,000+ interactions across the radio platform"],
+    tags: ["Music technology", "Editorial", "Creator community"],
     image: "/assets/cyber-metal-radio-logo.png",
   },
   {

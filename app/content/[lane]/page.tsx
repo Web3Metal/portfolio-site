@@ -6,6 +6,7 @@ import { ContactBlock, SiteFooter, SiteHeader } from "../../site-components";
 import { contentLanes, featuredContent } from "../../content-data";
 import styles from "../content.module.css";
 import VideoPlayer from "../video-player";
+import { LegacyGalleryPage as GalleryPage } from "../../gallery-grid";
 
 type LanePageProps = { params: Promise<{ lane: string }> };
 
@@ -16,6 +17,7 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: LanePageProps): Promise<Metadata> {
   const { lane: slug } = await params;
   const lane = contentLanes.find((item) => item.slug === slug);
+  if (["podcast-show-overlay-design", "short-form", "graphic-design"].includes(slug)) return { title: "Gallery", description: "Selected visual packages, creative projects, interactive experiences, and social content by Shawn Porter." };
   return lane ? { title: lane.title, description: lane.intro } : { title: "Content lane" };
 }
 
@@ -90,6 +92,8 @@ function WritingLane() {
 
 export default async function ContentLanePage({ params }: LanePageProps) {
   const { lane: slug } = await params;
+  // Keep old bookmarks usable without retaining competing public categories.
+  if (["podcast-show-overlay-design", "short-form", "graphic-design"].includes(slug)) return <GalleryPage />;
   const lane = contentLanes.find((item) => item.slug === slug);
   if (!lane) notFound();
   const items = lane.items.map((itemSlug) => featuredContent.find((item) => item.slug === itemSlug)).filter((item): item is (typeof featuredContent)[number] => Boolean(item));

@@ -1,0 +1,25 @@
+.triptych section, .presentation > * { min-width: 0; }
+.imageLink { display: block; }
+.imageLink img { display: block; width: 100%; height: auto; }
+.group h2 { margin: 14px 0 6px; font-family: Georgia, serif; font-size: 26px; line-height: 1.15; font-weight: 400; }
+.credit { margin: 0; font-size: 12px; color: #5b6775; line-height: 1.5; }
+.group { margin-top: 38px; }
+.group > .credit { margin-bottom: 18px; }
+.triptych { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; }
+.group figure { margin: 0; }
+.group figcaption { margin-top: 8px; font-size: 12px; color: #5b6775; line-height: 1.5; }
+.reel { width: 100%; }
+.reelMedia { aspect-ratio: 480 / 856; background: var(--ink); }
+.reelMedia video, .play img { display: block; width: 100%; height: 100%; object-fit: contain; }
+.play { display: block; position: relative; width: 100%; height: 100%; border: 0; padding: 0; cursor: pointer; }
+.play span { position: absolute; bottom: 12px; right: 12px; background: var(--ink); color: white; padding: 12px 16px; font-size: 12px; }
+.presentation { display: grid; grid-template-columns: minmax(0, 1.78372fr) minmax(0, 0.56075fr) minmax(0, 0.56316fr); gap: 16px; align-items: start; }
+.portrait { width: 100%; }
+.socialPair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; max-width: 660px; align-items: start; }
+.imageLink:focus-visible, .play:focus-visible { outline: 3px solid var(--accent-readable); outline-offset: 3px; }
+@media (max-width: 620px) {
+  .triptych, .presentation, .socialPair { grid-template-columns: 1fr; gap: 24px; }
+  .reel, .portrait { width: min(100%, 270px); }
+  .socialPair { max-width: 300px; }
+  .group { margin-top: 30px; }
+}

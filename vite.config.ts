@@ -38,7 +38,7 @@ const localBindingConfig = {
     : [],
 };
 
-export default defineConfig(async () => {
+export default defineConfig(async ({ command, isPreview }) => {
   // Keep Wrangler and Miniflare state project-local. These are non-secret tool
   // settings; application environment belongs in ignored `.env*` files.
   process.env.WRANGLER_WRITE_LOGS ??= "false";
@@ -48,6 +48,15 @@ export default defineConfig(async () => {
   const server = isCodexSeatbeltSandbox
     ? { watch: { useFsEvents: false, usePolling: true } }
     : undefined;
+  // Local dev uses Vite's runnable Node environments. Deployment adapters
+  // own their runners and remain enabled for builds and production previews.
+  if (command === "serve" && !isPreview) {
+    return {
+      server,
+      plugins: [tailwindcss(), vinext()],
+    };
+  }
+
   if (isNitroDeployment) {
     return {
       server,
