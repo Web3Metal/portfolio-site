@@ -9,7 +9,7 @@ import { contentLanes, featuredContent, homepageContent } from "../app/content-d
 import { fightLegendsSamples } from "../app/content/fight-legends/samples.ts";
 import { documents as fightDocuments, campaign as fightCampaign, community as fightCommunity, videos as fightVideos, campaignVideo as fightCampaignVideo } from "../app/content/fight-legends/collection-data.ts";
 import { galleryItems, workGroups } from "../app/portfolio-data.ts";
-import { chamberArchiveItem, chamberVideos } from "../app/content/puyallup-chamber/data.ts";
+import { chamberGalleryItem, chamberVideos, chamberStills } from "../app/content/puyallup-chamber/data.ts";
 import { waveWarzVideos } from "../app/content/wave-warz/data.ts";
 import { newsletterItem, web3MetalVideos } from "../app/content/web3-metal/data.ts";
 import { guestReel, artBasel, interviewPresentation, packaging, socialRollout } from "../app/content/edge-visuals/data.ts";
@@ -181,11 +181,11 @@ const routePaths = new Set([
 ]);
 routePaths.delete(null);
 
-test("homepage is the canonical six-item Gallery with an Art Basel featured thumbnail", async () => {
+test("homepage is the canonical seven item Gallery with an Art Basel featured thumbnail", async () => {
   const { html } = await page("/");
-  assert.equal([...html.matchAll(/data-home-gallery-item=/g)].length, 6);
+  assert.equal([...html.matchAll(/data-home-gallery-item=/g)].length, 7);
   assert.match(html, /data-gallery-column="2"[\s\S]*data-home-gallery-item="last-rehearsal"[\s\S]*data-home-gallery-item="dadabots-prodigy"/);
-  const fightCard = html.match(/data-home-gallery-item="fight-character-edit"([\s\S]*?)data-gallery-column="2"/)?.[1];
+  const fightCard = html.match(/data-home-gallery-item="fight-character-edit"([\s\S]*?)data-home-gallery-item="puyallup-chamber"/)?.[1];
   assert.ok(fightCard);
   assert.match(fightCard, /<video[^>]*loop=""[^>]*muted=""[^>]*playsInline=""/i);
   assert.doesNotMatch(fightCard, /<video[^>]*controls/i);
@@ -216,27 +216,31 @@ test("Wave Warz is one curated collection with five on-demand recordings", async
   }
 });
 
-test("Chamber has one subordinate Gallery archive entry without changing the featured set", async () => {
+test("Chamber is a standard Gallery card immediately after Fight Legends in the left column", async () => {
   const { html } = await page("/");
-  assert.equal(galleryItems.length, 6);
-  assert.equal((html.match(/data-home-gallery-item=/g) ?? []).length, 6);
-  assert.equal((html.match(/data-gallery-archive-item="puyallup-chamber"/g) ?? []).length, 1);
-  const archive = html.match(/<section[^>]*id="gallery-archive"[^>]*>([\s\S]*?)<\/section>/)?.[1];
-  assert.ok(archive);
-  for (const copy of [chamberArchiveItem.title, chamberArchiveItem.descriptor, chamberArchiveItem.action]) assert.ok(archive.includes(copy));
-  assert.ok(html.indexOf('id="gallery-archive"') > html.lastIndexOf('data-home-gallery-item='));
-  assert.equal((archive.match(/href="\/content\/puyallup-chamber"/g) ?? []).length, 3);
-  assert.ok(archive.includes(chamberArchiveItem.poster));
-  assert.match(archive, /<video[^>]*loop=""[^>]*muted=""[^>]*playsInline=""[^>]*preload="none"/i);
-  assert.doesNotMatch(archive, /<source\b|\b(?:19|20)\d{2}\b/);
-  const collection = await page(chamberArchiveItem.href);
+  assert.equal(galleryItems.length, 7);
+  assert.equal((html.match(/data-home-gallery-item=/g) ?? []).length, 7);
+  const leftColumn = html.match(/data-gallery-column="1"([\s\S]*?)data-gallery-column="2"/)?.[1];
+  assert.ok(leftColumn);
+  assert.deepEqual([...leftColumn.matchAll(/data-home-gallery-item="([^"]+)"/g)].map(match => match[1]), ["artist-site", "fight-character-edit", "puyallup-chamber"]);
+  const chamberCard = leftColumn.slice(leftColumn.indexOf('data-home-gallery-item="puyallup-chamber"'));
+  assert.equal(galleryItems.filter(item => item.id === "puyallup-chamber").length, 1);
+  for (const copy of [chamberGalleryItem.title, chamberGalleryItem.descriptor, chamberGalleryItem.action]) assert.ok(chamberCard.includes(copy));
+  assert.equal((chamberCard.match(/href="\/content\/puyallup-chamber"/g) ?? []).length, 2);
+  assert.ok(chamberCard.includes(chamberGalleryItem.poster));
+  assert.match(chamberCard, /<h3>/);
+  assert.match(chamberCard, /<video[^>]*loop=""[^>]*muted=""[^>]*playsInline=""[^>]*preload="none"/i);
+  assert.doesNotMatch(chamberCard, /<source\b|\b(?:19|20)\d{2}\b/);
+  assert.doesNotMatch(html, /gallery-archive|Gallery archive/);
+  const collection = await page(chamberGalleryItem.href);
   assert.equal(collection.response.status, 200);
-  assert.ok(collection.html.includes(chamberArchiveItem.title));
-  assert.ok(collection.html.includes('href="/#gallery-archive"'));
+  assert.ok(collection.html.includes(chamberGalleryItem.title));
+  assert.ok(collection.html.includes('href="/#gallery"'));
+  assert.doesNotMatch(collection.html, /gallery-archive|Gallery archive/);
   assert.match(collection.html, /data-chamber-masonry/);
   assert.equal(chamberVideos.length, 7);
   assert.deepEqual(chamberVideos.map(video => video.slug), ["welcome-to-the-chamber", "walmart-ribbon-cutting", "washington-state-fair-fireworks", "beverly-belles-throwback", "state-fair-dance-off", "live-music", "washington-state-fair"]);
-  const cardOrder = [...collection.html.matchAll(/<section[^>]*aria-labelledby="([^"]+)"/g)].map(match => match[1]);
+  const cardOrder = [...collection.html.matchAll(/<section[^>]*data-chamber-loop[^>]*aria-labelledby="([^"]+)"/g)].map(match => match[1]);
   assert.deepEqual(cardOrder, chamberVideos.map(video => video.slug));
   for (const video of chamberVideos) {
     assert.ok(collection.html.includes(video.title));
@@ -256,6 +260,29 @@ test("Chamber has one subordinate Gallery archive entry without changing the fea
   assert.doesNotMatch(collection.html, /Play video|Sound on|Turn sound on|>GIF</i);
   assert.doesNotMatch(collection.html, /Collection currently being curated\.|<source\b/);
   assert.doesNotMatch(collection.html, /Spin the Wheel|State Fair Pavilion|first event|first in.person/);
+});
+
+test("Chamber still posts are six explicit images with purpose annotations and no unverified links", async () => {
+  const { html } = await page(chamberGalleryItem.href);
+  const stillSection = html.slice(html.indexOf('<section id="selected-still-posts"'));
+  assert.ok(stillSection.startsWith('<section id="selected-still-posts"'));
+  assert.match(stillSection, /<h2[^>]*>Selected still posts<\/h2>/);
+  const loopSections = [...html.matchAll(/<section\b[^>]*data-chamber-loop[^>]*>/g)];
+  assert.equal(loopSections.length, 7);
+  assert.ok(html.indexOf('id="selected-still-posts"') > loopSections.at(-1).index);
+  assert.deepEqual(chamberStills.map(item => item.slug), ["farm-guide", "local-vehicle-display", "business-ribbon-cutting", "rodeo-giveaway", "oktoberfest-promotion", "deli-spotlight"]);
+  const cards = [...stillSection.matchAll(/<article[^>]*data-chamber-still="([^"]+)"[^>]*>([\s\S]*?)<\/article>/g)];
+  assert.deepEqual(cards.map(card => card[1]), chamberStills.map(item => item.slug));
+  for (const [index, [, , card]] of cards.entries()) {
+    const item = chamberStills[index];
+    assert.ok(card.includes(item.title));
+    assert.ok(card.includes(item.annotation));
+    assert.ok(card.includes(item.src));
+    assert.match(card, /<img[^>]*loading="lazy"/);
+    assert.doesNotMatch(card, /<a\b|<button\b|<video\b|View original post|cdninstagram\.com|\bhref=/i);
+    assert.equal((card.match(/<p\b/g) ?? []).length, 1);
+    assert.doesNotMatch(item.annotation, /[—–-]/);
+  }
 });
 
 test("Web3 Metal has one Gallery entry and manually curated on-demand artifacts", async () => {
@@ -369,8 +396,9 @@ test("local media references exist in both public source and built output", asyn
   addReference(newsletterItem.cover);
   for (const item of [...artBasel, ...interviewPresentation, ...packaging, ...socialRollout]) addReference(item.src);
   addReference(guestReel.src); addReference(guestReel.poster);
-  addReference(chamberArchiveItem.video); addReference(chamberArchiveItem.poster);
+  addReference(chamberGalleryItem.video); addReference(chamberGalleryItem.poster);
   for (const item of chamberVideos) { addReference(item.src); addReference(item.poster); }
+  for (const item of chamberStills) addReference(item.src);
   for (const item of [...fightDocuments, ...fightCampaign, ...fightCommunity, ...fightVideos, fightCampaignVideo]) addReference(item.path);
   for (const item of [...fightVideos, fightCampaignVideo]) addReference(item.video);
   for (const group of workGroups) for (const item of group.items) addReference(item.image);

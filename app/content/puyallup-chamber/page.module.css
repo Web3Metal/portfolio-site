@@ -9,5 +9,16 @@
 .media video { display: block; width: 100%; height: auto; object-fit: contain; }
 .motionButton { position: absolute; right: 10px; bottom: 10px; min-height: 44px; padding: 10px 12px; border: 1px solid #ffffff80; background: #151c26ed; color: white; font: inherit; font-size: 12px; cursor: pointer; }
 .motionButton:focus-visible, .source:focus-visible { outline: 2px solid var(--accent-readable); outline-offset: 4px; }
+.stills { max-width: 980px; margin-top: 34px; padding-top: 22px; border-top: 1px solid var(--line); }
+.stills > h2 { margin: 0 0 18px; font: 400 28px/1.2 Georgia, serif; letter-spacing: -.02em; }
+.stillCard img { display: block; width: 100%; height: auto; }
+.stillCopy { min-width: 0; margin-top: 10px; }
+.stillCopy h3 { margin: 0 0 6px; font: 400 20px/1.2 Georgia, serif; letter-spacing: -.02em; }
+.stillCopy p { margin: 0; color: var(--body-ink, #283f52); font-size: 14px; line-height: 1.5; }
 @media (max-width: 900px) { .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-@media (max-width: 620px) { .grid { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 620px) {
+  .grid { grid-template-columns: minmax(0, 1fr); }
+  .stillCard { display: grid; grid-template-columns: 112px minmax(0, 1fr); gap: 14px; align-items: start; }
+  .stillCopy { margin-top: 0; }
+  .stillCopy h3 { font-size: 19px; }
+}

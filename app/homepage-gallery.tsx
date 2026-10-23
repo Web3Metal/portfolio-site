@@ -5,16 +5,17 @@ import { useSyncExternalStore } from "react";
 import { galleryItems } from "./portfolio-data";
 import { WaveWarzPreview } from "./wave-warz-preview";
 import { HomepageMotionPreview } from "./homepage-motion-preview";
+import { ChamberGalleryPreview } from "./chamber-gallery-preview";
 import gallery from "./portfolio.module.css";
 import styles from "./homepage-gallery.module.css";
 
 // Canonical public Gallery: explicit composition, never automatically filled.
 const columns = [
-  ["artist-site", "fight-character-edit"],
+  ["artist-site", "fight-character-edit", "puyallup-chamber"],
   ["last-rehearsal", "dadabots-prodigy"],
   ["edge-art-basel", "wave-warz"],
 ] as const;
-const mobileOrder = ["artist-site", "last-rehearsal", "edge-art-basel", "dadabots-prodigy", "fight-character-edit", "wave-warz"] as const;
+const mobileOrder = ["artist-site", "last-rehearsal", "edge-art-basel", "dadabots-prodigy", "fight-character-edit", "puyallup-chamber", "wave-warz"] as const;
 const mobileQuery = "(max-width: 620px)";
 function subscribeToWidth(update: () => void) {
   const query = window.matchMedia(mobileQuery);
@@ -30,7 +31,7 @@ export function HomepageGallery() {
   const renderItem = (id: typeof mobileOrder[number]) => {
         const item = galleryItems.find(item => item.id === id)!;
         return <div key={item.id} data-home-gallery-item={item.id} className={item.height > item.width ? styles.portrait : styles.item}>
-          {"preview" in item ? <WaveWarzPreview /> : "video" in item ? <HomepageMotionPreview item={item} /> :
+          {item.id === "puyallup-chamber" ? <ChamberGalleryPreview /> : "preview" in item ? <WaveWarzPreview /> : "video" in item ? <HomepageMotionPreview item={item} /> :
             <a className={gallery.galleryCard} href={item.href} target={item.external ? "_blank" : undefined} rel={item.external ? "noopener noreferrer" : undefined}>
               <div className={gallery.galleryImage}><Image src={item.image} alt={"triptych" in item ? item.triptych[0].alt : item.alt} width={item.width} height={item.height} unoptimized sizes="(max-width: 620px) calc(100vw - 36px), 30vw" /></div>
               <div className={gallery.galleryCaption}><h3>{item.title}</h3><p>{item.descriptor}</p><span>{item.action} {item.external ? "↗" : "→"}{item.external && <small> · External site</small>}</span></div>
