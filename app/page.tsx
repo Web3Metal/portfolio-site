@@ -5,6 +5,7 @@ import styles from "./homepage.module.css";
 import { ContactBlock, SiteFooter, SiteHeader } from "./site-components";
 import { workGroups } from "./portfolio-data";
 import { HomepageGallery } from "./homepage-gallery";
+import { GalleryArchive } from "./gallery-archive";
 import portfolio from "./portfolio.module.css";
 import { HeroShowPreview } from "./hero-show-preview";
 
@@ -64,6 +65,7 @@ export default function Home() {
             <span id="selected-content" className={portfolio.anchor} />
             <header className={portfolio.heading}><h2 id="gallery">Gallery</h2><p>Selected artifacts and creative projects. See the work itself.</p></header>
             <HomepageGallery />
+            <GalleryArchive />
           </div>
         </section>
 

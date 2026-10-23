@@ -9,6 +9,7 @@ import { contentLanes, featuredContent, homepageContent } from "../app/content-d
 import { fightLegendsSamples } from "../app/content/fight-legends/samples.ts";
 import { documents as fightDocuments, campaign as fightCampaign, community as fightCommunity, videos as fightVideos, campaignVideo as fightCampaignVideo } from "../app/content/fight-legends/collection-data.ts";
 import { galleryItems, workGroups } from "../app/portfolio-data.ts";
+import { chamberArchiveItem, chamberVideos } from "../app/content/puyallup-chamber/data.ts";
 import { waveWarzVideos } from "../app/content/wave-warz/data.ts";
 import { newsletterItem, web3MetalVideos } from "../app/content/web3-metal/data.ts";
 import { guestReel, artBasel, interviewPresentation, packaging, socialRollout } from "../app/content/edge-visuals/data.ts";
@@ -165,6 +166,7 @@ const routePaths = new Set([
   "/content/web3-metal",
   "/content/edge-visuals",
   "/content/fight-legends",
+  "/content/puyallup-chamber",
   "/about",
   "/resume",
   "/contact",
@@ -212,6 +214,48 @@ test("Wave Warz is one curated collection with five on-demand recordings", async
     assert.ok(html.includes(item.title), `collection includes ${item.title}`);
     assert.ok(html.includes(`Play ${item.title}`), `recording loads only on request: ${item.title}`);
   }
+});
+
+test("Chamber has one subordinate Gallery archive entry without changing the featured set", async () => {
+  const { html } = await page("/");
+  assert.equal(galleryItems.length, 6);
+  assert.equal((html.match(/data-home-gallery-item=/g) ?? []).length, 6);
+  assert.equal((html.match(/data-gallery-archive-item="puyallup-chamber"/g) ?? []).length, 1);
+  const archive = html.match(/<section[^>]*id="gallery-archive"[^>]*>([\s\S]*?)<\/section>/)?.[1];
+  assert.ok(archive);
+  for (const copy of [chamberArchiveItem.title, chamberArchiveItem.descriptor, chamberArchiveItem.action]) assert.ok(archive.includes(copy));
+  assert.ok(html.indexOf('id="gallery-archive"') > html.lastIndexOf('data-home-gallery-item='));
+  assert.equal((archive.match(/href="\/content\/puyallup-chamber"/g) ?? []).length, 3);
+  assert.ok(archive.includes(chamberArchiveItem.poster));
+  assert.match(archive, /<video[^>]*loop=""[^>]*muted=""[^>]*playsInline=""[^>]*preload="none"/i);
+  assert.doesNotMatch(archive, /<source\b|\b(?:19|20)\d{2}\b/);
+  const collection = await page(chamberArchiveItem.href);
+  assert.equal(collection.response.status, 200);
+  assert.ok(collection.html.includes(chamberArchiveItem.title));
+  assert.ok(collection.html.includes('href="/#gallery-archive"'));
+  assert.match(collection.html, /data-chamber-masonry/);
+  assert.equal(chamberVideos.length, 7);
+  assert.deepEqual(chamberVideos.map(video => video.slug), ["welcome-to-the-chamber", "walmart-ribbon-cutting", "washington-state-fair-fireworks", "beverly-belles-throwback", "state-fair-dance-off", "live-music", "washington-state-fair"]);
+  const cardOrder = [...collection.html.matchAll(/<section[^>]*aria-labelledby="([^"]+)"/g)].map(match => match[1]);
+  assert.deepEqual(cardOrder, chamberVideos.map(video => video.slug));
+  for (const video of chamberVideos) {
+    assert.ok(collection.html.includes(video.title));
+    assert.ok(collection.html.includes(video.poster));
+    assert.ok(collection.html.includes(video.sourceUrl));
+  }
+  assert.equal((collection.html.match(/aria-label="Play loop: /g) ?? []).length, 7);
+  const loops = [...collection.html.matchAll(/<video\b[^>]*>/g)].map(match => match[0]);
+  assert.equal(loops.length, 7);
+  for (const loop of loops) {
+    assert.match(loop, /loop=""/i);
+    assert.match(loop, /muted=""/i);
+    assert.match(loop, /playsInline=""/i);
+    assert.match(loop, /preload="none"/i);
+    assert.doesNotMatch(loop, /\bsrc=|\bcontrols\b|\bautoPlay\b/i);
+  }
+  assert.doesNotMatch(collection.html, /Play video|Sound on|Turn sound on|>GIF</i);
+  assert.doesNotMatch(collection.html, /Collection currently being curated\.|<source\b/);
+  assert.doesNotMatch(collection.html, /Spin the Wheel|State Fair Pavilion|first event|first in.person/);
 });
 
 test("Web3 Metal has one Gallery entry and manually curated on-demand artifacts", async () => {
@@ -325,6 +369,8 @@ test("local media references exist in both public source and built output", asyn
   addReference(newsletterItem.cover);
   for (const item of [...artBasel, ...interviewPresentation, ...packaging, ...socialRollout]) addReference(item.src);
   addReference(guestReel.src); addReference(guestReel.poster);
+  addReference(chamberArchiveItem.video); addReference(chamberArchiveItem.poster);
+  for (const item of chamberVideos) { addReference(item.src); addReference(item.poster); }
   for (const item of [...fightDocuments, ...fightCampaign, ...fightCommunity, ...fightVideos, fightCampaignVideo]) addReference(item.path);
   for (const item of [...fightVideos, fightCampaignVideo]) addReference(item.video);
   for (const group of workGroups) for (const item of group.items) addReference(item.image);

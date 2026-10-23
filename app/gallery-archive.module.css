@@ -1,0 +1,19 @@
+.archive { margin-top: 40px; padding-top: 22px; border-top: 1px solid var(--line); }
+.archive h3 { margin: 0 0 18px; font-size: 12px; line-height: 1.4; font-weight: 600; color: #5b6775; }
+.entry { display: grid; grid-template-columns: 180px minmax(0, 1fr); gap: 24px; align-items: center; max-width: 760px; }
+.preview, .copy { min-width: 0; }
+.preview a { display: block; }
+.preview video { display: block; width: 100%; height: auto; }
+.copy h4 { margin: 0 0 6px; font: 400 22px/1.15 Georgia, serif; letter-spacing: -.02em; }
+.copy p { margin: 0; color: #5b6775; font-size: 14px; line-height: 1.5; }
+.action { display: inline-block; margin-top: 8px; padding: 8px 0; color: var(--accent-readable); font-size: 13px; line-height: 1.5; }
+.motionButton { display: block; min-height: 32px; margin-top: 4px; padding: 4px 0; border: 0; background: transparent; color: #5b6775; font: inherit; font-size: 11px; cursor: pointer; text-decoration: underline; text-underline-offset: 3px; }
+.entry a:focus-visible, .motionButton:focus-visible { outline: 2px solid var(--accent-readable); outline-offset: 4px; }
+@media (max-width: 620px) {
+  .entry { grid-template-columns: 108px minmax(0, 1fr); gap: 16px; }
+  .copy h4 { font-size: 20px; }
+  .copy p { font-size: 13px; }
+}
+@media (max-width: 360px) {
+  .entry { grid-template-columns: 92px minmax(0, 1fr); gap: 12px; }
+}
